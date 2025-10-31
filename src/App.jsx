@@ -77,7 +77,7 @@ export default function Portfolio() {
       title: 'Data Engineering Portfolio Projects',
       tech: 'Python, SQL, Snowflake',
       description: 'Developed sample data pipelines, dashboards, and Snowflake workflows showcasing modern cloud data architecture.'
-    }
+    },
     {
       title: 'Car Rental System',
       tech: 'Java, MySQL, Figma',
