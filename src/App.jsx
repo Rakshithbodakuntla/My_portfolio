@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { Menu, X, Mail, Phone, MapPin, Download, Github, Linkedin, Award, BookOpen, Code, Briefcase, User, GraduationCap, Send } from 'lucide-react';
+import {
+  Menu, X, Mail, Phone, MapPin, Download, Github, Linkedin, Award,
+  BookOpen, Code, Briefcase, User, GraduationCap, Send
+} from 'lucide-react';
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -68,17 +71,21 @@ export default function Portfolio() {
   ];
 
   const projects = [
-   
+    {
+      title: 'Self-Driving Car Rental System',
+      tech: 'Java, MySQL, Figma',
+      description: 'Built a platform that allows users to rent cars remotely. Developed the backend using Java & MySQL and designed UI in Figma.'
+    },
     {
       title: 'Digital Farming using IoT',
       tech: 'IoT Sensors, Real-Time Alerts',
       description: 'Designed an IoT solution to monitor environmental factors like humidity and soil moisture and send real-time alerts to farmers.'
     },
-     {
-      title: 'Car Rental System',
-      tech: 'Java, MySQL, Figma',
-      description: 'Built a platform that allows users to rent cars remotely. Developed the backend using Java & MySQL and designed UI in Figma.'
-    },
+    {
+      title: 'Data Engineering Portfolio Projects',
+      tech: 'Python, SQL, Snowflake',
+      description: 'Developed sample data pipelines, dashboards, and Snowflake workflows showcasing modern cloud data architecture.'
+    }
   ];
 
   const research = [
@@ -343,4 +350,33 @@ export default function Portfolio() {
                 placeholder="Your Email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none"
+              />
+              <textarea
+                placeholder="Your Message"
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                rows={5}
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none resize-none"
+              />
+              <button
+                onClick={handleContactSubmit}
+                className="w-full px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2"
+              >
+                <Send size={20} />
+                Send Message
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12 px-4">
+        <div className="max-w-6xl mx-auto text-center text-gray-400">
+          © 2025 Rakshith Bodakuntla. All rights reserved.
+        </div>
+      </footer>
+    </div>
+  );
+}
