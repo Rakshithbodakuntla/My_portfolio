@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { Menu, X, Mail, Phone, MapPin, Download, Github, Linkedin, Award, BookOpen, Code, Briefcase, User, GraduationCap, Send } from 'lucide-react';
+import {
+  Menu, X, Mail, Phone, MapPin, Download, Github, Linkedin, Award, BookOpen, Code,
+  Briefcase, User, GraduationCap, Send
+} from 'lucide-react';
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,76 +20,64 @@ export default function Portfolio() {
     window.location.href = mailtoLink;
   };
 
+  // Updated skillset
   const skills = {
-    languages: ['C', 'Java', 'Python'],
-    databases: ['MySQL', 'Oracle'],
-    tools: ['Figma', 'IoT', 'Azure', 'CISCO Networking'],
-    methodologies: ['Agile', 'Research', 'Leadership']
+    languages: ['Python', 'SQL', 'Java', 'C'],
+    dataEngineering: ['Snowflake', 'Azure Data Factory', 'ETL Pipelines', 'Data Warehousing'],
+    cloudPlatforms: ['Azure', 'AWS (Basics)', 'GCP (Familiarity)'],
+    snowflakeTools: ['Snowpipe', 'Streams & Tasks', 'Time Travel', 'Secure Data Sharing', 'Streamlit'],
+    machineLearning: ['TensorFlow', 'Scikit-learn', 'Power BI', 'Tableau'],
+    databases: ['MySQL', 'Oracle', 'PostgreSQL'],
+    tools: ['Git', 'REST APIs', 'ServiceNow'],
   };
 
   const projects = [
     {
       title: 'Self-Driving Car Rental System',
       tech: 'Java, MySQL, Figma',
-      description: 'Developed an autonomous car rental platform with real-time booking, user management, and payment integration. Designed UI/UX using Figma and implemented backend with Java and MySQL.'
+      description:
+        'Developed a platform enabling users to rent vehicles directly from owners remotely. Built with Java and MySQL, and designed an intuitive UI using Figma.',
     },
     {
       title: 'Digital Farming using IoT',
       tech: 'IoT Sensors, Real-Time Monitoring',
-      description: 'Built an IoT-based smart farming solution with sensors for soil moisture, temperature, and humidity monitoring. Implemented real-time data analytics for optimized crop management.'
-    }
-  ];
-
-  const research = [
-    'Face-Recognition System Analysis and Approach using Deep Reinforcement Learning',
-    'Adversarial Machine Learning: Mitigating Attacks and Improving Robustness in Neural Networks'
+      description:
+        'Designed an IoT-based smart farming system that monitors soil moisture, humidity, and temperature in real time. Enabled automated alerts for precision agriculture.',
+    },
   ];
 
   const certifications = [
-    'CISCO CCNA',
-    'CISCO Cybersecurity Essentials',
-    'TASK Oracle Database Design',
-    'Microsoft Azure AI Fundamentals'
+    'Snowflake Hands-On Data Warehouse Training',
+    'Snowflake Essentials: Collaboration, Marketplace & Cost Estimation',
+    'Microsoft Azure AI Fundamentals',
+    'CISCO Certified Network Associate (CCNA)',
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      {/* Navigation */}
+      {/* Navbar */}
       <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              RB
-            </div>
-            
-            {/* Desktop Menu */}
+            <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">RB</div>
             <div className="hidden md:flex space-x-8">
-              {['home', 'about', 'skills', 'projects', 'research', 'contact'].map((item) => (
+              {['home', 'about', 'skills', 'projects', 'snowflake', 'research', 'contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
-                  className={`capitalize hover:text-blue-600 transition-colors ${
-                    activeSection === item ? 'text-blue-600 font-semibold' : 'text-gray-700'
-                  }`}
+                  className={`capitalize hover:text-blue-600 transition-colors ${activeSection === item ? 'text-blue-600 font-semibold' : 'text-gray-700'}`}
                 >
                   {item}
                 </button>
               ))}
             </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-gray-100"
-            >
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 rounded-lg hover:bg-gray-100">
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
-
-          {/* Mobile Menu */}
           {isMenuOpen && (
             <div className="md:hidden py-4 space-y-2">
-              {['home', 'about', 'skills', 'projects', 'research', 'contact'].map((item) => (
+              {['home', 'about', 'skills', 'projects', 'snowflake', 'research', 'contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
@@ -101,18 +92,16 @@ export default function Portfolio() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-24 pb-16 px-4">
-        <div className="max-w-6xl mx-auto text-center">
+      <section id="home" className="pt-24 pb-16 px-4 text-center">
+        <div className="max-w-6xl mx-auto">
           <div className="inline-block mb-6">
-            <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-xl">
-              RB
-            </div>
+            <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-xl">RB</div>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
             Hi, I'm <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Rakshith Bodakuntla</span> 👋
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 mb-8">
-            Graduate Student in Computer Science | Data-Driven Innovator
+            Data Engineer | Snowflake Enthusiast | AI & Cloud Developer
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <button
@@ -121,10 +110,13 @@ export default function Portfolio() {
             >
               View Projects
             </button>
-            <button className="px-8 py-3 bg-white border-2 border-blue-600 text-blue-600 rounded-full font-semibold hover:bg-blue-50 transform hover:-translate-y-1 transition-all flex items-center gap-2">
-              <Download size={20} />
-              Download Resume
-            </button>
+            <a
+              href="/Rakshith_Bodakuntla_Snowflake_Solutions_Architect.pdf"
+              download
+              className="px-8 py-3 bg-white border-2 border-blue-600 text-blue-600 rounded-full font-semibold hover:bg-blue-50 flex items-center gap-2"
+            >
+              <Download size={20} /> Download Resume
+            </a>
             <button
               onClick={() => scrollToSection('contact')}
               className="px-8 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-full font-semibold hover:bg-gray-50 transform hover:-translate-y-1 transition-all"
@@ -145,19 +137,16 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4 text-gray-700 leading-relaxed">
               <p>
-                I'm a passionate Computer Science graduate student at the <strong>University of Central Missouri</strong> with a strong foundation in software development, machine learning, and IoT technologies.
+                I’m <strong>Rakshith Bodakuntla</strong>, a Data Engineer and AI Researcher pursuing my <strong>MS in Computer Science</strong> at the <strong>University of Central Missouri</strong>.
+                I specialize in <strong>Snowflake Data Cloud, Azure Data Factory, and ETL pipeline automation</strong>.
               </p>
               <p>
-                My interests lie at the intersection of <strong>Artificial Intelligence</strong>, <strong>Data Engineering</strong>, and <strong>Internet of Things</strong>. I'm particularly fascinated by how AI can solve real-world problems and improve human lives.
-              </p>
-              <p>
-                With experience in research, leadership, and hands-on project development, I'm constantly exploring new technologies and methodologies to stay at the cutting edge of computer science.
+                My work bridges <strong>data engineering</strong> and <strong>AI analytics</strong>, focusing on transforming raw data into meaningful insights through scalable, cloud-based architectures.
               </p>
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-2xl">
               <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                <GraduationCap className="text-blue-600" />
-                Education
+                <GraduationCap className="text-blue-600" /> Education
               </h3>
               <div className="space-y-4">
                 <div className="border-l-4 border-blue-600 pl-4">
@@ -176,32 +165,30 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Skills Section */}
+      {/* Skills */}
       <section id="skills" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
             <Code className="text-blue-600" size={32} />
             <h2 className="text-4xl font-bold">Skills</h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Object.entries(skills).map(([category, items]) => (
               <div key={category} className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
                 <h3 className="text-xl font-bold mb-4 capitalize text-blue-600">{category}</h3>
-                <div className="space-y-2">
-                  {items.map((skill) => (
-                    <div key={skill} className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                      <span className="text-gray-700">{skill}</span>
-                    </div>
-                  ))}
-                </div>
+                {items.map((skill) => (
+                  <div key={skill} className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                    <span className="text-gray-700">{skill}</span>
+                  </div>
+                ))}
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Projects Section */}
+      {/* Projects */}
       <section id="projects" className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
@@ -209,8 +196,8 @@ export default function Portfolio() {
             <h2 className="text-4xl font-bold">Projects</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <div key={index} className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl hover:shadow-xl transition-shadow">
+            {projects.map((project, i) => (
+              <div key={i} className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl hover:shadow-xl transition-shadow">
                 <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
                 <p className="text-blue-600 font-semibold mb-4">{project.tech}</p>
                 <p className="text-gray-700 leading-relaxed">{project.description}</p>
@@ -220,22 +207,56 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Research Section */}
-      <section id="research" className="py-16 px-4">
+      {/* Snowflake Projects */}
+      <section id="snowflake" className="py-16 px-4 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center gap-3 mb-8">
+            <Briefcase className="text-blue-600" size={32} />
+            <h2 className="text-4xl font-bold">Snowflake Projects</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+              <h3 className="text-2xl font-bold mb-2">Cloud Data Pipeline Automation</h3>
+              <p className="text-blue-600 font-semibold mb-4">Snowflake | Azure Data Factory | Python | SQL</p>
+              <p className="text-gray-700">
+                Designed and implemented Snowflake-based ETL pipelines integrating APIs and Azure Blob Storage using Snowpipe, Streams & Tasks. Automated ingestion and enabled Secure Data Sharing for real-time analytics.
+              </p>
+            </div>
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+              <h3 className="text-2xl font-bold mb-2">Performance Tuning & Cost Optimization</h3>
+              <p className="text-blue-600 font-semibold mb-4">Snowflake | Power BI | Query Profiling</p>
+              <p className="text-gray-700">
+                Improved query performance through caching and partitioning. Built Power BI dashboards to monitor workload and optimize Snowflake resource usage.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Research */}
+      <section id="research" className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
             <BookOpen className="text-blue-600" size={32} />
-            <h2 className="text-4xl font-bold">Research</h2>
+            <h2 className="text-4xl font-bold">Research & Publications</h2>
           </div>
-          <div className="space-y-4">
-            {research.map((paper, index) => (
-              <div key={index} className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow flex items-start gap-4">
-                <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
-                  {index + 1}
-                </div>
-                <p className="text-gray-700 leading-relaxed">{paper}</p>
-              </div>
-            ))}
+          <div className="space-y-6">
+            <div className="p-6 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl shadow">
+              <h3 className="text-2xl font-bold mb-2">
+                A CNN-LSTM Based Deep Learning Pipeline for ECG Signal Analysis and Cardiac Arrhythmia Detection
+              </h3>
+              <p className="text-gray-700">
+                Proposed hybrid CNN-LSTM architecture for ECG classification using TensorFlow and Streamlit, enhancing diagnostic accuracy in healthcare AI.
+              </p>
+            </div>
+            <div className="p-6 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl shadow">
+              <h3 className="text-2xl font-bold mb-2">Face Recognition System using Deep Reinforcement Learning</h3>
+              <p className="text-gray-700">Published research on scalable authentication using deep RL for large-scale systems.</p>
+            </div>
+            <div className="p-6 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl shadow">
+              <h3 className="text-2xl font-bold mb-2">Adversarial Machine Learning</h3>
+              <p className="text-gray-700">Explored attack detection and model robustness improvement for secure AI systems.</p>
+            </div>
           </div>
 
           {/* Certifications */}
@@ -245,8 +266,11 @@ export default function Portfolio() {
               <h3 className="text-3xl font-bold">Certifications</h3>
             </div>
             <div className="grid md:grid-cols-2 gap-4">
-              {certifications.map((cert, index) => (
-                <div key={index} className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-xl flex items-center gap-3 hover:shadow-lg transition-shadow">
+              {certifications.map((cert, i) => (
+                <div
+                  key={i}
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-xl flex items-center gap-3 hover:shadow-lg transition-shadow"
+                >
                   <Award size={24} />
                   <span className="font-semibold">{cert}</span>
                 </div>
@@ -256,7 +280,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Contact */}
       <section id="contact" className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
@@ -304,50 +328,4 @@ export default function Portfolio() {
                 type="email"
                 placeholder="Your Email"
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none"
-              />
-              <textarea
-                placeholder="Your Message"
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                rows={5}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none resize-none"
-              />
-              <button
-                onClick={handleContactSubmit}
-                className="w-full px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2"
-              >
-                <Send size={20} />
-                Send Message
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="text-center md:text-left">
-              <h3 className="text-2xl font-bold mb-2">Rakshith Bodakuntla</h3>
-              <p className="text-gray-400">Graduate Student | Developer | Researcher</p>
-            </div>
-            <div className="flex gap-6">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
-                <Linkedin size={28} />
-              </a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
-                <Github size={28} />
-              </a>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-            <p>© 2025 Rakshith Bodakuntla. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-}
+                on
