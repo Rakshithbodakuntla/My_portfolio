@@ -59,15 +59,7 @@ export default function Portfolio() {
         'Integrated REST APIs and supported CMDB data migration for client projects.'
       ]
     },
-    {
-      title: 'Vice Chair / Student Network Member',
-      company: 'IEEE Hyderabad Section',
-      period: 'Jul 2022 – Feb 2023',
-      description: [
-        'Led technical events, workshops, and mentoring initiatives for student members.',
-        'Authored content and collaborated across IEEE Student Branches for outreach.'
-      ]
-    }
+   
   ];
 
   const projects = [
