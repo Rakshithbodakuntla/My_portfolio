@@ -105,7 +105,6 @@ export default function Portfolio() {
     'Snowflake Hands-On Data Warehouse Training',
     'Snowflake Collaboration & Cost Estimation Workshop',
     'Microsoft Azure AI Fundamentals',
-    'CISCO CCNA & Cybersecurity Essentials',
     'TASK Oracle Database Design'
   ];
 
