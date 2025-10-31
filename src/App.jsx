@@ -63,8 +63,16 @@ export default function Portfolio() {
   ];
 
   const projects = [
+     {
+      title: 'AI-Powered Text-to-Story Video Generator',
+      tech: 'Python, Transformers, spaCy, Stable Diffusion, Diffusers, Torch, MoviePy, Text-to-Speech, NLP, AI Video Synthesis',
+      description: 'Built an AI-driven Text-to-Story Video Generator that converts user-written statements into narrated, AI-illustrated short films using NLP and Stable Diffusion..'
+    },
+
+
+    
     {
-      title: 'Self-Driving Car Rental System',
+      title: 'Car Rental System',
       tech: 'Java, MySQL, Figma',
       description: 'Built a platform that allows users to rent cars remotely. Developed the backend using Java & MySQL and designed UI in Figma.'
     },
