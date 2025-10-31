@@ -68,15 +68,7 @@ export default function Portfolio() {
       tech: 'Python, Transformers, spaCy, Stable Diffusion, Diffusers, Torch, MoviePy, Text-to-Speech, NLP, AI Video Synthesis',
       description: 'Built an AI-driven Text-to-Story Video Generator that converts user-written statements into narrated, AI-illustrated short films using NLP and Stable Diffusion..'
     },
-
-
-    
-    {
-      title: 'Car Rental System',
-      tech: 'Java, MySQL, Figma',
-      description: 'Built a platform that allows users to rent cars remotely. Developed the backend using Java & MySQL and designed UI in Figma.'
-    },
-    {
+        {
       title: 'Digital Farming using IoT',
       tech: 'IoT Sensors, Real-Time Alerts',
       description: 'Designed an IoT solution to monitor environmental factors like humidity and soil moisture and send real-time alerts to farmers.'
@@ -86,6 +78,12 @@ export default function Portfolio() {
       tech: 'Python, SQL, Snowflake',
       description: 'Developed sample data pipelines, dashboards, and Snowflake workflows showcasing modern cloud data architecture.'
     }
+    {
+      title: 'Car Rental System',
+      tech: 'Java, MySQL, Figma',
+      description: 'Built a platform that allows users to rent cars remotely. Developed the backend using Java & MySQL and designed UI in Figma.'
+    },
+
   ];
 
   const research = [
