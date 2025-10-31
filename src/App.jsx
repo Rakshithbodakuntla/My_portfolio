@@ -1,534 +1,346 @@
-import React, { useState } from "react";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Github,
-  Linkedin,
-  Download,
-  Code,
-  Database,
-  Cloud,
-  Layers,
-  Briefcase,
-  BookOpen,
-  Award,
-  Send,
-  Menu,
-  X,
-} from "lucide-react";
+import React, { useState } from 'react';
+import { Menu, X, Mail, Phone, MapPin, Download, Github, Linkedin, Award, BookOpen, Code, Briefcase, User, GraduationCap, Send } from 'lucide-react';
 
 export default function Portfolio() {
-  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("about");
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
-  const sections = [
-    { id: "about", label: "About" },
-    { id: "skills", label: "Skills" },
-    { id: "projects", label: "Projects" },
-    { id: "snowflake", label: "Snowflake Work" },
-    { id: "research", label: "Research" },
-    { id: "contact", label: "Contact" },
-  ];
-
-  const scrollToSection = (id) => {
-    setActiveSection(id);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    setIsMobileNavOpen(false);
+  const scrollToSection = (sectionId) => {
+    setActiveSection(sectionId);
+    setIsMenuOpen(false);
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleContactSubmit = () => {
-    const mailtoLink = `mailto:bodakuntlarakshith1@gmail.com?subject=Portfolio Contact from ${encodeURIComponent(
-      formData.name
-    )}&body=${encodeURIComponent(
-      formData.message + "\n\nFrom: " + formData.email
-    )}`;
+    const mailtoLink = `mailto:bodakuntlarakshith1@gmail.com?subject=Portfolio Contact from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(formData.message + '\n\nFrom: ' + formData.email)}`;
     window.location.href = mailtoLink;
   };
 
-  // DATA
   const skills = {
-    "Languages & Core": ["Python", "SQL", "Java", "C"],
-    "Data Engineering": [
-      "Snowflake",
-      "Azure Data Factory",
-      "ETL Pipelines",
-      "Data Warehousing",
-    ],
-    "Snowflake Tools": [
-      "Snowpipe",
-      "Streams & Tasks",
-      "Time Travel",
-      "Secure Data Sharing",
-      "Streamlit",
-    ],
-    "Cloud & Analytics": ["Azure", "Power BI", "Tableau", "REST APIs"],
-    "ML / AI": ["TensorFlow", "Scikit-learn", "Deep Learning Pipelines"],
-    Databases: ["MySQL", "Oracle", "PostgreSQL"],
+    languages: ['Python', 'Java', 'SQL', 'C'],
+    dataEngineering: ['Snowflake', 'Azure Data Factory', 'ETL Pipelines', 'Data Warehousing'],
+    analytics: ['Power BI', 'Streamlit', 'Tableau', 'REST APIs'],
+    machineLearning: ['TensorFlow', 'Scikit-learn', 'Deep Learning', 'Reinforcement Learning'],
+    tools: ['Git', 'ServiceNow', 'IoT Systems', 'Figma']
   };
 
+  const experience = [
+    {
+      title: 'Graduate Research Assistant',
+      company: 'University of Central Missouri – Overland Park, KS',
+      period: 'Aug 2025 – Present',
+      description: [
+        'Developed a deep learning pipeline for ECG signal analysis using TensorFlow and Streamlit.',
+        'Implemented CNN and LSTM models to classify cardiac arrhythmias with improved detection accuracy.',
+        'Contributed to AI research supporting healthcare diagnosis and intelligent decision systems.'
+      ]
+    },
+    {
+      title: 'Software Engineer',
+      company: 'HDFC ERGO General Insurance – Remote, India',
+      period: 'Sep 2023 – Aug 2024',
+      description: [
+        'Built scalable ETL pipelines using Python and SQL for high-volume insurance data.',
+        'Integrated APIs and automated workflows using Azure Data Factory and Power BI.',
+        'Optimized SQL queries, reducing execution time by 30% and enhancing analytics performance.'
+      ]
+    },
+    {
+      title: 'ServiceNow Intern',
+      company: 'Kaptius – Hyderabad, India',
+      period: 'Jan 2023 – Aug 2023',
+      description: [
+        'Assisted in custom ServiceNow app development and workflow automation using Flow Designer.',
+        'Created JavaScripts and dashboards for process optimization.',
+        'Integrated REST APIs and supported CMDB data migration for client projects.'
+      ]
+    },
+    {
+      title: 'Vice Chair / Student Network Member',
+      company: 'IEEE Hyderabad Section',
+      period: 'Jul 2022 – Feb 2023',
+      description: [
+        'Led technical events, workshops, and mentoring initiatives for student members.',
+        'Authored content and collaborated across IEEE Student Branches for outreach.'
+      ]
+    }
+  ];
+
   const projects = [
+   
     {
-      title: "Self-Driving Car Rental System",
-      stack: "Java · MySQL · Figma",
-      desc: "Built a platform that enables users to rent vehicles remotely from owners. Designed UI in Figma and implemented secure CRUD flows with Java & MySQL.",
+      title: 'Digital Farming using IoT',
+      tech: 'IoT Sensors, Real-Time Alerts',
+      description: 'Designed an IoT solution to monitor environmental factors like humidity and soil moisture and send real-time alerts to farmers.'
     },
-    {
-      title: "Digital Farming using IoT",
-      stack: "IoT · Real-time Monitoring",
-      desc: "Designed an IoT-based smart farming system to monitor soil, humidity and temperature, with real-time alerts for precision agriculture.",
-    },
-    {
-      title: "DL Experiments (NLP, CNN, GAN)",
-      stack: "TensorFlow · PyTorch · HuggingFace",
-      desc: "Created multiple learning repos: tensor operations, CNN-based classification, GAN experiments, and transformer-based NLP.",
-      link: "https://github.com/Rakshithbodakuntla",
+     {
+      title: 'Car Rental System',
+      tech: 'Java, MySQL, Figma',
+      description: 'Built a platform that allows users to rent cars remotely. Developed the backend using Java & MySQL and designed UI in Figma.'
     },
   ];
 
-  const snowflakeProjects = [
+  const research = [
     {
-      title: "Cloud Data Pipeline Automation",
-      tags: "Snowflake · ADF · Python · SQL",
-      desc: "Designed a Snowflake-based ELT flow integrating API data and Azure Blob via Snowpipe, Streams & Tasks. Enabled automated ingestion and analytics-ready tables.",
+      title: 'A CNN-LSTM Based Deep Learning Pipeline for ECG Signal Analysis and Cardiac Arrhythmia Detection',
+      description: 'Proposed a hybrid CNN-LSTM architecture for ECG classification using TensorFlow and Streamlit, improving diagnostic accuracy in healthcare AI systems.'
     },
     {
-      title: "Performance Tuning & Cost Visibility",
-      tags: "Snowflake · Power BI",
-      desc: "Used Snowflake query profiling, clustering, and caching patterns to improve query performance. Built monitoring dashboards in Power BI to track credit usage.",
-    },
-  ];
-
-  const researches = [
-    {
-      title:
-        "A CNN-LSTM Based Deep Learning Pipeline for ECG Signal Analysis and Cardiac Arrhythmia Detection",
-      desc: "Built a hybrid CNN-LSTM model (TensorFlow + Streamlit) to classify ECG signals and support healthcare decision systems.",
+      title: 'Face-Recognition System Analysis using Deep Reinforcement Learning',
+      description: 'Published research on scalable authentication using deep reinforcement learning for large datasets.'
     },
     {
-      title:
-        "Face-Recognition System Analysis using Deep Reinforcement Learning",
-      desc: "Review + implementation work on scalable face recognition with RL-based adaptation for large user bases.",
-    },
-    {
-      title:
-        "Adversarial Machine Learning: Mitigating Attacks and Improving Robustness",
-      desc: "Explored adversarial attacks on neural networks and evaluated defense mechanisms to improve model reliability.",
-    },
+      title: 'Adversarial Machine Learning: Mitigating Attacks and Improving Robustness',
+      description: 'Explored adversarial attacks and defense strategies to strengthen deep learning model security.'
+    }
   ];
 
   const certifications = [
-    "Snowflake Hands-On Data Warehouse Training",
-    "Snowflake Essentials: Collaboration, Marketplace & Cost Estimation",
-    "Microsoft Azure AI Fundamentals",
-    "CISCO CCNA & Cybersecurity Essentials",
+    'Snowflake Hands-On Data Warehouse Training',
+    'Snowflake Collaboration & Cost Estimation Workshop',
+    'Microsoft Azure AI Fundamentals',
+    'CISCO CCNA & Cybersecurity Essentials',
+    'TASK Oracle Database Design'
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* Mobile Top Bar */}
-      <div className="md:hidden fixed inset-x-0 top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200 flex items-center justify-between px-4 py-3">
-        <div className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold">
-            RB
-          </div>
-          <span className="font-semibold text-slate-800 text-sm">
-            Rakshith Bodakuntla
-          </span>
-        </div>
-        <button
-          onClick={() => setIsMobileNavOpen((prev) => !prev)}
-          className="p-2 rounded-md border border-slate-200"
-        >
-          {isMobileNavOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
-      </div>
-
-      {/* Mobile menu */}
-      {isMobileNavOpen && (
-        <div className="md:hidden fixed inset-x-0 top-14 z-40 bg-white border-b border-slate-200 shadow-sm">
-          <div className="flex flex-col">
-            {sections.map((sec) => (
-              <button
-                key={sec.id}
-                onClick={() => scrollToSection(sec.id)}
-                className={`px-4 py-3 text-left ${
-                  activeSection === sec.id
-                    ? "bg-blue-50 text-blue-600 font-semibold"
-                    : "hover:bg-slate-50"
-                }`}
-              >
-                {sec.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Main layout */}
-      <div className="max-w-7xl mx-auto md:pt-6 py-16 md:py-8 px-4 md:px-6 lg:px-8 flex flex-col md:flex-row gap-6">
-        {/* LEFT: Sidebar */}
-        <aside className="md:w-1/3 lg:w-1/4 md:sticky md:top-6 md:h-fit bg-white rounded-2xl shadow-sm border border-slate-100 p-6 hidden md:block">
-          {/* Avatar */}
-          <div className="flex flex-col items-center text-center mb-6">
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-3xl font-bold">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               RB
             </div>
-            <h1 className="mt-4 text-lg font-semibold text-slate-900">
-              Rakshith Bodakuntla
-            </h1>
-            <p className="text-sm text-slate-500">
-              MS CS @ UCM • Data Engineer • Snowflake
-            </p>
-          </div>
-
-          {/* Contact */}
-          <div className="space-y-3 mb-6">
-            <div className="flex items-center gap-3 text-sm text-slate-600">
-              <Mail size={16} className="text-blue-500" />
-              <a
-                href="mailto:bodakuntlarakshith1@gmail.com"
-                className="hover:text-blue-600"
-              >
-                bodakuntlarakshith1@gmail.com
-              </a>
-            </div>
-            <div className="flex items-center gap-3 text-sm text-slate-600">
-              <Phone size={16} className="text-blue-500" />
-              <a
-                href="tel:+14694871318"
-                className="hover:text-blue-600"
-              >
-                +1 (469) 487-1318
-              </a>
-            </div>
-            <div className="flex items-center gap-3 text-sm text-slate-600">
-              <MapPin size={16} className="text-blue-500" />
-              <span>Kansas / Missouri, USA</span>
-            </div>
-          </div>
-
-          {/* Buttons */}
-          <div className="flex gap-3 mb-6">
-            <a
-              href="/Rakshith_Bodakuntla_Snowflake_Solutions_Architect.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-medium py-2 rounded-lg hover:shadow-md"
-            >
-              <Download size={16} /> Resume
-            </a>
-            <a
-              href="https://www.linkedin.com/in/rakshithbodakuntla"
-              target="_blank"
-              rel="noreferrer"
-              className="p-2 rounded-lg border border-slate-200 hover:bg-slate-50"
-            >
-              <Linkedin size={18} className="text-blue-600" />
-            </a>
-            <a
-              href="https://github.com/Rakshithbodakuntla"
-              target="_blank"
-              rel="noreferrer"
-              className="p-2 rounded-lg border border-slate-200 hover:bg-slate-50"
-            >
-              <Github size={18} />
-            </a>
-          </div>
-
-          {/* Nav */}
-          <nav className="space-y-1">
-            <p className="text-xs uppercase tracking-wide text-slate-400 mb-2">
-              Sections
-            </p>
-            {sections.map((sec) => (
-              <button
-                key={sec.id}
-                onClick={() => scrollToSection(sec.id)}
-                className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm ${
-                  activeSection === sec.id
-                    ? "bg-blue-50 text-blue-600 font-semibold"
-                    : "text-slate-600 hover:bg-slate-50"
-                }`}
-              >
-                {sec.label}
-              </button>
-            ))}
-          </nav>
-
-          {/* Education quick */}
-          <div className="mt-6 border-t border-slate-100 pt-4">
-            <p className="text-xs uppercase tracking-wide text-slate-400 mb-2">
-              Education
-            </p>
-            <p className="text-sm font-semibold text-slate-800">
-              MS Computer Science
-            </p>
-            <p className="text-xs text-slate-500">University of Central Missouri</p>
-            <p className="text-xs text-slate-400">2024 – Present | CGPA: 3.85</p>
-            <p className="mt-3 text-sm font-semibold text-slate-800">
-              BTech Computer Science
-            </p>
-            <p className="text-xs text-slate-500">Vaagdevi College of Engineering</p>
-          </div>
-        </aside>
-
-        {/* RIGHT: Content */}
-        <main className="flex-1 space-y-10 md:space-y-12">
-          {/* About */}
-          <section
-            id="about"
-            className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 md:p-8"
-          >
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">
-              About Me
-            </h2>
-            <p className="text-slate-700 leading-relaxed mb-4">
-              I’m a data-focused Computer Science graduate student with experience in{" "}
-              <strong>Snowflake, Azure Data Factory, Python, and SQL</strong>. I’ve built
-              data pipelines for large insurance datasets, developed workflow automation
-              in ServiceNow, and contributed to AI research in healthcare.
-            </p>
-            <p className="text-slate-700 leading-relaxed">
-              I enjoy working on problems where <strong>data engineering</strong> meets{" "}
-              <strong>AI/ML</strong> — especially building pipelines that make data
-              usable for analytics, reporting, or intelligent systems.
-            </p>
-          </section>
-
-          {/* Skills */}
-          <section
-            id="skills"
-            className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 md:p-8"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <Code className="text-blue-500" />
-              <h2 className="text-2xl font-bold text-slate-900">Skills</h2>
-            </div>
-            <div className="grid md:grid-cols-2 gap-6">
-              {Object.entries(skills).map(([group, list]) => (
-                <div key={group} className="bg-slate-50 rounded-xl p-4">
-                  <h3 className="text-sm font-semibold text-slate-800 mb-3">
-                    {group}
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {list.map((item) => (
-                      <span
-                        key={item}
-                        className="bg-white border border-slate-200 px-3 py-1 rounded-full text-xs text-slate-700"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Projects */}
-          <section
-            id="projects"
-            className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 md:p-8"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <Briefcase className="text-blue-500" />
-              <h2 className="text-2xl font-bold text-slate-900">Projects</h2>
-            </div>
-            <div className="grid md:grid-cols-2 gap-6">
-              {projects.map((proj, idx) => (
-                <div
-                  key={idx}
-                  className="rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 p-5 shadow-sm hover:shadow-md transition"
-                >
-                  <h3 className="font-semibold text-slate-900 mb-2">
-                    {proj.title}
-                  </h3>
-                  <p className="text-xs font-medium text-blue-700 mb-3">
-                    {proj.stack}
-                  </p>
-                  <p className="text-sm text-slate-700 mb-3">{proj.desc}</p>
-                  {proj.link && (
-                    <a
-                      href={proj.link}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-sm text-blue-600 hover:underline"
-                    >
-                      View on GitHub →
-                    </a>
-                  )}
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Snowflake */}
-          <section
-            id="snowflake"
-            className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 md:p-8"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <Cloud className="text-blue-500" />
-              <h2 className="text-2xl font-bold text-slate-900">Snowflake Work</h2>
-            </div>
-            <p className="text-slate-700 mb-6">
-              Hands-on experience with the Snowflake Data Cloud — data ingestion,
-              automation with Streams & Tasks, and analytics enablement. Below are
-              sample solution-style projects you can mention in job applications.
-            </p>
-            <div className="grid md:grid-cols-2 gap-6">
-              {snowflakeProjects.map((sf, idx) => (
-                <div key={idx} className="border border-slate-100 rounded-xl p-5">
-                  <h3 className="font-semibold text-slate-900 mb-1">{sf.title}</h3>
-                  <p className="text-xs text-blue-600 font-medium mb-3">
-                    {sf.tags}
-                  </p>
-                  <p className="text-sm text-slate-700">{sf.desc}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Research */}
-          <section
-            id="research"
-            className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 md:p-8"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <BookOpen className="text-blue-500" />
-              <h2 className="text-2xl font-bold text-slate-900">
-                Research & Publications
-              </h2>
-            </div>
-            <div className="space-y-4">
-              {researches.map((paper, idx) => (
-                <div
-                  key={idx}
-                  className="bg-slate-50 rounded-xl p-4 border border-slate-100"
-                >
-                  <h3 className="text-sm font-semibold text-slate-900 mb-1">
-                    {paper.title}
-                  </h3>
-                  <p className="text-sm text-slate-600">{paper.desc}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* certs */}
-            <div className="mt-8">
-              <div className="flex items-center gap-3 mb-3">
-                <Award className="text-purple-500" />
-                <h3 className="text-lg font-semibold text-slate-900">
-                  Certifications
-                </h3>
-              </div>
-              <div className="grid md:grid-cols-2 gap-3">
-                {certifications.map((cert) => (
-                  <div
-                    key={cert}
-                    className="flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg px-4 py-3"
-                  >
-                    <Award size={18} />
-                    <span className="text-sm font-medium">{cert}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Contact */}
-          <section
-            id="contact"
-            className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 md:p-8 mb-10"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <Mail className="text-blue-500" />
-              <h2 className="text-2xl font-bold text-slate-900">Get in Touch</h2>
-            </div>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="space-y-4">
-                <p className="text-slate-600">
-                  I’m open to roles in <strong>Data Engineering</strong>,{" "}
-                  <strong>Snowflake / Cloud Data</strong>, and{" "}
-                  <strong>AI-driven analytics</strong>.
-                </p>
-                <div className="flex items-center gap-3 bg-blue-50 rounded-lg p-3">
-                  <Mail className="text-blue-500" />
-                  <div>
-                    <p className="text-sm font-semibold">Email</p>
-                    <a
-                      href="mailto:bodakuntlarakshith1@gmail.com"
-                      className="text-sm text-blue-600"
-                    >
-                      bodakuntlarakshith1@gmail.com
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 bg-blue-50 rounded-lg p-3">
-                  <Linkedin className="text-blue-500" />
-                  <div>
-                    <p className="text-sm font-semibold">LinkedIn</p>
-                    <a
-                      href="https://www.linkedin.com/in/rakshithbodakuntla"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-sm text-blue-600"
-                    >
-                      linkedin.com/in/rakshithbodakuntla
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="space-y-3">
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
-                  className="w-full rounded-lg border border-slate-200 px-4 py-2 focus:ring-2 focus:ring-blue-200 focus:outline-none"
-                />
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
-                  className="w-full rounded-lg border border-slate-200 px-4 py-2 focus:ring-2 focus:ring-blue-200 focus:outline-none"
-                />
-                <textarea
-                  rows={4}
-                  placeholder="Your Message"
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
-                  className="w-full rounded-lg border border-slate-200 px-4 py-2 focus:ring-2 focus:ring-blue-200 focus:outline-none resize-none"
-                />
+            
+            {/* Desktop Menu */}
+            <div className="hidden md:flex space-x-8">
+              {['home', 'about', 'experience', 'skills', 'projects', 'research', 'contact'].map((item) => (
                 <button
-                  onClick={handleContactSubmit}
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg hover:shadow-md"
+                  key={item}
+                  onClick={() => scrollToSection(item)}
+                  className={`capitalize hover:text-blue-600 transition-colors ${
+                    activeSection === item ? 'text-blue-600 font-semibold' : 'text-gray-700'
+                  }`}
                 >
-                  <Send size={16} /> Send
+                  {item}
                 </button>
+              ))}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2 rounded-lg hover:bg-gray-100"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+
+          {/* Mobile Menu */}
+          {isMenuOpen && (
+            <div className="md:hidden py-4 space-y-2">
+              {['home', 'about', 'experience', 'skills', 'projects', 'research', 'contact'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item)}
+                  className="block w-full text-left px-4 py-2 capitalize hover:bg-blue-50 rounded-lg"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="pt-24 pb-16 px-4 text-center">
+        <div className="max-w-6xl mx-auto">
+          <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-4xl font-bold mx-auto mb-6 shadow-xl">
+            RB
+          </div>
+          <h1 className="text-5xl md:text-6xl font-bold mb-4">
+            Hi, I'm <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Rakshith Bodakuntla</span> 👋
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-600 mb-8">
+            Data Engineer | AI & Machine Learning Enthusiast | Researcher
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a href="#projects" className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold hover:shadow-lg transform hover:-translate-y-1 transition-all">
+              View Projects
+            </a>
+            <a href="/Rakshith_Bodakuntla_Resume.pdf" target="_blank" className="px-8 py-3 bg-white border-2 border-blue-600 text-blue-600 rounded-full font-semibold hover:bg-blue-50 transform hover:-translate-y-1 transition-all flex items-center gap-2">
+              <Download size={20} /> Resume
+            </a>
+            <a href="#contact" className="px-8 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-full font-semibold hover:bg-gray-50 transform hover:-translate-y-1 transition-all">
+              Contact Me
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-16 px-4 bg-white">
+        <div className="max-w-6xl mx-auto text-center md:text-left">
+          <h2 className="text-4xl font-bold mb-6 flex items-center justify-center md:justify-start gap-2">
+            <User className="text-blue-600" /> About Me
+          </h2>
+          <p className="text-gray-700 leading-relaxed text-lg max-w-3xl mx-auto">
+            I’m a passionate Data Engineer and AI researcher pursuing my MS in Computer Science at the University of Central Missouri.  
+            My experience spans developing scalable data pipelines, implementing deep learning solutions, and automating workflows in cloud environments.  
+            I enjoy working at the intersection of <strong>Data Engineering</strong>, <strong>AI</strong>, and <strong>Cloud Systems</strong> — transforming complex data into meaningful insights.
+          </p>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="py-16 px-4 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold mb-10 flex items-center gap-2">
+            <Briefcase className="text-blue-600" /> Experience
+          </h2>
+          <div className="space-y-8">
+            {experience.map((exp, index) => (
+              <div key={index} className="bg-white p-6 rounded-2xl shadow-md">
+                <h3 className="text-2xl font-bold text-blue-600">{exp.title}</h3>
+                <p className="text-gray-700 font-medium">{exp.company}</p>
+                <p className="text-sm text-gray-500 mb-4">{exp.period}</p>
+                <ul className="list-disc list-inside text-gray-700 space-y-1">
+                  {exp.description.map((point, i) => (
+                    <li key={i}>{point}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="py-16 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold mb-10 flex items-center gap-2">
+            <Code className="text-blue-600" /> Skills
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Object.entries(skills).map(([category, items]) => (
+              <div key={category} className="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-2xl shadow hover:shadow-lg transition-shadow">
+                <h3 className="text-xl font-semibold text-blue-600 mb-4 capitalize">{category}</h3>
+                <ul className="space-y-2 text-gray-700">
+                  {items.map((skill) => (
+                    <li key={skill} className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-blue-600 rounded-full"></div> {skill}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-16 px-4 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold mb-10 flex items-center gap-2">
+            <Briefcase className="text-blue-600" /> Projects
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {projects.map((project, index) => (
+              <div key={index} className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
+                <p className="text-blue-600 font-semibold mb-4">{project.tech}</p>
+                <p className="text-gray-700 leading-relaxed">{project.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Research Section */}
+      <section id="research" className="py-16 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold mb-10 flex items-center gap-2">
+            <BookOpen className="text-blue-600" /> Research & Publications
+          </h2>
+          <div className="space-y-6">
+            {research.map((paper, index) => (
+              <div key={index} className="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-2xl shadow">
+                <h3 className="text-2xl font-semibold mb-2">{paper.title}</h3>
+                <p className="text-gray-700">{paper.description}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Certifications */}
+          <div className="mt-12">
+            <h3 className="text-3xl font-bold mb-6 flex items-center gap-2">
+              <Award className="text-purple-600" /> Certifications
+            </h3>
+            <div className="grid md:grid-cols-2 gap-4">
+              {certifications.map((cert, index) => (
+                <div key={index} className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-xl flex items-center gap-3">
+                  <Award size={24} /> <span className="font-semibold">{cert}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-16 px-4 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div className="max-w-6xl mx-auto text-center md:text-left">
+          <h2 className="text-4xl font-bold mb-10 flex items-center justify-center md:justify-start gap-2">
+            <Mail className="text-blue-600" /> Get In Touch
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="space-y-6">
+              <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow">
+                <Mail className="text-blue-600" size={24} />
+                <div>
+                  <p className="font-semibold">Email</p>
+                  <a href="mailto:bodakuntlarakshith1@gmail.com" className="text-blue-600 hover:underline">
+                    bodakuntlarakshith1@gmail.com
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow">
+                <Phone className="text-blue-600" size={24} />
+                <div>
+                  <p className="font-semibold">Phone</p>
+                  <a href="tel:+14694871318" className="text-blue-600 hover:underline">
+                    +1 (469) 487-1318
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow">
+                <MapPin className="text-blue-600" size={24} />
+                <div>
+                  <p className="font-semibold">Location</p>
+                  <p className="text-gray-600">Missouri, USA</p>
+                </div>
+              </div>
+              <div className="flex gap-4 justify-center md:justify-start">
+                <a href="https://linkedin.com/in/rakshithbodakuntla" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800"><Linkedin size={28} /></a>
+                <a href="https://github.com/Rakshithbodakuntla" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800"><Github size={28} /></a>
               </div>
             </div>
-          </section>
 
-          {/* Footer */}
-          <footer className="py-6 text-center text-xs text-slate-400">
-            © {new Date().getFullYear()} Rakshith Bodakuntla. All rights reserved.
-          </footer>
-        </main>
-      </div>
-    </div>
-  );
-}
+            {/* Contact Form */}
+            <div className="space-y-4">
+              <input
+                type="text"
+                placeholder="Your Name"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none"
+              />
+              <input
+                type="email"
+                placeholder="Your Email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="
