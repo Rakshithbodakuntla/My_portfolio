@@ -69,9 +69,10 @@ export default function Portfolio() {
       description: 'Built an AI-driven Text-to-Story Video Generator that converts user-written statements into narrated, AI-illustrated short films using NLP and Stable Diffusion..'
     },
         {
-      title: 'Digital Farming using IoT',
-      tech: 'IoT Sensors, Real-Time Alerts',
-      description: 'Designed an IoT solution to monitor environmental factors like humidity and soil moisture and send real-time alerts to farmers.'
+      title: 'Real-Time-Smart-Farm-IoT-Data-Pipeline-and-Analytics',
+      tech: 'IoT Sensors, Real-Time Alerts, Python, SQLite, Streamlit',
+      description: 'Designed an IoT solution to monitor environmental factors like humidity and soil moisture and send real-time alerts to farmers. Further store the data and Built a data ingestion layer storing time-series readings in SQLite
+        "Developed an interactive Streamlit dashboard visualizing real-time sensor metrics with Plotly charts',
     },
     {
       title: 'Data Engineering Portfolio Projects',
