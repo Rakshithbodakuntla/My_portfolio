@@ -71,8 +71,7 @@ export default function Portfolio() {
         {
       title: 'Real-Time-Smart-Farm-IoT-Data-Pipeline-and-Analytics',
       tech: 'IoT Sensors, Real-Time Alerts, Python, SQLite, Streamlit',
-      description: 'Designed an IoT solution to monitor environmental factors like humidity and soil moisture and send real-time alerts to farmers. Further store the data and Built a data ingestion layer storing time-series readings in SQLite
-        "Developed an interactive Streamlit dashboard visualizing real-time sensor metrics with Plotly charts',
+      description: 'Designed an IoT solution to monitor environmental factors like humidity and soil moisture and send real-time alerts to farmers. Further store the data and Built a data ingestion layer storing time-series readings in SQLiteDeveloped an interactive Streamlit dashboard visualizing real-time sensor metrics with Plotly charts',
     },
     {
       title: 'Data Engineering Portfolio Projects',
