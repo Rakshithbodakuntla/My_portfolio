@@ -79,9 +79,9 @@ export default function Portfolio() {
       tech: 'Python, Streamlit, Pandas, Scikit-learn',
       description: 'Developed a machine learning pipeline to analyze customer data and predict churn risk, enabling proactive retention strategies through interactive dashboards and data visualization.'},
      {
-      title: 'Data Engineering Portfolio Projects',
-      tech: 'React, Tailwind CSS, Vercel, GitHub',
-      description: 'Built and deployed a portfolio web application using React, Tailwind CSS, and Lucide React Icons. Configured CI/CD pipeline via Vercel to enable automatic deployment on every GitHub push. Integrated responsive design principles for desktop and mobile devices.'
+      title: 'ECG Signal Analysis and Classification Pipeline',
+      tech: 'Python, TensorFlow, Keras, WFDB, Scikit-learn, Pandas, NumPy',
+      description: 'Developed an end-to-end deep learning pipeline to classify cardiac risk levels from MIT-BIH ECG data using CNN and hybrid CNN-LSTM architectures. Implemented signal preprocessing, QRS detection, augmentation, normalization, and feature extraction for accurate beat classification.'
     },
   ];
 
