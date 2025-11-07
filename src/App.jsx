@@ -22,11 +22,15 @@ export default function Portfolio() {
     window.location.href = mailtoLink;
   };
 
+  // ✅ FIXED: move cardClass OUTSIDE JSX
+  const cardClass =
+    "bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl shadow-lg hover:shadow-[0_0_25px_rgba(168,85,247,0.4)] transition-all";
+
   const sections = ["home", "about", "experience", "skills", "projects", "research", "contact"];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0d0c1d] via-[#1b1730] to-[#0d0c1d] text-gray-200">
-      {/* Navigation */}
+      {/* NAV */}
       <nav className="fixed top-0 w-full bg-black/30 backdrop-blur-md border-b border-white/10 z-50">
         <div className="max-w-6xl mx-auto px-4 flex justify-between items-center h-16">
           <div className="text-2xl font-extrabold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
@@ -52,6 +56,7 @@ export default function Portfolio() {
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
+
         {isMenuOpen && (
           <div className="md:hidden py-4 space-y-2 bg-black/70 border-t border-white/10">
             {sections.map((item) => (
@@ -67,7 +72,7 @@ export default function Portfolio() {
         )}
       </nav>
 
-      {/* Hero */}
+      {/* HERO */}
       <section id="home" className="pt-32 pb-20 text-center">
         <div className="max-w-6xl mx-auto">
           <div className="w-32 h-32 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full flex items-center justify-center text-white text-4xl font-bold mx-auto mb-6 shadow-[0_0_30px_rgba(168,85,247,0.4)]">
@@ -106,10 +111,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Shared container styles */}
-      const cardClass = "bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl shadow-lg hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all";
-
-      {/* About */}
+      {/* ABOUT */}
       <section id="about" className="py-16 px-4">
         <div className="max-w-6xl mx-auto text-center md:text-left">
           <h2 className="text-4xl font-bold mb-8 flex items-center justify-center md:justify-start gap-2 text-cyan-400">
@@ -126,15 +128,13 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Experience */}
+      {/* EXPERIENCE */}
       <section id="experience" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 flex items-center gap-2 text-cyan-400">
             <Briefcase /> Experience
           </h2>
           <div className="space-y-8">
-            {/* Replace with your dynamic data */}
-            {/* Example card */}
             <div className={`${cardClass} p-6`}>
               <h3 className="text-2xl font-bold text-purple-400">
                 Graduate Research Assistant
@@ -151,7 +151,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Skills */}
+      {/* SKILLS */}
       <section id="skills" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 flex items-center gap-2 text-cyan-400">
@@ -180,7 +180,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Contact */}
+      {/* CONTACT */}
       <section id="contact" className="py-16 px-4">
         <div className="max-w-6xl mx-auto text-center md:text-left">
           <h2 className="text-4xl font-bold mb-10 flex items-center justify-center md:justify-start gap-2 text-cyan-400">
@@ -189,7 +189,7 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-6">
               <div className={`${cardClass} p-4 flex items-center gap-4`}>
-                <Mail className="text-cyan-400" /> 
+                <Mail className="text-cyan-400" />
                 <div>
                   <p className="font-semibold">Email</p>
                   <a href="mailto:bodakuntlarakshith1@gmail.com" className="text-cyan-300 hover:underline">
@@ -221,7 +221,6 @@ export default function Portfolio() {
               </div>
             </div>
 
-            {/* Contact form */}
             <div className={`${cardClass} p-6 space-y-4`}>
               <input
                 type="text"
@@ -255,7 +254,6 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-black/40 text-gray-400 py-8 text-center border-t border-white/10">
         © 2025 Rakshith Bodakuntla. All rights reserved.
       </footer>
