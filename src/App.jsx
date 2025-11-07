@@ -324,11 +324,11 @@ export default function Portfolio() {
                 <MapPin className="text-blue-600" size={24} />
                 <div>
                   <p className="font-semibold">Location</p>
-                  <p className="text-gray-600">Missouri, USA</p>
+                  <p className="text-gray-600">Kansas, USA</p>
                 </div>
               </div>
               <div className="flex gap-4 justify-center md:justify-start">
-                <a href="https://linkedin.com/in/rakshithbodakuntla" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800"><Linkedin size={28} /></a>
+                <a href="https://www.linkedin.com/in/bodakuntlarakshith1/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800"><Linkedin size={28} /></a>
                 <a href="https://github.com/Rakshithbodakuntla" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800"><Github size={28} /></a>
               </div>
             </div>
