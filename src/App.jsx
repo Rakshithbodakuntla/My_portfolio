@@ -75,7 +75,7 @@ export default function Portfolio() {
     },
     {
       title: 'Data Engineering Portfolio Projects',
-      tech: 'Python, SQL, Snowflake',
+      tech: 'React, Tailwind CSS, Vercel, GitHub',
       description: 'Built and deployed a portfolio web application using React, Tailwind CSS, and Lucide React Icons. Configured CI/CD pipeline via Vercel to enable automatic deployment on every GitHub push. Integrated responsive design principles for desktop and mobile devices.'
     },
 
