@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
- 
 * {
   margin: 0;
   padding: 0;
@@ -20,14 +19,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-   background-color: #111215;
-  color: #e5e5e5;
- 
+  /* 🌤️ Light theme background */
+  background: linear-gradient(to bottom right, #f9fafb, #e0f2fe);
+  color: #1f2937;  /* dark gray text */
   font-family: 'Inter', sans-serif;
 }
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
-
+button {
+  cursor: pointer;
+}
