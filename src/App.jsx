@@ -78,11 +78,6 @@ export default function Portfolio() {
       tech: 'Python, SQL, Snowflake',
       description: 'Developed sample data pipelines, dashboards, and Snowflake workflows showcasing modern cloud data architecture.'
     },
-    {
-      title: 'Car Rental System',
-      tech: 'Java, MySQL, Figma',
-      description: 'Built a platform that allows users to rent cars remotely. Developed the backend using Java & MySQL and designed UI in Figma.'
-    },
 
   ];
 
@@ -105,7 +100,6 @@ export default function Portfolio() {
     'Snowflake Hands-On Data Warehouse Training',
     'Snowflake Collaboration & Cost Estimation Workshop',
     'Microsoft Azure AI Fundamentals',
-    'TASK Oracle Database Design'
   ];
 
   return (
