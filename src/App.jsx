@@ -73,16 +73,16 @@ export default function Portfolio() {
       tech: 'IoT Sensors, Real-Time Alerts, Python, SQLite, Streamlit',
       description: 'Designed an IoT solution to monitor environmental factors like humidity and soil moisture and send real-time alerts to farmers. Further store the data and Built a data ingestion layer storing time-series readings in SQLiteDeveloped an interactive Streamlit dashboard visualizing real-time sensor metrics with Plotly charts',
     },
-    {
-      title: 'Data Engineering Portfolio Projects',
-      tech: 'React, Tailwind CSS, Vercel, GitHub',
-      description: 'Built and deployed a portfolio web application using React, Tailwind CSS, and Lucide React Icons. Configured CI/CD pipeline via Vercel to enable automatic deployment on every GitHub push. Integrated responsive design principles for desktop and mobile devices.'
-    },
+   
     {
       title:'Customer Churn Prediction',
       tech: 'Python, Streamlit, Pandas, Scikit-learn',
       description: 'Developed a machine learning pipeline to analyze customer data and predict churn risk, enabling proactive retention strategies through interactive dashboards and data visualization.'},
-
+     {
+      title: 'Data Engineering Portfolio Projects',
+      tech: 'React, Tailwind CSS, Vercel, GitHub',
+      description: 'Built and deployed a portfolio web application using React, Tailwind CSS, and Lucide React Icons. Configured CI/CD pipeline via Vercel to enable automatic deployment on every GitHub push. Integrated responsive design principles for desktop and mobile devices.'
+    },
   ];
 
   const research = [
