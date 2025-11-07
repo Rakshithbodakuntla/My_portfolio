@@ -11,20 +11,20 @@ export default function Portfolio() {
 
   const sections = ["home", "about", "experience", "skills", "projects", "research", "contact"];
 
-  const scrollToSection = (sectionId) => {
-    setActiveSection(sectionId);
+  const scrollToSection = (id) => {
+    setActiveSection(id);
     setIsMenuOpen(false);
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleContactSubmit = () => {
-    const mailtoLink = `mailto:bodakuntlarakshith1@gmail.com?subject=Portfolio Contact from ${encodeURIComponent(
+    const mailto = `mailto:bodakuntlarakshith1@gmail.com?subject=Portfolio Contact from ${encodeURIComponent(
       formData.name
     )}&body=${encodeURIComponent(formData.message + "\n\nFrom: " + formData.email)}`;
-    window.location.href = mailtoLink;
+    window.location.href = mailto;
   };
 
-  // ================= CONTENT ==================
+  // --- CONTENT ---
   const skills = {
     languages: ["Python", "Java", "SQL", "C"],
     dataEngineering: ["Snowflake", "Azure Data Factory", "ETL Pipelines", "Data Warehousing"],
@@ -109,13 +109,12 @@ export default function Portfolio() {
     "Snowflake Collaboration & Cost Estimation Workshop",
     "Microsoft Azure AI Fundamentals",
   ];
-  // ============================================
 
   const card = "bg-white rounded-2xl shadow-md hover:shadow-lg transition p-6";
   const sectionPad = "py-16 px-4";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 text-gray-800">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 text-gray-900">
       {/* Navbar */}
       <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
         <div className="max-w-6xl mx-auto px-4">
@@ -127,7 +126,7 @@ export default function Portfolio() {
                   key={item}
                   onClick={() => scrollToSection(item)}
                   className={`capitalize hover:text-blue-600 transition ${
-                    activeSection === item ? "text-blue-600 font-semibold" : "text-gray-700"
+                    activeSection === item ? "text-blue-600 font-semibold" : "text-gray-800"
                   }`}
                 >
                   {item}
@@ -145,7 +144,7 @@ export default function Portfolio() {
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
-                  className="block w-full text-left px-4 py-2 capitalize hover:bg-blue-50 rounded-lg text-gray-700"
+                  className="block w-full text-left px-4 py-2 capitalize hover:bg-blue-50 rounded-lg text-gray-800"
                 >
                   {item}
                 </button>
@@ -158,7 +157,7 @@ export default function Portfolio() {
       {/* Hero */}
       <section id="home" className="pt-28 pb-16 text-center">
         <div className="max-w-6xl mx-auto">
-          <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-4xl font-bold mx-auto mb-6 shadow-xl">
+          <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-4xl font-bold mx-auto mb-6 shadow-lg">
             RB
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
@@ -168,13 +167,13 @@ export default function Portfolio() {
             Data Engineer | AI & Machine Learning Enthusiast | Researcher
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="#projects" className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold hover:shadow-lg transform hover:-translate-y-1 transition-all">
+            <a href="#projects" className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold hover:shadow-lg transition">
               View Projects
             </a>
-            <a href="/Rakshith_Bodakuntla_Resume.pdf" target="_blank" className="px-8 py-3 bg-white border-2 border-blue-600 text-blue-600 rounded-full font-semibold hover:bg-blue-50 transform hover:-translate-y-1 transition-all flex items-center gap-2">
+            <a href="/Rakshith_Bodakuntla_Resume.pdf" target="_blank" className="px-8 py-3 border-2 border-blue-600 text-blue-600 rounded-full font-semibold hover:bg-blue-50 transition flex items-center gap-2">
               <Download size={20} /> Resume
             </a>
-            <a href="#contact" className="px-8 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-full font-semibold hover:bg-gray-50 transform hover:-translate-y-1 transition-all">
+            <a href="#contact" className="px-8 py-3 border-2 border-gray-400 text-gray-700 rounded-full font-semibold hover:bg-gray-50 transition">
               Contact Me
             </a>
           </div>
@@ -182,12 +181,12 @@ export default function Portfolio() {
       </section>
 
       {/* About */}
-      <section id="about" className="py-16 bg-white px-4">
+      <section id="about" className={`${sectionPad} bg-white`}>
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6 flex justify-center gap-2 text-blue-600">
             <User /> About Me
           </h2>
-          <p className="text-gray-700 leading-relaxed text-lg max-w-3xl mx-auto">
+          <p className="text-black leading-relaxed text-lg max-w-3xl mx-auto">
             I’m a passionate Data Engineer and AI researcher pursuing my MS in Computer Science at the University of Central Missouri.
             My experience spans developing scalable data pipelines, implementing deep learning solutions, and automating workflows in cloud environments.
           </p>
@@ -195,7 +194,7 @@ export default function Portfolio() {
       </section>
 
       {/* Experience */}
-      <section id="experience" className="py-16 bg-gradient-to-br from-blue-50 to-purple-50 px-4">
+      <section id="experience" className={`${sectionPad} bg-gradient-to-br from-blue-50 to-purple-50`}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 flex items-center gap-2 text-blue-600">
             <Briefcase /> Experience
@@ -204,9 +203,9 @@ export default function Portfolio() {
             {experience.map((exp, i) => (
               <div key={i} className={card}>
                 <h3 className="text-2xl font-bold text-blue-700">{exp.title}</h3>
-                <p className="text-gray-700 font-medium">{exp.company}</p>
-                <p className="text-sm text-gray-500 mb-3">{exp.period}</p>
-                <ul className="list-disc list-inside text-gray-700 space-y-1">
+                <p className="text-black font-medium">{exp.company}</p>
+                <p className="text-sm text-gray-600 mb-3">{exp.period}</p>
+                <ul className="list-disc list-inside text-black space-y-1">
                   {exp.description.map((p, j) => (
                     <li key={j}>{p}</li>
                   ))}
@@ -218,7 +217,7 @@ export default function Portfolio() {
       </section>
 
       {/* Skills */}
-      <section id="skills" className="py-16 bg-white px-4">
+      <section id="skills" className={`${sectionPad} bg-white`}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 flex items-center gap-2 text-blue-600">
             <Code /> Skills
@@ -227,7 +226,7 @@ export default function Portfolio() {
             {Object.entries(skills).map(([category, items]) => (
               <div key={category} className="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-2xl shadow hover:shadow-lg transition-shadow">
                 <h3 className="text-xl font-semibold text-blue-700 mb-4 capitalize">{category}</h3>
-                <ul className="space-y-2 text-gray-700">
+                <ul className="space-y-2 text-black">
                   {items.map((skill) => (
                     <li key={skill} className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-blue-600 rounded-full"></div> {skill}
@@ -241,7 +240,7 @@ export default function Portfolio() {
       </section>
 
       {/* Projects */}
-      <section id="projects" className="py-16 bg-gradient-to-br from-blue-50 to-purple-50 px-4">
+      <section id="projects" className={`${sectionPad} bg-gradient-to-br from-blue-50 to-purple-50`}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 flex items-center gap-2 text-blue-600">
             <Briefcase /> Projects
@@ -251,7 +250,7 @@ export default function Portfolio() {
               <div key={i} className={card}>
                 <h3 className="text-2xl font-bold text-blue-800 mb-2">{p.title}</h3>
                 <p className="text-blue-600 font-semibold mb-4">{p.tech}</p>
-                <p className="text-gray-700">{p.description}</p>
+                <p className="text-black">{p.description}</p>
               </div>
             ))}
           </div>
@@ -259,7 +258,7 @@ export default function Portfolio() {
       </section>
 
       {/* Research */}
-      <section id="research" className="py-16 bg-white px-4">
+      <section id="research" className={`${sectionPad} bg-white`}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 flex items-center gap-2 text-blue-600">
             <BookOpen /> Research & Publications
@@ -268,7 +267,7 @@ export default function Portfolio() {
             {research.map((r, i) => (
               <div key={i} className="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-2xl shadow">
                 <h3 className="text-2xl font-semibold text-blue-800 mb-2">{r.title}</h3>
-                <p className="text-gray-700">{r.description}</p>
+                <p className="text-black">{r.description}</p>
               </div>
             ))}
           </div>
@@ -289,13 +288,13 @@ export default function Portfolio() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-16 bg-gradient-to-br from-blue-50 to-purple-50 px-4">
+      <section id="contact" className={`${sectionPad} bg-gradient-to-br from-blue-50 to-purple-50`}>
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
           <div className="space-y-6">
             <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow">
               <Mail className="text-blue-600" size={24} />
               <div>
-                <p className="font-semibold">Email</p>
+                <p className="font-semibold text-black">Email</p>
                 <a href="mailto:bodakuntlarakshith1@gmail.com" className="text-blue-600 hover:underline">
                   bodakuntlarakshith1@gmail.com
                 </a>
@@ -304,7 +303,7 @@ export default function Portfolio() {
             <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow">
               <Phone className="text-blue-600" size={24} />
               <div>
-                <p className="font-semibold">Phone</p>
+                <p className="font-semibold text-black">Phone</p>
                 <a href="tel:+14694871318" className="text-blue-600 hover:underline">
                   +1 (469) 487-1318
                 </a>
@@ -313,8 +312,8 @@ export default function Portfolio() {
             <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow">
               <MapPin className="text-blue-600" size={24} />
               <div>
-                <p className="font-semibold">Location</p>
-                <p className="text-gray-700">Kansas, USA</p>
+                <p className="font-semibold text-black">Location</p>
+                <p className="text-black">Kansas, USA</p>
               </div>
             </div>
             <div className="flex gap-4">
@@ -327,27 +326,28 @@ export default function Portfolio() {
             </div>
           </div>
 
+          {/* Contact Form */}
           <div className="bg-white p-6 rounded-2xl shadow space-y-4">
             <input
               type="text"
               placeholder="Your Name"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl text-gray-700 focus:ring-2 focus:ring-blue-600 outline-none"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl text-black focus:ring-2 focus:ring-blue-600 outline-none"
             />
             <input
               type="email"
               placeholder="Your Email"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl text-gray-700 focus:ring-2 focus:ring-blue-600 outline-none"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl text-black focus:ring-2 focus:ring-blue-600 outline-none"
             />
             <textarea
               placeholder="Your Message"
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               rows={5}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl text-gray-700 focus:ring-2 focus:ring-blue-600 outline-none resize-none"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl text-black focus:ring-2 focus:ring-blue-600 outline-none resize-none"
             />
             <button
               onClick={handleContactSubmit}
