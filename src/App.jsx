@@ -319,7 +319,7 @@ useEffect(() => {
             <Code /> Skills & Technologies
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-1 lg:grid-cols-4 gap-5">
             {Object.entries(skills).map(([category, items]) => (
               <div key={category} className={card}>
                 <h3 className="text-xl font-semibold text-white mb-4 capitalize">{category.replace(/([A-Z])/g, ' $1')}</h3>
