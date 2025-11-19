@@ -296,8 +296,8 @@ useEffect(() => {
           {/* END IMAGE ADDITION */}
 
           <p className="text-gray-300 leading-relaxed text-lg max-w-3xl mx-auto">
-            I’m a passionate Data Engineer and AI researcher pursuing my MS in Computer Science at the University of Central Missouri.
-            My experience includes building scalable data pipelines, deep learning systems, and workflow automation in cloud environments.
+            I’m a passionatea Data Engineer, AI Researcher, and MS CS student at the University of Central Missouri.
+            I specialize in building systems that combine data engineering, machine learning, and cloud technologies to create intelligent, scalable solutions.
           </p>
           
           {/* OPTIONAL: Add skill keywords for quick scanning */}
