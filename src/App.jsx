@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react"; 
 import {
   Menu, X, Mail, Phone, MapPin, Download, Github, Linkedin, Award,
-  BookOpen, Code, Briefcase, User, Send, Star, Briefcase as DataIcon // Using Briefcase for Data Science projects
+  BookOpen, Code, Briefcase, User, Send, Star
 } from "lucide-react";
+// NOTE: Swiper is no longer used for a single Projects section, but we'll keep the imports clean just in case.
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import { Pagination, Navigation } from 'swiper/modules';
 
 import profileImage from './My_anime_img.jpg';
 
@@ -17,21 +20,37 @@ export default function Portfolio() {
   }, []);
 
   // FIX 2: OBSERVER LOGIC TO UPDATE ACTIVE SECTION IN NAVBAR
- 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: '0px 0px -70% 0px', // Trigger when 30% of the section is visible
+        threshold: 0.1, 
+      }
+    );
 
+    // Observe all sections
     const sections = document.querySelectorAll('section');
     sections.forEach((section) => {
       observer.observe(section);
     });
 
+    // Cleanup function
     return () => {
       sections.forEach((section) => {
         observer.unobserve(section);
       });
     };
-  }, []); 
+  }, []); // Run once on mount
 
-  // CHANGED: Removed 'data-science' section
+  // UPDATED: Removed 'data-science' section from navigation
   const sections = ["home", "about", "experience", "skills", "projects", "research", "contact"];
 
   const scrollToSection = (sectionId) => {
@@ -102,7 +121,10 @@ export default function Portfolio() {
       description: "Developed an end-to-end ECG classification system using CNN and CNN-LSTM to detect cardiac abnormalities, forming a robust healthcare diagnosis tool.",
       link: "YOUR_PROJECT_LINK_HERE" 
     },
-     {
+  ];
+  
+  const dataScienceProjects = [
+    {
       title: "Real-Time Smart Farm IoT Data Pipeline and Analytics",
       tech: "IoT Sensors, Real-Time Alerts, Python, SQLite, Streamlit",
       description: "Designed an IoT solution for humidity and soil monitoring with real-time alerts and Streamlit dashboards for operational insights.",
@@ -114,11 +136,8 @@ export default function Portfolio() {
       description: "Developed a machine learning pipeline that predicts customer churn through data analytics and visualization dashboards, providing actionable insights for retention.",
       link: "YOUR_PROJECT_LINK_HERE" 
     },
-  
   ];
   
-  const dataScienceProjects = [
-   
   // COMBINED: All projects are merged into one array
   const projects = [...featuredProjects, ...dataScienceProjects]; 
 
@@ -327,7 +346,6 @@ export default function Portfolio() {
       {/* PROJECTS (COMBINED & RENAMED) */}
       <section id="projects" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
-          {/* RENAMED HEADING */}
           <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
             <Star /> Projects
           </h2>
@@ -347,9 +365,6 @@ export default function Portfolio() {
           </div>
         </div>
       </section>
-      
-      {/* DELETED: The dedicated 'data-science' section has been removed */}
-
 
       {/* RESEARCH */}
       <section id="research" className="py-16 px-4">
