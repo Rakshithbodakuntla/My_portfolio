@@ -9,7 +9,8 @@ export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("home");
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
-  const sections = ["home", "about", "experience", "skills", "projects", "research", "contact"];
+  // UPDATED: Added 'data-science' section
+  const sections = ["home", "about", "experience", "skills", "projects", "data-science", "research", "contact"];
 
   const scrollToSection = (sectionId) => {
     setActiveSection(sectionId);
@@ -68,7 +69,7 @@ export default function Portfolio() {
   ];
 
   // NOTE: Projects are split into 'projects' (Featured/AI) and 'dataScienceProjects'
-  const projects = [
+  const featuredProjects = [
     {
       title: "AI-Powered Text-to-Story Video Generator",
       tech: "Python, Transformers, spaCy, Stable Diffusion, Diffusers, Torch, MoviePy, Text-to-Speech, NLP, AI Video Synthesis",
@@ -81,7 +82,7 @@ export default function Portfolio() {
       description: "Developed an end-to-end ECG classification system using CNN and CNN-LSTM to detect cardiac abnormalities, forming a robust healthcare diagnosis tool.",
       link: "YOUR_PROJECT_LINK_HERE" // Add your link
     },
-     {
+    {
       title: "Real-Time Smart Farm IoT Data Pipeline and Analytics",
       tech: "IoT Sensors, Real-Time Alerts, Python, SQLite, Streamlit",
       description: "Designed an IoT solution for humidity and soil monitoring with real-time alerts and Streamlit dashboards for operational insights.",
@@ -95,8 +96,13 @@ export default function Portfolio() {
     },
   ];
   
-
+  const dataScienceProjects = [
+    
+    // You can add more general Data Science projects here
+  ];
   
+  // Renamed 'projects' to 'featuredProjects' and added 'dataScienceProjects'
+  const projects = featuredProjects; 
 
   const research = [
     {
