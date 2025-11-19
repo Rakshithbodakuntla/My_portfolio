@@ -317,7 +317,7 @@ useEffect(() => {
       <section id="skills" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
-            <Code /> Skills
+            <Code /> Skills & Technologies
           </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
