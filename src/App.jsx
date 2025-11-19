@@ -248,9 +248,7 @@ useEffect(() => {
           </p>
           
           <p className="text-xl text-gray-400 mb-12 max-w-4xl mx-auto leading-relaxed">
-            Transforming data into intelligent solutions with cutting-edge AI and machine 
-            learning technologies. Specialized in **LLMs**, agentic AI, and scalable data 
-            systems.
+            Driving innovation by building robust data pipelines and architecting next-generation AI solutions, specializing in Deep Learning and LLM development.
           </p>
 
           <div className="flex flex-wrap justify-center gap-6">
