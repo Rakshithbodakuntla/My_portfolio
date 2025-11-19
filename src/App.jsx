@@ -296,7 +296,7 @@ export default function Portfolio() {
       <section id="projects" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
-            <Star /> Featured AI & LLM Projects
+            <Star /> Projects
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -318,23 +318,10 @@ export default function Portfolio() {
       <section id="data-science" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
-            <Briefcase /> Data Science Projects
+            <Briefcase /> Projects
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {dataScienceProjects.map((p, i) => (
-              <div key={i} className={card}>
-                <h3 className="text-2xl font-bold text-white mb-2">{p.title}</h3>
-                <p className="text-cyan-300 font-semibold mb-4">{p.tech}</p>
-                <p className="text-gray-300">{p.description}</p>
-                <a href={p.link} target="_blank" className="mt-4 inline-block text-cyan-400 hover:text-white transition font-medium">
-                  [View Source / Demo]
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+          
 
 
       {/* RESEARCH */}
