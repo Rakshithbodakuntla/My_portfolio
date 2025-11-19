@@ -239,9 +239,9 @@ useEffect(() => {
       <section id="home" className="pt-28 pb-16 text-center min-h-screen flex items-center justify-center">
         <div className="max-w-6xl mx-auto px-4">
           
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-4">
+          <h3 className="text-5xl md:text-7xl font-extrabold mb-4">
             <span className="text-white">Hi, I'm</span> <span className="text-cyan-400">Rakshith Bodakuntla</span>
-          </h1>
+          </h3>
 
           <p className="text-2xl md:text-3xl font-light text-gray-300 mb-8">
             Data Engineer & AI Researcher
