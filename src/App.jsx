@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
   Menu, X, Mail, Phone, MapPin, Download, Github, Linkedin, Award,
-  BookOpen, Code, Briefcase, User, Send
+  BookOpen, Code, Briefcase, User, Send, Star
 } from "lucide-react";
 
 export default function Portfolio() {
@@ -9,7 +9,8 @@ export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("home");
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
-  const sections = ["home", "about", "experience", "skills", "projects", "research", "contact"];
+  // UPDATED: Added 'data-science' section
+  const sections = ["home", "about", "experience", "skills", "projects", "data-science", "research", "contact"];
 
   const scrollToSection = (sectionId) => {
     setActiveSection(sectionId);
@@ -33,12 +34,13 @@ export default function Portfolio() {
     tools: ["Git", "ServiceNow", "IoT Systems", "Figma"]
   };
 
+  // UPDATED: Changed 'description' to 'keyAchievements' for structural clarity
   const experience = [
     {
       title: "Graduate Research Assistant",
       company: "University of Central Missouri – Overland Park, KS",
       period: "Aug 2025 – Present",
-      description: [
+      keyAchievements: [ // Renamed from 'description'
         "Developed a deep learning pipeline for ECG signal analysis using TensorFlow and Streamlit.",
         "Implemented CNN and LSTM models to classify cardiac arrhythmias with improved detection accuracy.",
         "Contributed to AI research supporting healthcare diagnosis and intelligent decision systems."
@@ -48,7 +50,7 @@ export default function Portfolio() {
       title: "Software Engineer",
       company: "HDFC ERGO General Insurance – Remote, India",
       period: "Sep 2023 – Aug 2024",
-      description: [
+      keyAchievements: [ // Renamed from 'description'
         "Built scalable ETL pipelines using Python and SQL for high-volume insurance data.",
         "Integrated APIs and automated workflows using Azure Data Factory and Power BI.",
         "Optimized SQL queries, reducing execution time by 30% and enhancing analytics performance."
@@ -58,7 +60,7 @@ export default function Portfolio() {
       title: "ServiceNow Intern",
       company: "Kaptius – Hyderabad, India",
       period: "Jan 2023 – Aug 2023",
-      description: [
+      keyAchievements: [ // Renamed from 'description'
         "Assisted in custom ServiceNow app development and workflow automation using Flow Designer.",
         "Created JavaScripts and dashboards for process optimization.",
         "Integrated REST APIs and supported CMDB data migration for client projects."
@@ -66,28 +68,40 @@ export default function Portfolio() {
     },
   ];
 
-  const projects = [
+  // NOTE: Projects are split into 'projects' (Featured/AI) and 'dataScienceProjects'
+  const featuredProjects = [
     {
       title: "AI-Powered Text-to-Story Video Generator",
       tech: "Python, Transformers, spaCy, Stable Diffusion, Diffusers, Torch, MoviePy, Text-to-Speech, NLP, AI Video Synthesis",
-      description: "Built an AI-driven Text-to-Story Video Generator that converts user-written statements into narrated, AI-illustrated short films using NLP and Stable Diffusion."
-    },
-    {
-      title: "Real-Time Smart Farm IoT Data Pipeline and Analytics",
-      tech: "IoT Sensors, Real-Time Alerts, Python, SQLite, Streamlit",
-      description: "Designed an IoT solution for humidity and soil monitoring with real-time alerts and Streamlit dashboards."
-    },
-    {
-      title: "Customer Churn Prediction",
-      tech: "Python, Streamlit, Pandas, Scikit-learn",
-      description: "Developed a machine learning pipeline that predicts customer churn through data analytics and visualization dashboards."
+      description: "Built an AI-driven Text-to-Story Video Generator that converts user-written statements into narrated, AI-illustrated short films using NLP and Stable Diffusion.",
+      link: "YOUR_PROJECT_LINK_HERE" // Add your link
     },
     {
       title: "ECG Signal Analysis & Classification Pipeline",
       tech: "Python, TensorFlow, Keras, WFDB, Scikit-learn, Pandas, NumPy",
-      description: "Developed an end-to-end ECG classification system using CNN and CNN-LSTM to detect cardiac abnormalities."
+      description: "Developed an end-to-end ECG classification system using CNN and CNN-LSTM to detect cardiac abnormalities, forming a robust healthcare diagnosis tool.",
+      link: "YOUR_PROJECT_LINK_HERE" // Add your link
     },
   ];
+  
+  const dataScienceProjects = [
+    {
+      title: "Real-Time Smart Farm IoT Data Pipeline and Analytics",
+      tech: "IoT Sensors, Real-Time Alerts, Python, SQLite, Streamlit",
+      description: "Designed an IoT solution for humidity and soil monitoring with real-time alerts and Streamlit dashboards for operational insights.",
+      link: "YOUR_PROJECT_LINK_HERE" // Add your link
+    },
+    {
+      title: "Customer Churn Prediction",
+      tech: "Python, Streamlit, Pandas, Scikit-learn",
+      description: "Developed a machine learning pipeline that predicts customer churn through data analytics and visualization dashboards, providing actionable insights for retention.",
+      link: "YOUR_PROJECT_LINK_HERE" // Add your link
+    },
+    // You can add more general Data Science projects here
+  ];
+  
+  // Renamed 'projects' to 'featuredProjects' and added 'dataScienceProjects'
+  const projects = featuredProjects; 
 
   const research = [
     {
@@ -110,7 +124,8 @@ export default function Portfolio() {
     "Azure AI Fundamentals",
   ];
 
-  const card = "bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-md hover:shadow-xl transition";
+  // UPDATED: Added cyan shadow on hover for a glowing effect
+  const card = "bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-md hover:shadow-cyan-500/30 hover:border-cyan-400/40 transition";
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-[#0d0f13] text-gray-200">
@@ -135,7 +150,7 @@ export default function Portfolio() {
                     activeSection === item ? "text-cyan-400 font-semibold" : "text-gray-300"
                   }`}
                 >
-                  {item}
+                  {item.replace('-', ' ')} {/* Correct for 'data-science' display */}
                 </button>
               ))}
             </div>
@@ -153,7 +168,7 @@ export default function Portfolio() {
                   onClick={() => scrollToSection(item)}
                   className="block w-full text-left px-4 py-2 capitalize hover:bg-white/10 rounded-lg text-gray-200"
                 >
-                  {item}
+                  {item.replace('-', ' ')}
                 </button>
               ))}
             </div>
@@ -164,9 +179,7 @@ export default function Portfolio() {
       {/* HERO */}
       <section id="home" className="pt-28 pb-16 text-center">
         <div className="max-w-6xl mx-auto">
-          <div className="w-32 h-32 bg-cyan-500/30 backdrop-blur-xl border border-cyan-400/40 rounded-full flex items-center justify-center text-white text-4xl font-bold mx-auto mb-6 shadow-xl">
-            RB
-          </div>
+          {/* REMOVED: Circular initials element (to match the clean header style) */}
 
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
             Hi, I'm <span className="text-cyan-400">Rakshith Bodakuntla</span>
@@ -174,6 +187,11 @@ export default function Portfolio() {
 
           <p className="text-xl text-gray-400 mb-8">
             Data Engineer | AI & Machine Learning Enthusiast | Researcher
+          </p>
+          
+          {/* OPTIONAL: Add an eye-catching AI-focused statement */}
+          <p className="text-2xl font-light text-cyan-300 mb-10 max-w-4xl mx-auto italic">
+            "Bridging the gap between complex data and intelligent, scalable solutions."
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
@@ -207,6 +225,15 @@ export default function Portfolio() {
             I’m a passionate Data Engineer and AI researcher pursuing my MS in Computer Science at the University of Central Missouri.
             My experience includes building scalable data pipelines, deep learning systems, and workflow automation in cloud environments.
           </p>
+          
+          {/* OPTIONAL: Add skill keywords for quick scanning */}
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+              <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">LLMs</span>
+              <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">Data Engineering</span>
+              <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">Deep Learning</span>
+              <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">Cloud/Azure</span>
+          </div>
+
         </div>
       </section>
 
@@ -223,9 +250,12 @@ export default function Portfolio() {
                 <h3 className="text-2xl font-bold text-white">{exp.title}</h3>
                 <p className="text-gray-300 font-medium">{exp.company}</p>
                 <p className="text-sm text-gray-500 mb-3">{exp.period}</p>
+                
+                {/* UPDATED: Added Key Achievements heading */}
+                <h4 className="text-lg font-semibold text-cyan-400 mt-4 mb-2">Key Achievements:</h4>
 
                 <ul className="list-disc list-inside text-gray-300 space-y-1">
-                  {exp.description.map((p, j) => (
+                  {exp.keyAchievements.map((p, j) => ( // Changed to keyAchievements
                     <li key={j}>{p}</li>
                   ))}
                 </ul>
@@ -245,7 +275,7 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Object.entries(skills).map(([category, items]) => (
               <div key={category} className={card}>
-                <h3 className="text-xl font-semibold text-white mb-4 capitalize">{category}</h3>
+                <h3 className="text-xl font-semibold text-white mb-4 capitalize">{category.replace(/([A-Z])/g, ' $1')}</h3> {/* Improved category name readability */}
 
                 <ul className="space-y-2 text-gray-300">
                   {items.map((skill) => (
@@ -261,11 +291,11 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* PROJECTS */}
+      {/* FEATURED PROJECTS (Current 'projects' section) */}
       <section id="projects" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
-            <Briefcase /> Projects
+            <Star /> Featured AI & LLM Projects
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -274,11 +304,37 @@ export default function Portfolio() {
                 <h3 className="text-2xl font-bold text-white mb-2">{p.title}</h3>
                 <p className="text-cyan-300 font-semibold mb-4">{p.tech}</p>
                 <p className="text-gray-300">{p.description}</p>
+                <a href={p.link} target="_blank" className="mt-4 inline-block text-cyan-400 hover:text-white transition font-medium">
+                  [View Source / Demo]
+                </a>
               </div>
             ))}
           </div>
         </div>
       </section>
+      
+      {/* NEW SECTION: DATA SCIENCE PROJECTS */}
+      <section id="data-science" className="py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
+            <Briefcase /> Data Science Projects
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {dataScienceProjects.map((p, i) => (
+              <div key={i} className={card}>
+                <h3 className="text-2xl font-bold text-white mb-2">{p.title}</h3>
+                <p className="text-cyan-300 font-semibold mb-4">{p.tech}</p>
+                <p className="text-gray-300">{p.description}</p>
+                <a href={p.link} target="_blank" className="mt-4 inline-block text-cyan-400 hover:text-white transition font-medium">
+                  [View Source / Demo]
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       {/* RESEARCH */}
       <section id="research" className="py-16 px-4">
@@ -369,4 +425,29 @@ export default function Portfolio() {
               placeholder="Your Email"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="w-full px-4 py-3 bg-transparent border border-white/20 round
+              className="w-full px-4 py-3 bg-transparent border border-white/20 rounded-xl text-gray-200 focus:ring-2 focus:ring-cyan-400 outline-none"
+            />
+            <textarea
+              placeholder="Your Message"
+              rows="4"
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              className="w-full px-4 py-3 bg-transparent border border-white/20 rounded-xl text-gray-200 focus:ring-2 focus:ring-cyan-400 outline-none"
+            ></textarea>
+            <button
+              onClick={handleContactSubmit}
+              className="w-full px-8 py-3 bg-cyan-500 text-white rounded-xl font-semibold hover:bg-cyan-600 transition flex items-center justify-center gap-2"
+            >
+              Send Message <Send size={20} />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER - Optional: Add a simple footer */}
+      <footer className="py-6 text-center text-gray-500 border-t border-white/10 mt-12">
+        <p>&copy; {new Date().getFullYear()} Rakshith Bodakuntla. All rights reserved.</p>
+      </footer>
+    </div>
+  );
+}
