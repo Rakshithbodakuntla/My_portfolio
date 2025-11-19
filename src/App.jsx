@@ -3,6 +3,10 @@ import {
   Menu, X, Mail, Phone, MapPin, Download, Github, Linkedin, Award,
   BookOpen, Code, Briefcase, User, Send, Star
 } from "lucide-react";
+// Import Swiper components and modules
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Navigation } from 'swiper/modules';
+
 import profileImage from './My_anime_img.jpg'; // Import the image
 
 export default function Portfolio() {
@@ -302,25 +306,52 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* FEATURED PROJECTS (Current 'projects' section) */}
+      {/* FEATURED PROJECTS (Swiper Carousel) */}
       <section id="projects" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
             <Star /> Featured AI & LLM Projects
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          {/* START SWIPER WRAPPER */}
+          <Swiper
+            modules={[Pagination, Navigation]}
+            spaceBetween={40} // Space between slides
+            slidesPerView={1}  // Show 1 slide at a time
+            centeredSlides={true}
+            pagination={{ clickable: true }}
+            navigation={true}
+            loop={true}
+            className="mySwiper" // Add a class for potential custom styling
+            
+            // Optional: Add breakpoints for desktop view (2 slides)
+            breakpoints={{
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 30,
+              },
+            }}
+          >
+            
             {projects.map((p, i) => (
-              <div key={i} className={card}>
-                <h3 className="text-2xl font-bold text-white mb-2">{p.title}</h3>
-                <p className="text-cyan-300 font-semibold mb-4">{p.tech}</p>
-                <p className="text-gray-300">{p.description}</p>
-                <a href={p.link} target="_blank" className="mt-4 inline-block text-cyan-400 hover:text-white transition font-medium">
-                  [View Source / Demo]
-                </a>
-              </div>
+              // Each project becomes a SwiperSlide
+              <SwiperSlide key={i} className="pb-12 pt-2"> {/* Added padding for pagination dots */}
+                <div className={card + " h-full flex flex-col justify-between"}>
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-2">{p.title}</h3>
+                    <p className="text-cyan-300 font-semibold mb-4">{p.tech}</p>
+                    <p className="text-gray-300">{p.description}</p>
+                  </div>
+                  <a href={p.link} target="_blank" className="mt-6 inline-block text-cyan-400 hover:text-white transition font-medium">
+                    [View Source / Demo]
+                  </a>
+                </div>
+              </SwiperSlide>
             ))}
-          </div>
+
+          </Swiper>
+          {/* END SWIPER WRAPPER */}
+
         </div>
       </section>
       
@@ -347,7 +378,7 @@ export default function Portfolio() {
       </section>
 
 
-      {/* RESEARCH */}
+      {/* RESEARCH (Corrected nesting) */}
       <section id="research" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
@@ -380,7 +411,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* CONTACT */}
+      {/* CONTACT (Corrected nesting) */}
       <section id="contact" className="py-16 px-4">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
 
