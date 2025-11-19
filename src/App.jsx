@@ -15,6 +15,10 @@ export default function Portfolio() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
   // UPDATED: Added 'data-science' section
+  useEffect(() => {
+    // This scrolls the window to the very top (0, 0) when the component mounts.
+    window.scrollTo(0, 0); 
+  },
   const sections = ["home", "about", "experience", "skills", "projects", "data-science", "research", "contact"];
 
   const scrollToSection = (sectionId) => {
