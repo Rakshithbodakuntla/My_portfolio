@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import {
   Menu, X, Mail, Phone, MapPin, Download, Github, Linkedin, Award,
-  BookOpen, Code, Briefcase, User, Send
+  BookOpen, Code, Briefcase, User, Send, Sun, Moon
 } from "lucide-react";
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [isDark, setIsDark] = useState(false);
 
   const sections = ["home", "about", "experience", "skills", "projects", "research", "contact"];
 
@@ -111,41 +112,103 @@ export default function Portfolio() {
   ];
   // ============================================
 
-  const card = "bg-white rounded-2xl shadow-md hover:shadow-lg transition p-6";
-  const sectionPad = "py-16 px-4";
+  // THEME HELPERS
+  const rootClass = isDark
+    ? "min-h-screen bg-[#0e2138] text-slate-100 transition-colors duration-500"
+    : "min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 text-gray-800 transition-colors duration-500";
+
+  const navClass = isDark
+    ? "fixed top-0 w-full bg-[#0b1a2e]/90 backdrop-blur-md border-b border-slate-800 z-50"
+    : "fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50";
+
+  const cardBase = "rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1";
+  const card = isDark
+    ? `${cardBase} bg-[#0f2337] border border-slate-700`
+    : `${cardBase} bg-white border border-gray-100`;
+
+  const headingColor = isDark ? "text-sky-300" : "text-blue-600";
+  const primaryTitle = isDark ? "text-white" : "text-gray-900";
+  const bodyText = isDark ? "text-slate-100" : "text-gray-700";
+  const mutedText = isDark ? "text-slate-300" : "text-gray-600";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 text-gray-800">
+    <div className={rootClass}>
       {/* Navbar */}
-      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+      <nav className={navClass}>
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
-            <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">RB</div>
-            <div className="hidden md:flex space-x-8">
+            <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              RB
+            </div>
+
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center space-x-6">
               {sections.map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
-                  className={`capitalize hover:text-blue-600 transition ${
-                    activeSection === item ? "text-blue-600 font-semibold" : "text-gray-700"
+                  className={`capitalize transition ${
+                    activeSection === item
+                      ? isDark
+                        ? "text-sky-300 font-semibold"
+                        : "text-blue-600 font-semibold"
+                      : isDark
+                      ? "text-slate-200 hover:text-sky-300"
+                      : "text-gray-700 hover:text-blue-600"
                   }`}
                 >
                   {item}
                 </button>
               ))}
+              {/* Theme Toggle */}
+              <button
+                onClick={() => setIsDark((prev) => !prev)}
+                className="p-2 rounded-full border border-gray-300/60 bg-white/60 hover:bg-gray-100 transition md:inline-flex hidden"
+              >
+                {isDark ? (
+                  <Sun size={18} className="text-yellow-300" />
+                ) : (
+                  <Moon size={18} className="text-blue-700" />
+                )}
+              </button>
             </div>
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 rounded-lg hover:bg-blue-50">
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+
+            {/* Mobile Right Side */}
+            <div className="flex items-center gap-2 md:hidden">
+              <button
+                onClick={() => setIsDark((prev) => !prev)}
+                className="p-2 rounded-full border border-gray-300/60 bg-white/70 hover:bg-gray-100 transition"
+              >
+                {isDark ? (
+                  <Sun size={18} className="text-yellow-300" />
+                ) : (
+                  <Moon size={18} className="text-blue-700" />
+                )}
+              </button>
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="p-2 rounded-lg hover:bg-blue-50"
+              >
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
 
           {isMenuOpen && (
-            <div className="md:hidden py-4 space-y-2 bg-white border-t border-gray-200">
+            <div
+              className={`md:hidden py-4 space-y-2 border-t ${
+                isDark ? "bg-[#0b1a2e] border-slate-800" : "bg-white border-gray-200"
+              }`}
+            >
               {sections.map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
-                  className="block w-full text-left px-4 py-2 capitalize hover:bg-blue-50 rounded-lg text-gray-700"
+                  className={`block w-full text-left px-4 py-2 capitalize rounded-lg transition ${
+                    isDark
+                      ? "text-slate-100 hover:bg-slate-800/60"
+                      : "text-gray-700 hover:bg-blue-50"
+                  }`}
                 >
                   {item}
                 </button>
@@ -158,23 +221,52 @@ export default function Portfolio() {
       {/* Hero */}
       <section id="home" className="pt-28 pb-16 text-center">
         <div className="max-w-6xl mx-auto">
-          <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-4xl font-bold mx-auto mb-6 shadow-xl">
+          <div className={`w-32 h-32 rounded-full flex items-center justify-center text-white text-4xl font-bold mx-auto mb-6 shadow-xl ${
+            isDark
+              ? "bg-gradient-to-br from-sky-500 to-blue-700"
+              : "bg-gradient-to-br from-blue-500 to-purple-600"
+          }`}>
             RB
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            Hi, I'm <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Rakshith Bodakuntla</span>
+          <h1 className={`text-5xl md:text-6xl font-bold mb-4 ${primaryTitle}`}>
+            Hi, I'm{" "}
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Rakshith Bodakuntla
+            </span>
           </h1>
-          <p className="text-xl text-gray-600 mb-8">
+          <p className={`mb-8 ${isDark ? "text-slate-200 text-lg" : "text-xl text-gray-600"}`}>
             Data Engineer | AI & Machine Learning Enthusiast | Researcher
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="#projects" className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold hover:shadow-lg transform hover:-translate-y-1 transition-all">
+            <a
+              href="#projects"
+              className={`px-8 py-3 rounded-full font-semibold hover:shadow-lg transform hover:-translate-y-1 transition-all ${
+                isDark
+                  ? "bg-gradient-to-r from-sky-500 to-blue-700 text-white"
+                  : "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+              }`}
+            >
               View Projects
             </a>
-            <a href="/Rakshith_Bodakuntla_Resume.pdf" target="_blank" className="px-8 py-3 bg-white border-2 border-blue-600 text-blue-600 rounded-full font-semibold hover:bg-blue-50 transform hover:-translate-y-1 transition-all flex items-center gap-2">
+            <a
+              href="/Rakshith_Bodakuntla_Resume.pdf"
+              target="_blank"
+              className={`px-8 py-3 bg-white border-2 rounded-full font-semibold transform hover:-translate-y-1 transition-all flex items-center gap-2 ${
+                isDark
+                  ? "border-sky-400 text-sky-400 hover:bg-sky-50/10"
+                  : "border-blue-600 text-blue-600 hover:bg-blue-50"
+              }`}
+            >
               <Download size={20} /> Resume
             </a>
-            <a href="#contact" className="px-8 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-full font-semibold hover:bg-gray-50 transform hover:-translate-y-1 transition-all">
+            <a
+              href="#contact"
+              className={`px-8 py-3 bg-white border-2 rounded-full font-semibold transform hover:-translate-y-1 transition-all ${
+                isDark
+                  ? "border-slate-500 text-slate-100 hover:bg-slate-800/60"
+                  : "border-gray-300 text-gray-700 hover:bg-gray-50"
+              }`}
+            >
               Contact Me
             </a>
           </div>
@@ -182,31 +274,51 @@ export default function Portfolio() {
       </section>
 
       {/* About */}
-      <section id="about" className="py-16 bg-white px-4">
+      <section
+        id="about"
+        className={`py-16 px-4 ${isDark ? "bg-[#10233b]" : "bg-white"}`}
+      >
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6 flex justify-center gap-2 text-blue-600">
+          <h2
+            className={`text-4xl font-bold mb-6 flex justify-center gap-2 ${headingColor}`}
+          >
             <User /> About Me
           </h2>
-          <p className="text-gray-700 leading-relaxed text-lg max-w-3xl mx-auto">
-            I’m a passionate Data Engineer and AI researcher pursuing my MS in Computer Science at the University of Central Missouri.
-            My experience spans developing scalable data pipelines, implementing deep learning solutions, and automating workflows in cloud environments.
+          <p className={`${bodyText} leading-relaxed text-lg max-w-3xl mx-auto`}>
+            I’m a passionate Data Engineer and AI researcher pursuing my MS in Computer Science at
+            the University of Central Missouri. My experience spans developing scalable data
+            pipelines, implementing deep learning solutions, and automating workflows in cloud
+            environments.
           </p>
         </div>
       </section>
 
       {/* Experience */}
-      <section id="experience" className="py-16 bg-gradient-to-br from-blue-50 to-purple-50 px-4">
+      <section
+        id="experience"
+        className={`py-16 px-4 ${
+          isDark ? "bg-[#091422]" : "bg-gradient-to-br from-blue-50 to-purple-50"
+        }`}
+      >
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-10 flex items-center gap-2 text-blue-600">
+          <h2
+            className={`text-4xl font-bold mb-10 flex items-center gap-2 ${headingColor}`}
+          >
             <Briefcase /> Experience
           </h2>
           <div className="space-y-8">
             {experience.map((exp, i) => (
-              <div key={i} className={card}>
-                <h3 className="text-2xl font-bold text-blue-700">{exp.title}</h3>
-                <p className="text-gray-700 font-medium">{exp.company}</p>
-                <p className="text-sm text-gray-500 mb-3">{exp.period}</p>
-                <ul className="list-disc list-inside text-gray-700 space-y-1">
+              <div key={i} className={`${card} p-6`}>
+                <h3
+                  className={`text-2xl font-bold mb-1 ${
+                    isDark ? "text-sky-200" : "text-blue-700"
+                  }`}
+                >
+                  {exp.title}
+                </h3>
+                <p className={bodyText}>{exp.company}</p>
+                <p className={`text-sm mb-3 ${mutedText}`}>{exp.period}</p>
+                <ul className={`list-disc list-inside space-y-1 ${bodyText}`}>
                   {exp.description.map((p, j) => (
                     <li key={j}>{p}</li>
                   ))}
@@ -218,19 +330,42 @@ export default function Portfolio() {
       </section>
 
       {/* Skills */}
-      <section id="skills" className="py-16 bg-white px-4">
+      <section
+        id="skills"
+        className={`py-16 px-4 ${isDark ? "bg-[#10233b]" : "bg-white"}`}
+      >
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-10 flex items-center gap-2 text-blue-600">
+          <h2
+            className={`text-4xl font-bold mb-10 flex items-center gap-2 ${headingColor}`}
+          >
             <Code /> Skills
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Object.entries(skills).map(([category, items]) => (
-              <div key={category} className="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-2xl shadow hover:shadow-lg transition-shadow">
-                <h3 className="text-xl font-semibold text-blue-700 mb-4 capitalize">{category}</h3>
-                <ul className="space-y-2 text-gray-700">
+              <div
+                key={category}
+                className={`p-6 rounded-2xl shadow hover:shadow-lg transition-shadow transform hover:-translate-y-1 ${
+                  isDark
+                    ? "bg-[#0f2337] border border-slate-700"
+                    : "bg-gradient-to-br from-blue-50 to-purple-50"
+                }`}
+              >
+                <h3
+                  className={`text-xl font-semibold mb-4 capitalize ${
+                    isDark ? "text-sky-200" : "text-blue-700"
+                  }`}
+                >
+                  {category}
+                </h3>
+                <ul className={`space-y-2 ${bodyText}`}>
                   {items.map((skill) => (
                     <li key={skill} className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-blue-600 rounded-full"></div> {skill}
+                      <div
+                        className={`w-2 h-2 rounded-full ${
+                          isDark ? "bg-sky-300" : "bg-blue-600"
+                        }`}
+                      ></div>{" "}
+                      {skill}
                     </li>
                   ))}
                 </ul>
@@ -241,17 +376,36 @@ export default function Portfolio() {
       </section>
 
       {/* Projects */}
-      <section id="projects" className="py-16 bg-gradient-to-br from-blue-50 to-purple-50 px-4">
+      <section
+        id="projects"
+        className={`py-16 px-4 ${
+          isDark ? "bg-[#091422]" : "bg-gradient-to-br from-blue-50 to-purple-50"
+        }`}
+      >
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-10 flex items-center gap-2 text-blue-600">
+          <h2
+            className={`text-4xl font-bold mb-10 flex items-center gap-2 ${headingColor}`}
+          >
             <Briefcase /> Projects
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((p, i) => (
-              <div key={i} className={card}>
-                <h3 className="text-2xl font-bold text-blue-800 mb-2">{p.title}</h3>
-                <p className="text-blue-600 font-semibold mb-4">{p.tech}</p>
-                <p className="text-gray-700">{p.description}</p>
+              <div key={i} className={`${card} p-8`}>
+                <h3
+                  className={`text-2xl font-bold mb-2 ${
+                    isDark ? "text-sky-200" : "text-blue-800"
+                  }`}
+                >
+                  {p.title}
+                </h3>
+                <p
+                  className={`font-semibold mb-4 ${
+                    isDark ? "text-sky-300" : "text-blue-600"
+                  }`}
+                >
+                  {p.tech}
+                </p>
+                <p className={bodyText}>{p.description}</p>
               </div>
             ))}
           </div>
@@ -259,27 +413,54 @@ export default function Portfolio() {
       </section>
 
       {/* Research */}
-      <section id="research" className="py-16 bg-white px-4">
+      <section
+        id="research"
+        className={`py-16 px-4 ${isDark ? "bg-[#10233b]" : "bg-white"}`}
+      >
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-10 flex items-center gap-2 text-blue-600">
+          <h2
+            className={`text-4xl font-bold mb-10 flex items-center gap-2 ${headingColor}`}
+          >
             <BookOpen /> Research & Publications
           </h2>
           <div className="space-y-6">
             {research.map((r, i) => (
-              <div key={i} className="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-2xl shadow">
-                <h3 className="text-2xl font-semibold text-blue-800 mb-2">{r.title}</h3>
-                <p className="text-gray-700">{r.description}</p>
+              <div
+                key={i}
+                className={`p-6 rounded-2xl shadow ${
+                  isDark
+                    ? "bg-[#0f2337] border border-slate-700"
+                    : "bg-gradient-to-br from-blue-50 to-purple-50"
+                }`}
+              >
+                <h3
+                  className={`text-2xl font-semibold mb-2 ${
+                    isDark ? "text-sky-200" : "text-blue-800"
+                  }`}
+                >
+                  {r.title}
+                </h3>
+                <p className={bodyText}>{r.description}</p>
               </div>
             ))}
           </div>
 
           <div className="mt-12">
-            <h3 className="text-3xl font-bold mb-6 flex items-center gap-2 text-blue-600">
+            <h3
+              className={`text-3xl font-bold mb-6 flex items-center gap-2 ${headingColor}`}
+            >
               <Award /> Certifications
             </h3>
             <div className="grid md:grid-cols-2 gap-4">
               {certifications.map((c, i) => (
-                <div key={i} className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-xl flex items-center gap-3 shadow hover:shadow-lg transition-shadow">
+                <div
+                  key={i}
+                  className={
+                    isDark
+                      ? "bg-gradient-to-r from-sky-500/40 to-blue-600/40 text-white p-4 rounded-xl flex items-center gap-3 border border-slate-700 hover:shadow-lg transition-shadow"
+                      : "bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-xl flex items-center gap-3 shadow hover:shadow-lg transition-shadow"
+                  }
+                >
                   <Award size={24} /> <span>{c}</span>
                 </div>
               ))}
@@ -289,14 +470,22 @@ export default function Portfolio() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-16 bg-gradient-to-br from-blue-50 to-purple-50 px-4">
+      <section
+        id="contact"
+        className={`py-16 px-4 ${
+          isDark ? "bg-[#091422]" : "bg-gradient-to-br from-blue-50 to-purple-50"
+        }`}
+      >
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
           <div className="space-y-6">
             <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow">
               <Mail className="text-blue-600" size={24} />
               <div>
-                <p className="font-semibold">Email</p>
-                <a href="mailto:bodakuntlarakshith1@gmail.com" className="text-blue-600 hover:underline">
+                <p className="font-semibold text-gray-900">Email</p>
+                <a
+                  href="mailto:bodakuntlarakshith1@gmail.com"
+                  className="text-blue-600 hover:underline"
+                >
                   bodakuntlarakshith1@gmail.com
                 </a>
               </div>
@@ -304,8 +493,11 @@ export default function Portfolio() {
             <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow">
               <Phone className="text-blue-600" size={24} />
               <div>
-                <p className="font-semibold">Phone</p>
-                <a href="tel:+14694871318" className="text-blue-600 hover:underline">
+                <p className="font-semibold text-gray-900">Phone</p>
+                <a
+                  href="tel:+14694871318"
+                  className="text-blue-600 hover:underline"
+                >
                   +1 (469) 487-1318
                 </a>
               </div>
@@ -313,21 +505,31 @@ export default function Portfolio() {
             <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow">
               <MapPin className="text-blue-600" size={24} />
               <div>
-                <p className="font-semibold">Location</p>
+                <p className="font-semibold text-gray-900">Location</p>
                 <p className="text-gray-700">Kansas, USA</p>
               </div>
             </div>
             <div className="flex gap-4">
-              <a href="https://www.linkedin.com/in/bodakuntlarakshith1/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-purple-600 transition">
+              <a
+                href="https://www.linkedin.com/in/bodakuntlarakshith1/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-purple-600 transition"
+              >
                 <Linkedin size={28} />
               </a>
-              <a href="https://github.com/Rakshithbodakuntla" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-purple-600 transition">
+              <a
+                href="https://github.com/Rakshithbodakuntla"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-purple-600 transition"
+              >
                 <Github size={28} />
               </a>
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl shadow space-y-4">
+          <div className={`${card} bg-white p-6 space-y-4`}>
             <input
               type="text"
               placeholder="Your Name"
