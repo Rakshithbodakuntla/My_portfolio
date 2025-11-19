@@ -1,35 +1,61 @@
 import React, { useState, useEffect } from "react"; 
 import {
   Menu, X, Mail, Phone, MapPin, Download, Github, Linkedin, Award,
-  BookOpen, Code, Briefcase, User, Send, Star
+  BookOpen, Code, Briefcase, User, Send, Star, Briefcase as DataIcon // Using Briefcase for Data Science projects
 } from "lucide-react";
-// Import Swiper components and modules
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper/modules';
 
-import profileImage from './My_anime_img.jpg'; // Import the image
-
-import React, { useState, useEffect } from "react"; // <-- Make sure useEffect is imported
-// ... other imports
+import profileImage from './My_anime_img.jpg';
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
-  // 1. FIX: Ensures the scroll position is reset to the top (0, 0) when the component mounts.
+  // FIX 1: Ensures the scroll position is reset to the top (0, 0) when the component mounts.
   useEffect(() => {
-    window.scrollTo(home); 
-  }, []); // <-- This empty array makes it run only once after load
+    window.scrollTo(0, 0); 
+  }, []);
 
-  const sections = ["home", "about", "experience", "skills", "projects", "data-science", "research", "contact"];
+  // FIX 2: OBSERVER LOGIC TO UPDATE ACTIVE SECTION IN NAVBAR
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: '0px 0px -70% 0px',
+        threshold: 0.1, 
+      }
+    );
+
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        observer.unobserve(section);
+      });
+    };
+  }, []); 
+
+  // CHANGED: Removed 'data-science' section
+  const sections = ["home", "about", "experience", "skills", "projects", "research", "contact"];
 
   const scrollToSection = (sectionId) => {
     setActiveSection(sectionId);
     setIsMenuOpen(false);
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
   };
-// ... rest of the component
+
   const handleContactSubmit = () => {
     const mailtoLink = `mailto:bodakuntlarakshith1@gmail.com?subject=Portfolio Contact from ${encodeURIComponent(
       formData.name
@@ -109,7 +135,8 @@ export default function Portfolio() {
     },
   ];
   
-  const projects = featuredProjects; 
+  // COMBINED: All projects are merged into one array
+  const projects = [...featuredProjects, ...dataScienceProjects]; 
 
   const research = [
     {
@@ -183,7 +210,7 @@ export default function Portfolio() {
         </div>
       </nav>
 
-      {/* HERO - UPDATED TO MATCH SHARED PAGE DESIGN */}
+      {/* HERO */}
       <section id="home" className="pt-28 pb-16 text-center min-h-screen flex items-center justify-center">
         <div className="max-w-6xl mx-auto px-4">
           
@@ -313,62 +340,17 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* FEATURED PROJECTS (Swiper Carousel) */}
+      {/* PROJECTS (COMBINED & RENAMED) */}
       <section id="projects" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
+          {/* RENAMED HEADING */}
           <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
-            <Star /> Featured AI & LLM Projects
+            <Star /> Projects
           </h2>
 
-          {/* START SWIPER WRAPPER */}
-          <Swiper
-            modules={[Pagination, Navigation]}
-            spaceBetween={40}
-            slidesPerView={1}
-            centeredSlides={true}
-            pagination={{ clickable: true }}
-            navigation={true}
-            loop={true}
-            className="mySwiper"
-            
-            breakpoints={{
-              768: {
-                slidesPerView: 2,
-                spaceBetween: 30,
-              },
-            }}
-          >
-            
-            {projects.map((p, i) => (
-              <SwiperSlide key={i} className="pb-12 pt-2">
-                <div className={card + " h-full flex flex-col justify-between"}>
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-2">{p.title}</h3>
-                    <p className="text-cyan-300 font-semibold mb-4">{p.tech}</p>
-                    <p className="text-gray-300">{p.description}</p>
-                  </div>
-                  <a href={p.link} target="_blank" className="mt-6 inline-block text-cyan-400 hover:text-white transition font-medium">
-                    [View Source / Demo]
-                  </a>
-                </div>
-              </SwiperSlide>
-            ))}
-
-          </Swiper>
-          {/* END SWIPER WRAPPER */}
-
-        </div>
-      </section>
-      
-      {/* NEW SECTION: DATA SCIENCE PROJECTS */}
-      <section id="data-science" className="py-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
-            <Briefcase /> Data Science Projects
-          </h2>
-
+          {/* Using grid layout to display all projects together */}
           <div className="grid md:grid-cols-2 gap-8">
-            {dataScienceProjects.map((p, i) => (
+            {projects.map((p, i) => (
               <div key={i} className={card}>
                 <h3 className="text-2xl font-bold text-white mb-2">{p.title}</h3>
                 <p className="text-cyan-300 font-semibold mb-4">{p.tech}</p>
@@ -381,6 +363,8 @@ export default function Portfolio() {
           </div>
         </div>
       </section>
+      
+      {/* DELETED: The dedicated 'data-science' section has been removed */}
 
 
       {/* RESEARCH */}
