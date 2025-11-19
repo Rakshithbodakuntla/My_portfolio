@@ -118,10 +118,7 @@ export default function Portfolio() {
       description: "Developed an end-to-end ECG classification system using CNN and CNN-LSTM to detect cardiac abnormalities, forming a robust healthcare diagnosis tool.",
       link: "YOUR_PROJECT_LINK_HERE" 
     },
-  ];
-  
-  const dataScienceProjects = [
-    {
+     {
       title: "Real-Time Smart Farm IoT Data Pipeline and Analytics",
       tech: "IoT Sensors, Real-Time Alerts, Python, SQLite, Streamlit",
       description: "Designed an IoT solution for humidity and soil monitoring with real-time alerts and Streamlit dashboards for operational insights.",
@@ -135,6 +132,10 @@ export default function Portfolio() {
     },
   ];
   
+  ];
+  
+  const dataScienceProjects = [
+   
   // COMBINED: All projects are merged into one array
   const projects = [...featuredProjects, ...dataScienceProjects]; 
 
