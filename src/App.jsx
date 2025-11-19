@@ -302,10 +302,10 @@ useEffect(() => {
           
           {/* OPTIONAL: Add skill keywords for quick scanning */}
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">LLMs</span>
+            
             <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">Data Engineering</span>
-            <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">Deep Learning</span>
             <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">Cloud</span>
+            <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">AI & ML</span>
           </div>
 
         </div>
