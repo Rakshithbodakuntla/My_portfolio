@@ -3,6 +3,7 @@ import {
   Menu, X, Mail, Phone, MapPin, Download, Github, Linkedin, Award,
   BookOpen, Code, Briefcase, User, Send, Star
 } from "lucide-react";
+import profileImage from './My_anime_img.jpg'; // Import the image
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -226,7 +227,7 @@ export default function Portfolio() {
     {/* ADD YOUR IMAGE HERE */}
     <div className="mb-8"> {/* Added margin-bottom for spacing */}
       <img
-        src="/.jpg" // <--- IMPORTANT: Replace with the actual path to your image
+        src={profileImage} // <--- IMPORTANT: Replace with the actual path to your image
         alt="Rakshith Bodakuntla"
         className="rounded-full w-40 h-40 object-cover mx-auto shadow-lg border-4 border-cyan-500/50" // Stylized image
       />
