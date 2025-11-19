@@ -9,12 +9,18 @@ import { Pagination, Navigation } from 'swiper/modules';
 
 import profileImage from './My_anime_img.jpg'; // Import the image
 
+import React, { useState, useEffect } from "react"; // <-- Make sure useEffect is imported
+// ... other imports
+
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
   // 1. FIX: Ensures the scroll position is reset to the top (0, 0) when the component mounts.
+  useEffect(() => {
+    window.scrollTo(0, 0); 
+  }, []); // <-- This empty array makes it run only once after load
 
   const sections = ["home", "about", "experience", "skills", "projects", "data-science", "research", "contact"];
 
@@ -23,7 +29,7 @@ export default function Portfolio() {
     setIsMenuOpen(false);
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
   };
-
+// ... rest of the component
   const handleContactSubmit = () => {
     const mailtoLink = `mailto:bodakuntlarakshith1@gmail.com?subject=Portfolio Contact from ${encodeURIComponent(
       formData.name
