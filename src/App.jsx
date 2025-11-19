@@ -216,27 +216,38 @@ export default function Portfolio() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="py-16 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6 text-cyan-400 flex justify-center gap-2">
-            <User /> About Me
-          </h2>
+     // ABOUT
+<section id="about" className="py-16 px-4">
+  <div className="max-w-6xl mx-auto text-center">
+    <h2 className="text-4xl font-bold mb-6 text-cyan-400 flex justify-center gap-2">
+      <User /> About Me
+    </h2>
 
-          <p className="text-gray-300 leading-relaxed text-lg max-w-3xl mx-auto">
-            I’m a passionate Data Engineer and AI researcher pursuing my MS in Computer Science at the University of Central Missouri.
-            My experience includes building scalable data pipelines, deep learning systems, and workflow automation in cloud environments.
-          </p>
-          
-          {/* OPTIONAL: Add skill keywords for quick scanning */}
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">LLMs</span>
-              <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">Data Engineering</span>
-              <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">Deep Learning</span>
-              <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">Cloud/Azure</span>
-          </div>
+    {/* ADD YOUR IMAGE HERE */}
+    <div className="mb-8"> {/* Added margin-bottom for spacing */}
+      <img
+        src="/.jpg" // <--- IMPORTANT: Replace with the actual path to your image
+        alt="Rakshith Bodakuntla"
+        className="rounded-full w-40 h-40 object-cover mx-auto shadow-lg border-4 border-cyan-500/50" // Stylized image
+      />
+    </div>
+    {/* END IMAGE ADDITION */}
 
-        </div>
-      </section>
+    <p className="text-gray-300 leading-relaxed text-lg max-w-3xl mx-auto">
+      I’m a passionate Data Engineer and AI researcher pursuing my MS in Computer Science at the University of Central Missouri.
+      My experience includes building scalable data pipelines, deep learning systems, and workflow automation in cloud environments.
+    </p>
+
+    {/* OPTIONAL: Add skill keywords for quick scanning */}
+    <div className="mt-6 flex flex-wrap justify-center gap-3">
+      <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">LLMs</span>
+      <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">Data Engineering</span>
+      <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">Deep Learning</span>
+      <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">Cloud</span>
+    </div>
+
+  </div>
+</section>
 
       {/* EXPERIENCE */}
       <section id="experience" className="py-16 px-4">
