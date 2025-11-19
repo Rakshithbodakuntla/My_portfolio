@@ -143,9 +143,6 @@ useEffect(() => {
       description: "Developed an end-to-end ECG classification system using CNN and CNN-LSTM to detect cardiac abnormalities, forming a robust healthcare diagnosis tool.",
       link: "YOUR_PROJECT_LINK_HERE" 
     },
-  ];
-  
-  const dataScienceProjects = [
     {
       title: "Real-Time Smart Farm IoT Data Pipeline and Analytics",
       tech: "IoT Sensors, Real-Time Alerts, Python, SQLite, Streamlit",
@@ -158,6 +155,10 @@ useEffect(() => {
       description: "Developed a machine learning pipeline that predicts customer churn through data analytics and visualization dashboards, providing actionable insights for retention.",
       link: "YOUR_PROJECT_LINK_HERE" 
     },
+  ];
+  
+  const dataScienceProjects = [
+    
   ];
   
   // COMBINED: All projects are merged into one array
