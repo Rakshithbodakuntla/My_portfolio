@@ -12,24 +12,12 @@ export default function Portfolio() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
   // FIX 1: Ensures the scroll position is reset to the top (0, 0) when the component mounts.
-
+  useEffect(() => {
+    window.scrollTo(0, 0); 
+  }, []);
 
   // FIX 2: OBSERVER LOGIC TO UPDATE ACTIVE SECTION IN NAVBAR
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: '0px 0px -70% 0px',
-        threshold: 0.1, 
-      }
-    );
+ 
 
     const sections = document.querySelectorAll('section');
     sections.forEach((section) => {
