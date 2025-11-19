@@ -73,7 +73,7 @@ useEffect(() => {
   }, []); // Run once on mount
 
   // UPDATED: Removed 'data-science' section from navigation
-  const sections = ["home", "about", "experience", "skills", "projects", "research", "contact"];
+  const sections = ["home", "about", "skills", "projects", "experience", "research", "contact"];
 
   const scrollToSection = (sectionId) => {
     setActiveSection(sectionId);
