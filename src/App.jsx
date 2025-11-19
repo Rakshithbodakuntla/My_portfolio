@@ -9,7 +9,6 @@ export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("home");
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
-  // UPDATED: Added 'data-science' section
   const sections = ["home", "about", "experience", "skills", "projects", "research", "contact"];
 
   const scrollToSection = (sectionId) => {
@@ -69,7 +68,7 @@ export default function Portfolio() {
   ];
 
   // NOTE: Projects are split into 'projects' (Featured/AI) and 'dataScienceProjects'
-  const featuredProjects = [
+  const projects = [
     {
       title: "AI-Powered Text-to-Story Video Generator",
       tech: "Python, Transformers, spaCy, Stable Diffusion, Diffusers, Torch, MoviePy, Text-to-Speech, NLP, AI Video Synthesis",
@@ -98,8 +97,6 @@ export default function Portfolio() {
   
 
   
-  // Renamed 'projects' to 'featuredProjects' and added 'dataScienceProjects'
-  const projects = featuredProjects; 
 
   const research = [
     {
