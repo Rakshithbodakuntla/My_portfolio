@@ -1,9 +1,4 @@
-/* 1. MUST BE FIRST: Standard CSS Imports */
-@import 'swiper/css';
-@import 'swiper/css/pagination';
-@import 'swiper/css/navigation';
 
-/* 2. TAILWIND DIRECTIVES */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
