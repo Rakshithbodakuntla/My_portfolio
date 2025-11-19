@@ -90,11 +90,10 @@ useEffect(() => {
 
   // ================= CONTENT ==================
   const skills = {
-    languages: ["Python", "Java", "SQL", "C"],
-    dataEngineering: ["Snowflake", "Azure Data Factory", "ETL Pipelines", "Data Warehousing"],
-    analytics: ["Power BI", "Streamlit", "Tableau", "REST APIs"],
-    AI_ML: ["TensorFlow", "Scikit-learn", "Deep Learning", "Reinforcement Learning"],
-    Tools: ["Git", "ServiceNow", "IoT Systems", "Figma"]
+    'Programming & Tools': ["Python", "SQL", "C", "Git","ServiceNow", "Figma" ],
+    'DataEngineering': ["Snowflake", "Azure Data Factory", "ETL Pipelines", "Data Warehousing"],
+    'AI & MachineLearning': ["LLMs", "TensorFlow", "Scikit-learn", "Deep Learning", "Reinforcement Learning"],
+    'DataTools':["Power BI", "Streamlit", "Tableau"],
   };
 
   const experience = [
