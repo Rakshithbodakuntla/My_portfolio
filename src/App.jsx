@@ -15,9 +15,31 @@ export default function Portfolio() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
   // FIX 1: Ensures the scroll position is reset to the top (0, 0) when the component mounts.
-  useEffect(() => {
+  // Inside export default function Portfolio() { ...
+
+useEffect(() => {
+    // 1. Force scroll to top when the component mounts
     window.scrollTo(0, 0); 
-  }, []);
+
+    // 2. Clear the browser's scroll history state immediately
+    // This tells the browser NOT to try and restore the old position.
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+
+    // A fallback to scroll top on every visibility change (like switching tabs and back)
+    const handleVisibilityChange = () => {
+        if (document.visibilityState === 'visible') {
+            window.scrollTo(0, 0);
+        }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+}, []);
 
   // FIX 2: OBSERVER LOGIC TO UPDATE ACTIVE SECTION IN NAVBAR
   useEffect(() => {
