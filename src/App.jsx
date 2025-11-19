@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"; // 1. ADDED useEffect HERE
+import React, { useState, useEffect } from "react"; 
 import {
   Menu, X, Mail, Phone, MapPin, Download, Github, Linkedin, Award,
   BookOpen, Code, Briefcase, User, Send, Star
@@ -14,12 +14,11 @@ export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("home");
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
-  // 2. ADDED useEffect HOOK HERE TO FORCE SCROLL TO TOP ON LOAD
+  // 1. FIX: Ensures the scroll position is reset to the top (0, 0) when the component mounts.
   useEffect(() => {
     window.scrollTo(0, 0); 
   }, []);
 
-  // UPDATED: Added 'data-science' section
   const sections = ["home", "about", "experience", "skills", "projects", "data-science", "research", "contact"];
 
   const scrollToSection = (sectionId) => {
@@ -44,13 +43,12 @@ export default function Portfolio() {
     tools: ["Git", "ServiceNow", "IoT Systems", "Figma"]
   };
 
-  // UPDATED: Changed 'description' to 'keyAchievements'
   const experience = [
     {
       title: "Graduate Research Assistant",
       company: "University of Central Missouri – Overland Park, KS",
       period: "Aug 2025 – Present",
-      keyAchievements: [ // Renamed from 'description'
+      keyAchievements: [
         "Developed a deep learning pipeline for ECG signal analysis using TensorFlow and Streamlit.",
         "Implemented CNN and LSTM models to classify cardiac arrhythmias with improved detection accuracy.",
         "Contributed to AI research supporting healthcare diagnosis and intelligent decision systems."
@@ -60,7 +58,7 @@ export default function Portfolio() {
       title: "Software Engineer",
       company: "HDFC ERGO General Insurance – Remote, India",
       period: "Sep 2023 – Aug 2024",
-      keyAchievements: [ // Renamed from 'description'
+      keyAchievements: [
         "Built scalable ETL pipelines using Python and SQL for high-volume insurance data.",
         "Integrated APIs and automated workflows using Azure Data Factory and Power BI.",
         "Optimized SQL queries, reducing execution time by 30% and enhancing analytics performance."
@@ -70,7 +68,7 @@ export default function Portfolio() {
       title: "ServiceNow Intern",
       company: "Kaptius – Hyderabad, India",
       period: "Jan 2023 – Aug 2023",
-      keyAchievements: [ // Renamed from 'description'
+      keyAchievements: [
         "Assisted in custom ServiceNow app development and workflow automation using Flow Designer.",
         "Created JavaScripts and dashboards for process optimization.",
         "Integrated REST APIs and supported CMDB data migration for client projects."
@@ -78,19 +76,18 @@ export default function Portfolio() {
     },
   ];
 
-  // NOTE: Projects are split into 'projects' (Featured/AI) and 'dataScienceProjects'
   const featuredProjects = [
     {
       title: "AI-Powered Text-to-Story Video Generator",
       tech: "Python, Transformers, spaCy, Stable Diffusion, Diffusers, Torch, MoviePy, Text-to-Speech, NLP, AI Video Synthesis",
       description: "Built an AI-driven Text-to-Story Video Generator that converts user-written statements into narrated, AI-illustrated short films using NLP and Stable Diffusion.",
-      link: "YOUR_PROJECT_LINK_HERE" // Add your link
+      link: "YOUR_PROJECT_LINK_HERE" 
     },
     {
       title: "ECG Signal Analysis & Classification Pipeline",
       tech: "Python, TensorFlow, Keras, WFDB, Scikit-learn, Pandas, NumPy",
       description: "Developed an end-to-end ECG classification system using CNN and CNN-LSTM to detect cardiac abnormalities, forming a robust healthcare diagnosis tool.",
-      link: "YOUR_PROJECT_LINK_HERE" // Add your link
+      link: "YOUR_PROJECT_LINK_HERE" 
     },
   ];
   
@@ -99,18 +96,16 @@ export default function Portfolio() {
       title: "Real-Time Smart Farm IoT Data Pipeline and Analytics",
       tech: "IoT Sensors, Real-Time Alerts, Python, SQLite, Streamlit",
       description: "Designed an IoT solution for humidity and soil monitoring with real-time alerts and Streamlit dashboards for operational insights.",
-      link: "YOUR_PROJECT_LINK_HERE" // Add your link
+      link: "YOUR_PROJECT_LINK_HERE" 
     },
     {
       title: "Customer Churn Prediction",
       tech: "Python, Streamlit, Pandas, Scikit-learn",
       description: "Developed a machine learning pipeline that predicts customer churn through data analytics and visualization dashboards, providing actionable insights for retention.",
-      link: "YOUR_PROJECT_LINK_HERE" // Add your link
+      link: "YOUR_PROJECT_LINK_HERE" 
     },
-    // Add other projects from your original list that are not AI/LLM focused here
   ];
   
-  // 'projects' now refers only to the featured (AI/LLM) projects
   const projects = featuredProjects; 
 
   const research = [
@@ -134,7 +129,6 @@ export default function Portfolio() {
     "Azure AI Fundamentals",
   ];
 
-  // UPDATED: Added cyan shadow on hover for a glowing effect
   const card = "bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-md hover:shadow-cyan-500/30 hover:border-cyan-400/40 transition";
 
   return (
@@ -160,7 +154,7 @@ export default function Portfolio() {
                     activeSection === item ? "text-cyan-400 font-semibold" : "text-gray-300"
                   }`}
                 >
-                  {item.replace('-', ' ')} {/* Correct for 'data-science' display */}
+                  {item.replace('-', ' ')}
                 </button>
               ))}
             </div>
@@ -186,41 +180,47 @@ export default function Portfolio() {
         </div>
       </nav>
 
-      {/* HERO */}
-      <section id="home" className="pt-28 pb-16 text-center">
-        <div className="max-w-6xl mx-auto">
-          {/* REMOVED: Circular initials element (to match the clean header style) */}
-
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            Hi, I'm <span className="text-cyan-400">Rakshith Bodakuntla</span>
+      {/* HERO - UPDATED TO MATCH SHARED PAGE DESIGN */}
+      <section id="home" className="pt-28 pb-16 text-center min-h-screen flex items-center justify-center">
+        <div className="max-w-6xl mx-auto px-4">
+          
+          <h1 className="text-5xl md:text-7xl font-extrabold mb-4">
+            <span className="text-white">Hi, I'm</span> <span className="text-cyan-400">Rakshith Bodakuntla</span>
           </h1>
 
-          <p className="text-xl text-gray-400 mb-8">
-            Data Engineer | AI & Machine Learning Enthusiast | Researcher
+          <p className="text-2xl md:text-3xl font-light text-gray-300 mb-8">
+            Data Engineer & AI Researcher
           </p>
           
-          {/* OPTIONAL: Add an eye-catching AI-focused statement */}
-          <p className="text-2xl font-light text-cyan-300 mb-10 max-w-4xl mx-auto italic">
-            "Bridging the gap between complex data and intelligent, scalable solutions."
+          <p className="text-xl text-gray-400 mb-12 max-w-4xl mx-auto leading-relaxed">
+            Transforming data into intelligent solutions with cutting-edge AI and machine 
+            learning technologies. Specialized in **LLMs**, agentic AI, and scalable data 
+            systems.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-4">
-            <a href="#projects" className="px-8 py-3 bg-cyan-500 text-white rounded-full font-semibold hover:bg-cyan-600 transition">
-              View Projects
-            </a>
-
-            <a
+          <div className="flex flex-wrap justify-center gap-6">
+            <a 
               href="/Rakshith_Bodakuntla_Resume.pdf"
               target="_blank"
-              className="px-8 py-3 border border-cyan-400 text-cyan-400 rounded-full font-semibold hover:bg-cyan-500/10 transition flex items-center gap-2"
+              // Prominent button styling
+              className="px-10 py-3 bg-cyan-600 text-white rounded-full font-semibold text-lg shadow-lg shadow-cyan-500/50 hover:bg-cyan-700 transition flex items-center gap-2 transform hover:scale-105"
             >
-              <Download size={20} /> Resume
+              <Download size={20} /> Download Resume
             </a>
 
-            <a href="#contact" className="px-8 py-3 border border-gray-500 text-gray-300 rounded-full font-semibold hover:bg-white/10 transition">
-              Contact Me
+            <a 
+              href="#contact" 
+              // Bordered button styling
+              className="px-10 py-3 border border-cyan-400/50 text-cyan-300 rounded-full font-semibold text-lg hover:bg-cyan-500/10 transition flex items-center gap-2 transform hover:scale-105"
+            >
+              <Mail size={20} /> Contact Me
             </a>
           </div>
+
+          {/* Optional: Down arrow to guide user */}
+          <a href="#about" className="absolute bottom-10 left-1/2 transform -translate-x-1/2 p-2 text-cyan-400 hover:text-white transition">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevrons-down animate-bounce"><path d="m7 15 5 5 5-5"/><path d="m7 9 5 5 5-5"/></svg>
+          </a>
         </div>
       </section>
 
@@ -234,9 +234,9 @@ export default function Portfolio() {
           {/* ADD YOUR IMAGE HERE */}
           <div className="mb-8"> 
             <img
-              src={profileImage} // <--- Using the imported image variable
+              src={profileImage}
               alt="Rakshith Bodakuntla"
-              className="rounded-full w-40 h-40 object-cover mx-auto shadow-lg border-4 border-cyan-500/50" // Stylized image
+              className="rounded-full w-40 h-40 object-cover mx-auto shadow-lg border-4 border-cyan-500/50"
             />
           </div>
           {/* END IMAGE ADDITION */}
@@ -271,11 +271,10 @@ export default function Portfolio() {
                 <p className="text-gray-300 font-medium">{exp.company}</p>
                 <p className="text-sm text-gray-500 mb-3">{exp.period}</p>
                 
-                {/* UPDATED: Added Key Achievements heading */}
                 <h4 className="text-lg font-semibold text-cyan-400 mt-4 mb-2">Key Achievements:</h4>
 
                 <ul className="list-disc list-inside text-gray-300 space-y-1">
-                  {exp.keyAchievements.map((p, j) => ( // Changed to keyAchievements
+                  {exp.keyAchievements.map((p, j) => (
                     <li key={j}>{p}</li>
                   ))}
                 </ul>
@@ -295,7 +294,7 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Object.entries(skills).map(([category, items]) => (
               <div key={category} className={card}>
-                <h3 className="text-xl font-semibold text-white mb-4 capitalize">{category.replace(/([A-Z])/g, ' $1')}</h3> {/* Improved category name readability */}
+                <h3 className="text-xl font-semibold text-white mb-4 capitalize">{category.replace(/([A-Z])/g, ' $1')}</h3>
 
                 <ul className="space-y-2 text-gray-300">
                   {items.map((skill) => (
@@ -321,15 +320,14 @@ export default function Portfolio() {
           {/* START SWIPER WRAPPER */}
           <Swiper
             modules={[Pagination, Navigation]}
-            spaceBetween={40} // Space between slides
-            slidesPerView={1}  // Show 1 slide at a time
+            spaceBetween={40}
+            slidesPerView={1}
             centeredSlides={true}
             pagination={{ clickable: true }}
             navigation={true}
             loop={true}
-            className="mySwiper" // Add a class for potential custom styling
+            className="mySwiper"
             
-            // Optional: Add breakpoints for desktop view (2 slides)
             breakpoints={{
               768: {
                 slidesPerView: 2,
@@ -339,8 +337,7 @@ export default function Portfolio() {
           >
             
             {projects.map((p, i) => (
-              // Each project becomes a SwiperSlide
-              <SwiperSlide key={i} className="pb-12 pt-2"> {/* Added padding for pagination dots */}
+              <SwiperSlide key={i} className="pb-12 pt-2">
                 <div className={card + " h-full flex flex-col justify-between"}>
                   <div>
                     <h3 className="text-2xl font-bold text-white mb-2">{p.title}</h3>
@@ -383,7 +380,7 @@ export default function Portfolio() {
       </section>
 
 
-      {/* RESEARCH (Corrected nesting) */}
+      {/* RESEARCH */}
       <section id="research" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
@@ -416,7 +413,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* CONTACT (Corrected nesting) */}
+      {/* CONTACT */}
       <section id="contact" className="py-16 px-4">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
 
@@ -491,7 +488,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* FOOTER - Optional: Add a simple footer */}
+      {/* FOOTER */}
       <footer className="py-6 text-center text-gray-500 border-t border-white/10 mt-12">
         <p>&copy; {new Date().getFullYear()} Rakshith Bodakuntla. All rights reserved.</p>
       </footer>
