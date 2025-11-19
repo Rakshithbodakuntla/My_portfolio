@@ -19,7 +19,7 @@ export default function Portfolio() {
 
   // 1. FIX: Ensures the scroll position is reset to the top (0, 0) when the component mounts.
   useEffect(() => {
-    window.scrollTo(0, 0); 
+    window.scrollTo(home); 
   }, []); // <-- This empty array makes it run only once after load
 
   const sections = ["home", "about", "experience", "skills", "projects", "data-science", "research", "contact"];
