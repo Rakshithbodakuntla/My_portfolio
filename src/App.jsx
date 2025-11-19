@@ -15,9 +15,6 @@ export default function Portfolio() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
   // 1. FIX: Ensures the scroll position is reset to the top (0, 0) when the component mounts.
-  useEffect(() => {
-    window.scrollTo(0, 0); 
-  }, []);
 
   const sections = ["home", "about", "experience", "skills", "projects", "data-science", "research", "contact"];
 
