@@ -128,7 +128,6 @@ export default function Portfolio() {
       description: "Developed a machine learning pipeline that predicts customer churn through data analytics and visualization dashboards, providing actionable insights for retention.",
       link: "YOUR_PROJECT_LINK_HERE" 
     },
-  ];
   
   ];
   
