@@ -35,7 +35,7 @@ export default function Portfolio() {
     tools: ["Git", "ServiceNow", "IoT Systems", "Figma"]
   };
 
-  // UPDATED: Changed 'description' to 'keyAchievements' for structural clarity
+  // UPDATED: Changed 'description' to 'keyAchievements'
   const experience = [
     {
       title: "Graduate Research Assistant",
@@ -83,6 +83,9 @@ export default function Portfolio() {
       description: "Developed an end-to-end ECG classification system using CNN and CNN-LSTM to detect cardiac abnormalities, forming a robust healthcare diagnosis tool.",
       link: "YOUR_PROJECT_LINK_HERE" // Add your link
     },
+  ];
+  
+  const dataScienceProjects = [
     {
       title: "Real-Time Smart Farm IoT Data Pipeline and Analytics",
       tech: "IoT Sensors, Real-Time Alerts, Python, SQLite, Streamlit",
@@ -95,14 +98,10 @@ export default function Portfolio() {
       description: "Developed a machine learning pipeline that predicts customer churn through data analytics and visualization dashboards, providing actionable insights for retention.",
       link: "YOUR_PROJECT_LINK_HERE" // Add your link
     },
+    // Add other projects from your original list that are not AI/LLM focused here
   ];
   
-  const dataScienceProjects = [
-    
-    // You can add more general Data Science projects here
-  ];
-  
-  // Renamed 'projects' to 'featuredProjects' and added 'dataScienceProjects'
+  // 'projects' now refers only to the featured (AI/LLM) projects
   const projects = featuredProjects; 
 
   const research = [
@@ -217,38 +216,37 @@ export default function Portfolio() {
       </section>
 
       {/* ABOUT */}
-     // ABOUT
-<section id="about" className="py-16 px-4">
-  <div className="max-w-6xl mx-auto text-center">
-    <h2 className="text-4xl font-bold mb-6 text-cyan-400 flex justify-center gap-2">
-      <User /> About Me
-    </h2>
+      <section id="about" className="py-16 px-4">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-6 text-cyan-400 flex justify-center gap-2">
+            <User /> About Me
+          </h2>
 
-    {/* ADD YOUR IMAGE HERE */}
-    <div className="mb-8"> {/* Added margin-bottom for spacing */}
-      <img
-        src={profileImage} // <--- IMPORTANT: Replace with the actual path to your image
-        alt="Rakshith Bodakuntla"
-        className="rounded-full w-40 h-40 object-cover mx-auto shadow-lg border-4 border-cyan-500/50" // Stylized image
-      />
-    </div>
-    {/* END IMAGE ADDITION */}
+          {/* ADD YOUR IMAGE HERE */}
+          <div className="mb-8"> 
+            <img
+              src={profileImage} // <--- Using the imported image variable
+              alt="Rakshith Bodakuntla"
+              className="rounded-full w-40 h-40 object-cover mx-auto shadow-lg border-4 border-cyan-500/50" // Stylized image
+            />
+          </div>
+          {/* END IMAGE ADDITION */}
 
-    <p className="text-gray-300 leading-relaxed text-lg max-w-3xl mx-auto">
-      I’m a passionate Data Engineer and AI researcher pursuing my MS in Computer Science at the University of Central Missouri.
-      My experience includes building scalable data pipelines, deep learning systems, and workflow automation in cloud environments.
-    </p>
+          <p className="text-gray-300 leading-relaxed text-lg max-w-3xl mx-auto">
+            I’m a passionate Data Engineer and AI researcher pursuing my MS in Computer Science at the University of Central Missouri.
+            My experience includes building scalable data pipelines, deep learning systems, and workflow automation in cloud environments.
+          </p>
+          
+          {/* OPTIONAL: Add skill keywords for quick scanning */}
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">LLMs</span>
+            <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">Data Engineering</span>
+            <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">Deep Learning</span>
+            <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">Cloud</span>
+          </div>
 
-    {/* OPTIONAL: Add skill keywords for quick scanning */}
-    <div className="mt-6 flex flex-wrap justify-center gap-3">
-      <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">LLMs</span>
-      <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">Data Engineering</span>
-      <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">Deep Learning</span>
-      <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">Cloud</span>
-    </div>
-
-  </div>
-</section>
+        </div>
+      </section>
 
       {/* EXPERIENCE */}
       <section id="experience" className="py-16 px-4">
@@ -308,7 +306,7 @@ export default function Portfolio() {
       <section id="projects" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
-            <Star /> Projects
+            <Star /> Featured AI & LLM Projects
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -326,9 +324,27 @@ export default function Portfolio() {
         </div>
       </section>
       
-    
+      {/* NEW SECTION: DATA SCIENCE PROJECTS */}
+      <section id="data-science" className="py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
+            <Briefcase /> Data Science Projects
+          </h2>
 
-          
+          <div className="grid md:grid-cols-2 gap-8">
+            {dataScienceProjects.map((p, i) => (
+              <div key={i} className={card}>
+                <h3 className="text-2xl font-bold text-white mb-2">{p.title}</h3>
+                <p className="text-cyan-300 font-semibold mb-4">{p.tech}</p>
+                <p className="text-gray-300">{p.description}</p>
+                <a href={p.link} target="_blank" className="mt-4 inline-block text-cyan-400 hover:text-white transition font-medium">
+                  [View Source / Demo]
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
 
       {/* RESEARCH */}
