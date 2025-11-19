@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; // 1. ADDED useEffect HERE
 import {
   Menu, X, Mail, Phone, MapPin, Download, Github, Linkedin, Award,
   BookOpen, Code, Briefcase, User, Send, Star
@@ -14,11 +14,12 @@ export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("home");
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
-  // UPDATED: Added 'data-science' section
+  // 2. ADDED useEffect HOOK HERE TO FORCE SCROLL TO TOP ON LOAD
   useEffect(() => {
-    // This scrolls the window to the very top (0, 0) when the component mounts.
     window.scrollTo(0, 0); 
-  },
+  }, []);
+
+  // UPDATED: Added 'data-science' section
   const sections = ["home", "about", "experience", "skills", "projects", "data-science", "research", "contact"];
 
   const scrollToSection = (sectionId) => {
