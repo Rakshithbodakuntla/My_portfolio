@@ -311,32 +311,7 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* EXPERIENCE */}
-      <section id="experience" className="py-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
-            <Briefcase /> Experience
-          </h2>
-
-          <div className="space-y-8">
-            {experience.map((exp, i) => (
-              <div key={i} className={card}>
-                <h3 className="text-2xl font-bold text-white">{exp.title}</h3>
-                <p className="text-gray-300 font-medium">{exp.company}</p>
-                <p className="text-sm text-gray-500 mb-3">{exp.period}</p>
-                
-                <h4 className="text-lg font-semibold text-cyan-400 mt-4 mb-2">Key Achievements:</h4>
-
-                <ul className="list-disc list-inside text-gray-300 space-y-1">
-                  {exp.keyAchievements.map((p, j) => (
-                    <li key={j}>{p}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+    
 
       {/* SKILLS */}
       <section id="skills" className="py-16 px-4">
@@ -381,6 +356,32 @@ useEffect(() => {
                 <a href={p.link} target="_blank" className="mt-4 inline-block text-cyan-400 hover:text-white transition font-medium">
                   [View Source / Demo]
                 </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+        {/* EXPERIENCE */}
+      <section id="experience" className="py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
+            <Briefcase /> Experience
+          </h2>
+
+          <div className="space-y-8">
+            {experience.map((exp, i) => (
+              <div key={i} className={card}>
+                <h3 className="text-2xl font-bold text-white">{exp.title}</h3>
+                <p className="text-gray-300 font-medium">{exp.company}</p>
+                <p className="text-sm text-gray-500 mb-3">{exp.period}</p>
+                
+                <h4 className="text-lg font-semibold text-cyan-400 mt-4 mb-2">Key Achievements:</h4>
+
+                <ul className="list-disc list-inside text-gray-300 space-y-1">
+                  {exp.keyAchievements.map((p, j) => (
+                    <li key={j}>{p}</li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
