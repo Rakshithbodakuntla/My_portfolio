@@ -3,8 +3,6 @@ import {
   Menu, X, Mail, Phone, MapPin, Download, Github, Linkedin, Award,
   BookOpen, Code, Briefcase, User, Send, Star, Briefcase as DataIcon // Using Briefcase for Data Science projects
 } from "lucide-react";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules';
 
 import profileImage from './My_anime_img.jpg';
 
