@@ -93,8 +93,8 @@ useEffect(() => {
     languages: ["Python", "Java", "SQL", "C"],
     dataEngineering: ["Snowflake", "Azure Data Factory", "ETL Pipelines", "Data Warehousing"],
     analytics: ["Power BI", "Streamlit", "Tableau", "REST APIs"],
-    AI & MachineLearning: ["TensorFlow", "Scikit-learn", "Deep Learning", "Reinforcement Learning"],
-    tools: ["Git", "ServiceNow", "IoT Systems", "Figma"]
+    AI_ML: ["TensorFlow", "Scikit-learn", "Deep Learning", "Reinforcement Learning"],
+    Tools: ["Git", "ServiceNow", "IoT Systems", "Figma"]
   };
 
   const experience = [
