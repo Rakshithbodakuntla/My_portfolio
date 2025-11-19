@@ -93,7 +93,7 @@ useEffect(() => {
     languages: ["Python", "Java", "SQL", "C"],
     dataEngineering: ["Snowflake", "Azure Data Factory", "ETL Pipelines", "Data Warehousing"],
     analytics: ["Power BI", "Streamlit", "Tableau", "REST APIs"],
-    machineLearning: ["TensorFlow", "Scikit-learn", "Deep Learning", "Reinforcement Learning"],
+    AI & MachineLearning: ["TensorFlow", "Scikit-learn", "Deep Learning", "Reinforcement Learning"],
     tools: ["Git", "ServiceNow", "IoT Systems", "Figma"]
   };
 
