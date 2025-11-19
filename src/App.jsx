@@ -10,7 +10,7 @@ export default function Portfolio() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
   // UPDATED: Added 'data-science' section
-  const sections = ["home", "about", "experience", "skills", "projects", "data-science", "research", "contact"];
+  const sections = ["home", "about", "experience", "skills", "projects", "research", "contact"];
 
   const scrollToSection = (sectionId) => {
     setActiveSection(sectionId);
@@ -82,10 +82,7 @@ export default function Portfolio() {
       description: "Developed an end-to-end ECG classification system using CNN and CNN-LSTM to detect cardiac abnormalities, forming a robust healthcare diagnosis tool.",
       link: "YOUR_PROJECT_LINK_HERE" // Add your link
     },
-  ];
-  
-  const dataScienceProjects = [
-    {
+     {
       title: "Real-Time Smart Farm IoT Data Pipeline and Analytics",
       tech: "IoT Sensors, Real-Time Alerts, Python, SQLite, Streamlit",
       description: "Designed an IoT solution for humidity and soil monitoring with real-time alerts and Streamlit dashboards for operational insights.",
@@ -97,8 +94,9 @@ export default function Portfolio() {
       description: "Developed a machine learning pipeline that predicts customer churn through data analytics and visualization dashboards, providing actionable insights for retention.",
       link: "YOUR_PROJECT_LINK_HERE" // Add your link
     },
-    // You can add more general Data Science projects here
   ];
+  
+
   
   // Renamed 'projects' to 'featuredProjects' and added 'dataScienceProjects'
   const projects = featuredProjects; 
