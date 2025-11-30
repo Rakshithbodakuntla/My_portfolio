@@ -253,7 +253,7 @@ useEffect(() => {
 
           <div className="flex flex-wrap justify-center gap-6">
             <a 
-              href="/Rakshith_Bodakuntla_Resume.pdf"
+              href="https://drive.google.com/file/d/1PwHtD_IKFbQ_PmEXx0HKXSCtyZ3g_Rqa/view?usp=sharing"
               target="_blank"
               // Prominent button styling
               className="px-10 py-3 bg-cyan-600 text-white rounded-full font-semibold text-lg shadow-lg shadow-cyan-500/50 hover:bg-cyan-700 transition flex items-center gap-2 transform hover:scale-105"
