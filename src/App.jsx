@@ -295,7 +295,7 @@ useEffect(() => {
           {/* END IMAGE ADDITION */}
 
           <p className="text-gray-300 leading-relaxed text-lg max-w-3xl mx-auto">
-            I’m a passionatea Data Engineer, AI Researcher, and MS CS student at the University of Central Missouri.
+            I’m a passionate Data Engineer, AI Researcher, and MS CS student at the University of Central Missouri.
             I specialize in building systems that combine data engineering, machine learning, and cloud technologies to create intelligent, scalable solutions.
           </p>
           
