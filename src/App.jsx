@@ -134,25 +134,25 @@ useEffect(() => {
       title: "AI-Powered Text-to-Story Video Generator",
       tech: "Python, Transformers, spaCy, Stable Diffusion, Diffusers, Torch, MoviePy, Text-to-Speech, NLP, AI Video Synthesis",
       description: "Built an AI-driven Text-to-Story Video Generator that converts user-written statements into narrated, AI-illustrated short films using NLP and Stable Diffusion.",
-      link: "YOUR_PROJECT_LINK_HERE" 
+      link: "https://github.com/Rakshithbodakuntla/Text_to_Video_Generator" 
     },
     {
       title: "ECG Signal Analysis & Classification Pipeline",
       tech: "Python, TensorFlow, Keras, WFDB, Scikit-learn, Pandas, NumPy",
       description: "Developed an end-to-end ECG classification system using CNN and CNN-LSTM to detect cardiac abnormalities, forming a robust healthcare diagnosis tool.",
-      link: "YOUR_PROJECT_LINK_HERE" 
+      link: "https://github.com/Rakshithbodakuntla/Arrhythmia_Classification" 
     },
     {
       title: "Real-Time Smart Farm IoT Data Pipeline and Analytics",
       tech: "IoT Sensors, Real-Time Alerts, Python, SQLite, Streamlit",
       description: "Designed an IoT solution for humidity and soil monitoring with real-time alerts and Streamlit dashboards for operational insights.",
-      link: "YOUR_PROJECT_LINK_HERE" 
+      link: "https://github.com/Rakshithbodakuntla/Real-Time-Smart-Farm-IoT-Data-Pipeline-and-Analytics-Dashboard" 
     },
     {
       title: "Customer Churn Prediction",
       tech: "Python, Streamlit, Pandas, Scikit-learn",
       description: "Developed a machine learning pipeline that predicts customer churn through data analytics and visualization dashboards, providing actionable insights for retention.",
-      link: "YOUR_PROJECT_LINK_HERE" 
+      link: "https://github.com/Rakshithbodakuntla/customer_churn_prediction" 
     },
   ];
   
