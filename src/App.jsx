@@ -244,7 +244,7 @@ useEffect(() => {
           </h3>
 
           <p className="text-2xl md:text-3xl font-light text-gray-300 mb-8">
-            Data Engineer & AI Researcher
+            Data Engineer & AI Specialist
           </p>
           
           <p className="text-xl text-gray-400 mb-12 max-w-4xl mx-auto leading-relaxed">
