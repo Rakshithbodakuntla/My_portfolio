@@ -183,7 +183,7 @@ useEffect(() => {
     "Snowflake Collaboration & Cost Estimation Workshop",
     "Azure AI Fundamentals",
     "Databricks Fundamentals",
-    "
+  
   ];
 
   const card = "bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-md hover:shadow-cyan-500/30 hover:border-cyan-400/40 transition";
