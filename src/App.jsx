@@ -182,6 +182,8 @@ useEffect(() => {
     "Snowflake Hands-On Data Warehouse Training",
     "Snowflake Collaboration & Cost Estimation Workshop",
     "Azure AI Fundamentals",
+    "Databricks Fundamentals",
+    "
   ];
 
   const card = "bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-md hover:shadow-cyan-500/30 hover:border-cyan-400/40 transition";
@@ -295,8 +297,8 @@ useEffect(() => {
           {/* END IMAGE ADDITION */}
 
           <p className="text-gray-300 leading-relaxed text-lg max-w-3xl mx-auto">
-            I’m a passionate Data Engineer, AI Researcher, and MS CS student at the University of Central Missouri.
-            I specialize in building systems that combine data engineering, machine learning, and cloud technologies to create intelligent, scalable solutions.
+           I’m a passionate Data Engineer and AI Specialist with 3+ years of experience and a Master’s in Computer Science from the University of Central Missouri.
+           I design and build intelligent, scalable systems by combining data engineering, machine learning, and cloud technologies to deliver high-impact, production-ready solutions.
           </p>
           
           {/* OPTIONAL: Add skill keywords for quick scanning */}
