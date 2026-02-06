@@ -90,7 +90,8 @@ useEffect(() => {
 
   // ================= CONTENT ==================
   const skills = {
-    'Programming & Tools': ["Python", "SQL", "C", "Git","ServiceNow", "Figma" ],
+    'Programming & Tools': ["Python (data processing, automation, ML pipelines)", "SQL (advanced queries, optimization, analytics)", "C (foundational programming concepts)", "Git & GitHub (version control, collaborative development)", 
+"ServiceNow (ITSM workflows, automation support)", "Figma (basic UI/UX prototyping for data & ML apps)"],
     'DataEngineering': ["Snowflake", "Azure Data Factory", "ETL Pipelines", "Data Warehousing"],
     'AI & MachineLearning': ["LLMs", "Deep Learning", "Reinforcement Learning"],
     'DataTools':["Power BI", "Streamlit", "Tableau", "Pandas", "NumPy", "TensorFlow"],
