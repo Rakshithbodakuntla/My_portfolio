@@ -249,11 +249,7 @@ useEffect(() => {
             Data Engineer & AI Specialist
           </p>
           
-          <p className="text-xl text-gray-400 mb-12 max-w-4xl mx-auto leading-relaxed">
-            Driving innovation by building robust data pipelines and architecting next-generation AI solutions, specializing in Deep Learning and LLM development.
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-6">
+            <div className="flex flex-wrap justify-center gap-6">
             <a 
               href="https://drive.google.com/file/d/1YoIgucMOj_nYqqJibQd0uTrGNFEsRQZo/view?usp=sharing"
               target="_blank"
@@ -297,7 +293,7 @@ useEffect(() => {
           {/* END IMAGE ADDITION */}
 
           <p className="text-gray-300 leading-relaxed text-lg max-w-3xl mx-auto">
-           I’m a passionate Data Engineer and AI Specialist with 3+ years of experience and a Master’s in Computer Science from the University of Central Missouri.
+           I’m a passionate Data Engineer and AI Specialist with 2 years of experience and a Master’s in Computer Science from the University of Central Missouri.
            I design and build intelligent, scalable systems by combining data engineering, machine learning, and cloud technologies to deliver high-impact, production-ready solutions.
           </p>
           
