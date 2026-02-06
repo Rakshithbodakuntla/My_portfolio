@@ -89,13 +89,40 @@ useEffect(() => {
   };
 
   // ================= CONTENT ==================
-  const skills = {
-    'Programming & Tools': ["Python (data processing, automation, ML pipelines)", "SQL (advanced queries, optimization, analytics)", "C (foundational programming concepts)", "Git & GitHub (version control, collaborative development)", 
-"ServiceNow (ITSM workflows, automation support)", "Figma (basic UI/UX prototyping for data & ML apps)"],
-    'DataEngineering': ["Snowflake", "Azure Data Factory", "ETL Pipelines", "Data Warehousing"],
-    'AI & MachineLearning': ["LLMs", "Deep Learning", "Reinforcement Learning"],
-    'DataTools':["Power BI", "Streamlit", "Tableau", "Pandas", "NumPy", "TensorFlow"],
-  };
+ const skills = {
+  "Programming & Tools": [
+    "Python (data processing, automation, ML pipelines)",
+    "SQL (advanced queries, joins, window functions, performance tuning)",
+    "C (foundational programming and algorithmic concepts)",
+    "Git & GitHub (version control, CI-friendly workflows, collaboration)",
+    "ServiceNow (ITSM workflows, automation support)",
+    "Figma (basic UI/UX prototyping for data and ML applications)"
+  ],
+
+  "Data Engineering": [
+    "Snowflake (cloud data warehousing, analytical queries)",
+    "Azure Data Factory (data ingestion, orchestration, scheduling)",
+    "ETL / ELT Pipelines (batch and incremental processing)",
+    "Data Warehousing (dimensional modeling, analytics-ready datasets)",
+    "Data Cleaning & Validation (schema checks, anomaly handling)"
+  ],
+
+  "AI & Machine Learning": [
+    "Machine Learning (supervised & unsupervised models)",
+    "Deep Learning (CNNs, RNNs, LSTM-based architectures)",
+    "Large Language Models (LLM-based applications, prompt design)",
+    "Model Evaluation & Optimization (metrics, tuning, overfitting control)"
+  ],
+
+  "Data & Visualization Tools": [
+    "Pandas & NumPy (data analysis, feature engineering)",
+    "TensorFlow (deep learning model development)",
+    "Power BI (dashboards, KPI reporting)",
+    "Tableau (interactive visual analytics)",
+    "Streamlit (data & ML web applications)"
+  ]
+};
+
 
   const experience = [
     {
