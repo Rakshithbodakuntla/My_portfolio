@@ -179,9 +179,9 @@ useEffect(() => {
   ];
 
   const certifications = [
+    "SnowPro Core",
     "Snowflake Hands-On Data Warehouse Training",
     "Snowflake Collaboration & Cost Estimation Workshop",
-    "Azure AI Fundamentals",
     "Databricks Fundamentals",
   
   ];
@@ -293,8 +293,10 @@ useEffect(() => {
           {/* END IMAGE ADDITION */}
 
           <p className="text-gray-300 leading-relaxed text-lg max-w-3xl mx-auto">
-           I’m a passionate Data Engineer and AI Specialist with 2 years of experience and a Master’s in Computer Science from the University of Central Missouri.
-           I design and build intelligent, scalable systems by combining data engineering, machine learning, and cloud technologies to deliver high-impact, production-ready solutions.
+           I am a Data Engineer and AI Engineer with 2 years of hands-on experience in building scalable data pipelines
+            and intelligent machine learning systems. I specialize in transforming raw data into production-ready solutions
+            by integrating data engineering, machine learning, and cloud technologies. With a Master’s degree in Computer Science
+          from the University of Central Missouri, I focus on delivering reliable, efficient, and impactful AI-driven applications.
           </p>
           
           {/* OPTIONAL: Add skill keywords for quick scanning */}
