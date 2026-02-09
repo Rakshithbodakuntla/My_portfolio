@@ -89,7 +89,7 @@ export default function Portfolio() {
 
   const experience = [
     {
-      title: "Graduate Research Assistant",
+      title: "Gradh Assistant",
       company: "University of Central Missouri – Overland Park, KS",
       period: "Aug 2025 – Present",
       keyAchievements: [
