@@ -3,9 +3,6 @@ import {
   Menu, X, Mail, Phone, MapPin, Download, Github, Linkedin, Award,
   BookOpen, Code, Briefcase, User, Send, Star
 } from "lucide-react";
-// NOTE: Swiper is no longer used for a single Projects section, but we'll keep the imports clean just in case.
-// import { Swiper, SwiperSlide } from 'swiper/react';
-// import { Pagination, Navigation } from 'swiper/modules';
 
 import profileImage from './My_anime_img.jpg';
 
@@ -14,20 +11,12 @@ export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("home");
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
-  // FIX 1: Ensures the scroll position is reset to the top (0, 0) when the component mounts.
-  // Inside export default function Portfolio() { ...
-
-useEffect(() => {
-    // 1. Force scroll to top when the component mounts
+  useEffect(() => {
     window.scrollTo(0, 0); 
-
-    // 2. Clear the browser's scroll history state immediately
-    // This tells the browser NOT to try and restore the old position.
     if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
     }
 
-    // A fallback to scroll top on every visibility change (like switching tabs and back)
     const handleVisibilityChange = () => {
         if (document.visibilityState === 'visible') {
             window.scrollTo(0, 0);
@@ -35,13 +24,11 @@ useEffect(() => {
     };
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
-
     return () => {
         document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-}, []);
+  }, []);
 
-  // FIX 2: OBSERVER LOGIC TO UPDATE ACTIVE SECTION IN NAVBAR
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -53,26 +40,23 @@ useEffect(() => {
       },
       {
         root: null,
-        rootMargin: '0px 0px -70% 0px', // Trigger when 30% of the section is visible
+        rootMargin: '0px 0px -70% 0px',
         threshold: 0.1, 
       }
     );
 
-    // Observe all sections
     const sections = document.querySelectorAll('section');
     sections.forEach((section) => {
       observer.observe(section);
     });
 
-    // Cleanup function
     return () => {
       sections.forEach((section) => {
         observer.unobserve(section);
       });
     };
-  }, []); // Run once on mount
+  }, []);
 
-  // UPDATED: Removed 'data-science' section from navigation
   const sections = ["home", "about", "skills", "projects", "experience", "research", "contact"];
 
   const scrollToSection = (sectionId) => {
@@ -88,41 +72,20 @@ useEffect(() => {
     window.location.href = mailtoLink;
   };
 
-  // ================= CONTENT ==================
- const skills = {
-  "Programming & Tools": [
-    "Python (data processing, automation, ML pipelines)",
-    "SQL (advanced queries, joins, window functions, performance tuning)",
-    "C (foundational programming and algorithmic concepts)",
-    "Git & GitHub (version control, CI-friendly workflows, collaboration)",
-    "ServiceNow (ITSM workflows, automation support)",
-    "Figma (basic UI/UX prototyping for data and ML applications)"
-  ],
-
-  "Data Engineering": [
-    "Snowflake (cloud data warehousing, analytical queries)",
-    "Azure Data Factory (data ingestion, orchestration, scheduling)",
-    "ETL / ELT Pipelines (batch and incremental processing)",
-    "Data Warehousing (dimensional modeling, analytics-ready datasets)",
-    "Data Cleaning & Validation (schema checks, anomaly handling)"
-  ],
-
-  "AI & Machine Learning": [
-    "Machine Learning (supervised & unsupervised models)",
-    "Deep Learning (CNNs, RNNs, LSTM-based architectures)",
-    "Large Language Models (LLM-based applications, prompt design)",
-    "Model Evaluation & Optimization (metrics, tuning, overfitting control)"
-  ],
-
-  "Data & Visualization Tools": [
-    "Pandas & NumPy (data analysis, feature engineering)",
-    "TensorFlow (deep learning model development)",
-    "Power BI (dashboards, KPI reporting)",
-    "Tableau (interactive visual analytics)",
-    "Streamlit (data & ML web applications)"
-  ]
-};
-
+  const skills = {
+    "Programming & Tools": [
+      "Python", "SQL", "C", "Git & GitHub", "ServiceNow", "Figma", "Bash"
+    ],
+    "Data Engineering": [
+      "Snowflake", "Azure Data Factory", "ETL / ELT", "Data Warehousing", "Dimensional Modeling", "Data Cleaning"
+    ],
+    "AI & Machine Learning": [
+      "Machine Learning", "Deep Learning", "CNN & LSTM", "LLMs", "Prompt Design", "Model Optimization"
+    ],
+    "Data & Visualization": [
+      "Pandas & NumPy", "TensorFlow", "Power BI", "Tableau", "Streamlit", "Scikit-learn"
+    ]
+  };
 
   const experience = [
     {
@@ -157,39 +120,32 @@ useEffect(() => {
     },
   ];
 
-  const featuredProjects = [
+  const projects = [
     {
       title: "AI-Powered Text-to-Story Video Generator",
-      tech: "Python, Transformers, spaCy, Stable Diffusion, Diffusers, Torch, MoviePy, Text-to-Speech, NLP, AI Video Synthesis",
+      tech: "Python, Transformers, Stable Diffusion, MoviePy",
       description: "Built an AI-driven Text-to-Story Video Generator that converts user-written statements into narrated, AI-illustrated short films using NLP and Stable Diffusion.",
       link: "https://github.com/Rakshithbodakuntla/Text_to_Video_Generator" 
     },
     {
       title: "ECG Signal Analysis & Classification Pipeline",
-      tech: "Python, TensorFlow, Keras, WFDB, Scikit-learn, Pandas, NumPy",
-      description: "Developed an end-to-end ECG classification system using CNN and CNN-LSTM to detect cardiac abnormalities, forming a robust healthcare diagnosis tool.",
+      tech: "Python, TensorFlow, Keras, WFDB, Scikit-learn",
+      description: "Developed an end-to-end ECG classification system using CNN and CNN-LSTM to detect cardiac abnormalities.",
       link: "https://github.com/Rakshithbodakuntla/Arrhythmia_Classification" 
     },
     {
-      title: "Real-Time Smart Farm IoT Data Pipeline and Analytics",
-      tech: "IoT Sensors, Real-Time Alerts, Python, SQLite, Streamlit",
-      description: "Designed an IoT solution for humidity and soil monitoring with real-time alerts and Streamlit dashboards for operational insights.",
+      title: "Real-Time Smart Farm IoT Data Pipeline",
+      tech: "IoT Sensors, Python, SQLite, Streamlit",
+      description: "Designed an IoT solution for humidity and soil monitoring with real-time alerts and Streamlit dashboards.",
       link: "https://github.com/Rakshithbodakuntla/Real-Time-Smart-Farm-IoT-Data-Pipeline-and-Analytics-Dashboard" 
     },
     {
       title: "Customer Churn Prediction",
       tech: "Python, Streamlit, Pandas, Scikit-learn",
-      description: "Developed a machine learning pipeline that predicts customer churn through data analytics and visualization dashboards, providing actionable insights for retention.",
+      description: "Developed a machine learning pipeline that predicts customer churn through data analytics and visualization dashboards.",
       link: "https://github.com/Rakshithbodakuntla/customer_churn_prediction" 
     },
   ];
-  
-  const dataScienceProjects = [
-    
-  ];
-  
-  // COMBINED: All projects are merged into one array
-  const projects = [...featuredProjects, ...dataScienceProjects]; 
 
   const research = [
     {
@@ -211,17 +167,16 @@ useEffect(() => {
     "Snowflake Hands-On Data Warehouse Training",
     "Snowflake Collaboration & Cost Estimation Workshop",
     "Databricks Fundamentals",
-  
   ];
 
   const card = "bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-md hover:shadow-cyan-500/30 hover:border-cyan-400/40 transition";
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-[#0d0f13] text-gray-200">
+    <div className="min-h-screen relative overflow-hidden bg-[#0d0f13] text-gray-200 font-sans">
 
       {/* Animated Background */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="w-[200%] h-[200%] animate-gradient bg-[radial-gradient(circle_at_center,rgba(0,162,255,0.25),rgba(0,0,0,0.9))]"></div>
+        <div className="w-[200%] h-[200%] animate-gradient bg-[radial-gradient(circle_at_center,rgba(0,162,255,0.15),rgba(0,0,0,0.9))]"></div>
       </div>
 
       {/* NAVBAR */}
@@ -229,7 +184,6 @@ useEffect(() => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <div className="text-2xl font-bold text-cyan-400">RB</div>
-
             <div className="hidden md:flex space-x-8">
               {sections.map((item) => (
                 <button
@@ -243,14 +197,12 @@ useEffect(() => {
                 </button>
               ))}
             </div>
-
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 rounded-lg hover:bg-white/10">
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
-
           {isMenuOpen && (
-            <div className="md:hidden py-4 space-y-2 bg-black/70 border-t border-white/10">
+            <div className="md:hidden py-4 space-y-2 bg-black/90 border-t border-white/10 px-4">
               {sections.map((item) => (
                 <button
                   key={item}
@@ -268,35 +220,20 @@ useEffect(() => {
       {/* HERO */}
       <section id="home" className="pt-28 pb-16 text-center min-h-screen flex items-center justify-center">
         <div className="max-w-6xl mx-auto px-4">
-          
-          <h3 className="text-5xl md:text-5xl font-extrabold mb-4">
-            <span className="text-white">Hi, I'm</span> <span className="text-cyan-400">Rakshith Bodakuntla</span>
+          <h3 className="text-5xl md:text-7xl font-extrabold mb-4">
+            <span className="text-white">Hi, I'm</span> <span className="text-cyan-400">Rakshith</span>
           </h3>
-
           <p className="text-2xl md:text-3xl font-light text-gray-300 mb-8">
             Data Engineer & AI Specialist
           </p>
-          
-            <div className="flex flex-wrap justify-center gap-6">
-            <a 
-              href="https://drive.google.com/file/d/1YoIgucMOj_nYqqJibQd0uTrGNFEsRQZo/view?usp=sharing"
-              target="_blank"
-              // Prominent button styling
-              className="px-10 py-3 bg-cyan-600 text-white rounded-full font-semibold text-lg shadow-lg shadow-cyan-500/50 hover:bg-cyan-700 transition flex items-center gap-2 transform hover:scale-105"
-            >
+          <div className="flex flex-wrap justify-center gap-6">
+            <a href="https://drive.google.com/file/d/1YoIgucMOj_nYqqJibQd0uTrGNFEsRQZo/view?usp=sharing" target="_blank" className="px-10 py-3 bg-cyan-600 text-white rounded-full font-semibold text-lg shadow-lg shadow-cyan-500/50 hover:bg-cyan-700 transition flex items-center gap-2 transform hover:scale-105">
               <Download size={20} /> Download Resume
             </a>
-
-            <a 
-              href="#contact" 
-              // Bordered button styling
-              className="px-10 py-3 border border-cyan-400/50 text-cyan-300 rounded-full font-semibold text-lg hover:bg-cyan-500/10 transition flex items-center gap-2 transform hover:scale-105"
-            >
+            <a href="#contact" className="px-10 py-3 border border-cyan-400/50 text-cyan-300 rounded-full font-semibold text-lg hover:bg-cyan-500/10 transition flex items-center gap-2 transform hover:scale-105">
               <Mail size={20} /> Contact Me
             </a>
           </div>
-
-          {/* Optional: Down arrow to guide user */}
           <a href="#about" className="absolute bottom-10 left-1/2 transform -translate-x-1/2 p-2 text-cyan-400 hover:text-white transition">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevrons-down animate-bounce"><path d="m7 15 5 5 5-5"/><path d="m7 9 5 5 5-5"/></svg>
           </a>
@@ -309,104 +246,81 @@ useEffect(() => {
           <h2 className="text-4xl font-bold mb-6 text-cyan-400 flex justify-center gap-2">
             <User /> About Me
           </h2>
-
-          {/* ADD YOUR IMAGE HERE */}
           <div className="mb-8"> 
-            <img
-              src={profileImage}
-              alt="Rakshith Bodakuntla"
-              className="rounded-full w-40 h-40 object-cover mx-auto shadow-lg border-4 border-cyan-500/50"
-            />
+            <img src={profileImage} alt="Rakshith Bodakuntla" className="rounded-full w-40 h-40 object-cover mx-auto shadow-lg border-4 border-cyan-500/50" />
           </div>
-          {/* END IMAGE ADDITION */}
-
           <p className="text-gray-300 leading-relaxed text-lg max-w-3xl mx-auto">
            I am a Data Engineer and AI Engineer with 2 years of hands-on experience in building scalable data pipelines
-            and intelligent machine learning systems. I specialize in transforming raw data into production-ready solutions
-            by integrating data engineering, machine learning, and cloud technologies. With a Master’s degree in Computer Science
-          from the University of Central Missouri, I focus on delivering reliable, efficient, and impactful AI-driven applications.
+           and intelligent machine learning systems. I specialize in transforming raw data into production-ready solutions.
           </p>
-          
-          {/* OPTIONAL: Add skill keywords for quick scanning */}
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-            
-            <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">Data Engineering</span>
-            <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">Cloud</span>
-            <span className="text-sm font-medium text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full bg-cyan-900/20">AI & ML</span>
-          </div>
-
         </div>
       </section>
 
-    
-
-      {/* SKILLS */}
+      {/* SKILLS - UPDATED TO INDIVIDUAL BOXES */}
       <section id="skills" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
             <Code /> Skills & Technologies
           </h2>
-
-          <div className="grid md:grid-cols-1 lg:grid-cols-4 gap-5">
+          <div className="grid md:grid-cols-2 gap-6">
             {Object.entries(skills).map(([category, items]) => (
-              <div key={category} className={card}>
-                <h3 className="text-xl font-semibold text-white mb-4 capitalize">{category.replace(/([A-Z])/g, ' $1')}</h3>
-
-                <ul className="space-y-2 text-gray-300">
+              <div key={category} className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-cyan-400/30 transition-all">
+                <h3 className="text-xl font-semibold text-white mb-6 capitalize border-b border-white/10 pb-2">
+                  {category.replace(/([A-Z])/g, ' $1')}
+                </h3>
+                <div className="flex flex-wrap gap-3">
                   {items.map((skill) => (
-                    <li key={skill} className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
+                    <div key={skill} className="px-4 py-2 bg-cyan-900/20 border border-cyan-500/20 rounded-lg text-gray-300 text-sm font-medium hover:bg-cyan-500/10 hover:border-cyan-400/50 transition-colors">
                       {skill}
-                    </li>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* PROJECTS (COMBINED & RENAMED) */}
+      {/* PROJECTS */}
       <section id="projects" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
             <Star /> Projects
           </h2>
-
-          {/* Using grid layout to display all projects together */}
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((p, i) => (
               <div key={i} className={card}>
                 <h3 className="text-2xl font-bold text-white mb-2">{p.title}</h3>
-                <p className="text-cyan-300 font-semibold mb-4">{p.tech}</p>
-                <p className="text-gray-300">{p.description}</p>
-                <a href={p.link} target="_blank" className="mt-4 inline-block text-cyan-400 hover:text-white transition font-medium">
-                  [View Source / Demo]
+                <p className="text-cyan-300 font-semibold mb-4 text-sm">{p.tech}</p>
+                <p className="text-gray-300 mb-4">{p.description}</p>
+                <a href={p.link} target="_blank" className="inline-block text-cyan-400 hover:text-white transition font-medium underline underline-offset-4">
+                  View Source / Demo
                 </a>
               </div>
             ))}
           </div>
         </div>
       </section>
-        {/* EXPERIENCE */}
+
+      {/* EXPERIENCE */}
       <section id="experience" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
             <Briefcase /> Experience
           </h2>
-
           <div className="space-y-8">
             {experience.map((exp, i) => (
               <div key={i} className={card}>
-                <h3 className="text-2xl font-bold text-white">{exp.title}</h3>
-                <p className="text-gray-300 font-medium">{exp.company}</p>
-                <p className="text-sm text-gray-500 mb-3">{exp.period}</p>
-                
-                <h4 className="text-lg font-semibold text-cyan-400 mt-4 mb-2">Key Achievements:</h4>
-
-                <ul className="list-disc list-inside text-gray-300 space-y-1">
-                  {exp.keyAchievements.map((p, j) => (
-                    <li key={j}>{p}</li>
+                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                    <div>
+                        <h3 className="text-2xl font-bold text-white">{exp.title}</h3>
+                        <p className="text-cyan-300 font-medium">{exp.company}</p>
+                    </div>
+                    <p className="text-sm text-gray-500 mt-2 md:mt-0">{exp.period}</p>
+                </div>
+                <ul className="list-disc list-inside text-gray-300 space-y-2">
+                  {exp.keyAchievements.map((achieve, j) => (
+                    <li key={j}>{achieve}</li>
                   ))}
                 </ul>
               </div>
@@ -421,7 +335,6 @@ useEffect(() => {
           <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
             <BookOpen /> Research & Publications
           </h2>
-
           <div className="space-y-6">
             {research.map((r, i) => (
               <div key={i} className={card}>
@@ -430,17 +343,15 @@ useEffect(() => {
               </div>
             ))}
           </div>
-
           <div className="mt-12">
             <h3 className="text-3xl font-bold mb-6 text-cyan-400 flex items-center gap-2">
               <Award /> Certifications
             </h3>
-
             <div className="grid md:grid-cols-2 gap-4">
               {certifications.map((c, i) => (
-                <div key={i} className={card + " flex items-center gap-3"}>
+                <div key={i} className={card + " flex items-center gap-3 py-4"}>
                   <Award size={24} className="text-cyan-400" />
-                  <span>{c}</span>
+                  <span className="font-medium">{c}</span>
                 </div>
               ))}
             </div>
@@ -451,28 +362,21 @@ useEffect(() => {
       {/* CONTACT */}
       <section id="contact" className="py-16 px-4">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
-
           <div className="space-y-6">
             <div className={card + " flex items-center gap-4"}>
               <Mail className="text-cyan-400" size={24} />
               <div>
                 <p className="font-semibold text-white">Email</p>
-                <a href="mailto:bodakuntlarakshith1@gmail.com" className="text-cyan-300 hover:underline">
-                  bodakuntlarakshith1@gmail.com
-                </a>
+                <a href="mailto:bodakuntlarakshith1@gmail.com" className="text-cyan-300 hover:underline">bodakuntlarakshith1@gmail.com</a>
               </div>
             </div>
-
             <div className={card + " flex items-center gap-4"}>
               <Phone className="text-cyan-400" size={24} />
               <div>
                 <p className="font-semibold text-white">Phone</p>
-                <a href="tel:+14694871318" className="text-cyan-300 hover:underline">
-                  +1 (469) 487-1318
-                </a>
+                <a href="tel:+14694871318" className="text-cyan-300 hover:underline">+1 (469) 487-1318</a>
               </div>
             </div>
-
             <div className={card + " flex items-center gap-4"}>
               <MapPin className="text-cyan-400" size={24} />
               <div>
@@ -480,51 +384,23 @@ useEffect(() => {
                 <p className="text-gray-300">Kansas, USA</p>
               </div>
             </div>
-
             <div className="flex gap-4">
-              <a href="https://www.linkedin.com/in/bodakuntlarakshith1/" className="text-cyan-300 hover:text-white transition">
-                <Linkedin size={28} />
-              </a>
-              <a href="https://github.com/Rakshithbodakuntla" className="text-cyan-300 hover:text-white transition">
-                <Github size={28} />
-              </a>
+              <a href="https://www.linkedin.com/in/bodakuntlarakshith1/" className="text-cyan-300 hover:text-white transition"><Linkedin size={28} /></a>
+              <a href="https://github.com/Rakshithbodakuntla" className="text-cyan-300 hover:text-white transition"><Github size={28} /></a>
             </div>
           </div>
-
           <div className={card + " space-y-4"}>
-            <input
-              type="text"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full px-4 py-3 bg-transparent border border-white/20 rounded-xl text-gray-200 focus:ring-2 focus:ring-cyan-400 outline-none"
-            />
-            <input
-              type="email"
-              placeholder="Your Email"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="w-full px-4 py-3 bg-transparent border border-white/20 rounded-xl text-gray-200 focus:ring-2 focus:ring-cyan-400 outline-none"
-            />
-            <textarea
-              placeholder="Your Message"
-              rows="4"
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="w-full px-4 py-3 bg-transparent border border-white/20 rounded-xl text-gray-200 focus:ring-2 focus:ring-cyan-400 outline-none"
-            ></textarea>
-            <button
-              onClick={handleContactSubmit}
-              className="w-full px-8 py-3 bg-cyan-500 text-white rounded-xl font-semibold hover:bg-cyan-600 transition flex items-center justify-center gap-2"
-            >
+            <input type="text" placeholder="Your Name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-gray-200 focus:ring-2 focus:ring-cyan-400 outline-none transition" />
+            <input type="email" placeholder="Your Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-gray-200 focus:ring-2 focus:ring-cyan-400 outline-none transition" />
+            <textarea placeholder="Your Message" rows="4" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-gray-200 focus:ring-2 focus:ring-cyan-400 outline-none transition"></textarea>
+            <button onClick={handleContactSubmit} className="w-full px-8 py-3 bg-cyan-500 text-white rounded-xl font-semibold hover:bg-cyan-600 transition flex items-center justify-center gap-2">
               Send Message <Send size={20} />
             </button>
           </div>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="py-6 text-center text-gray-500 border-t border-white/10 mt-12">
+      <footer className="py-8 text-center text-gray-500 border-t border-white/10 mt-12">
         <p>&copy; {new Date().getFullYear()} Rakshith Bodakuntla. All rights reserved.</p>
       </footer>
     </div>
