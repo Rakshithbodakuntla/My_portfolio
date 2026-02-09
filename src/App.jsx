@@ -264,7 +264,7 @@ export default function Portfolio() {
             {/* Right Side: Text content (Approx Line 180) */}
             <div className="w-full md:w-3/5 text-left">
               <h2 className="text-4xl font-bold mb-6 text-white">
-                <span className="text-cyan-400 uppercase text-sm tracking-[0.3em] block mb-2">Discovery</span>
+               
                 About Me
               </h2>
               
