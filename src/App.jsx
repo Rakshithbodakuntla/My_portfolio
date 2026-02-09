@@ -256,23 +256,27 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* SKILLS - UPDATED TO INDIVIDUAL BOXES */}
+      {/* SKILLS SECTION - FLOATING BUTTONS */}
       <section id="skills" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
             <Code /> Skills & Technologies
           </h2>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-8">
             {Object.entries(skills).map(([category, items]) => (
-              <div key={category} className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-cyan-400/30 transition-all">
-                <h3 className="text-xl font-semibold text-white mb-6 capitalize border-b border-white/10 pb-2">
+              <div key={category} className="bg-white/5 border border-white/10 rounded-2xl p-8 transition-all">
+                <h3 className="text-xl font-semibold text-white mb-8 capitalize flex items-center gap-2">
+                  <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
                   {category.replace(/([A-Z])/g, ' $1')}
                 </h3>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-4">
                   {items.map((skill) => (
-                    <div key={skill} className="px-4 py-2 bg-cyan-900/20 border border-cyan-500/20 rounded-lg text-gray-300 text-sm font-medium hover:bg-cyan-500/10 hover:border-cyan-400/50 transition-colors">
+                    <button
+                      key={skill}
+                      className="px-5 py-2.5 bg-cyan-500/10 border border-cyan-500/30 text-cyan-100 text-sm font-semibold rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_20px_rgba(34,211,238,0.2)] hover:bg-cyan-500/20 hover:border-cyan-400 hover:-translate-y-1 transition-all duration-300 cursor-default"
+                    >
                       {skill}
-                    </div>
+                    </button>
                   ))}
                 </div>
               </div>
