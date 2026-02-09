@@ -241,18 +241,67 @@ export default function Portfolio() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="py-16 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6 text-cyan-400 flex justify-center gap-2">
-            <User /> About Me
-          </h2>
-          <div className="mb-8"> 
-            <img src={profileImage} alt="Rakshith Bodakuntla" className="rounded-full w-40 h-40 object-cover mx-auto shadow-lg border-4 border-cyan-500/50" />
+      {/* Replace your old 'About' section with this side-by-side layout */}
+      <section id="about" className="py-20 px-4 border-t border-white/5 bg-gradient-to-b from-transparent to-black/20">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+            
+            {/* Left Side: Photo (Approx Line 165) */}
+            <div className="w-full md:w-2/5 flex justify-center">
+              <div className="relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                <div className="relative">
+                  <img 
+                    src={profileImage} 
+                    alt="Rakshith Bodakuntla" 
+                    className="rounded-2xl w-64 h-80 md:w-full md:h-auto object-cover shadow-2xl border border-white/10" 
+                  />
+                  <div className="absolute -bottom-4 -right-4 bg-gray-900 border border-cyan-400/50 p-3 rounded-xl shadow-xl">
+                    <p className="text-cyan-400 font-bold text-xl leading-none">2+</p>
+                    <p className="text-gray-400 text-[10px] uppercase tracking-tighter">Years Exp.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side: Text content (Approx Line 180) */}
+            <div className="w-full md:w-3/5 text-left">
+              <h2 className="text-4xl font-bold mb-6 text-white">
+                <span className="text-cyan-400 uppercase text-sm tracking-[0.3em] block mb-2">Discovery</span>
+                About Me
+              </h2>
+              
+              <div className="space-y-4 text-gray-300 text-lg leading-relaxed">
+                <p>
+                  I am a <span className="text-white font-semibold">Data Engineer and AI Specialist</span> with 
+                  a passion for turning complex datasets into actionable intelligence. With 2 years of professional 
+                  experience, I bridge the gap between robust data infrastructure and cutting-edge machine learning.
+                </p>
+                <p>
+                  My journey has taken me from optimizing SQL queries for major financial institutions to 
+                  architecting deep learning pipelines for medical signal analysis. I thrive in environments 
+                  that challenge me to build <span className="text-cyan-400 italic">scalable, efficient, and intelligent</span> systems.
+                </p>
+                <p>
+                  Recently, I achieved my <span className="text-white border-b border-cyan-400">SnowPro Core Certification</span>, 
+                  solidifying my expertise in cloud data warehousing and modern data architecture.
+                </p>
+              </div>
+
+              {/* Quick Info Grid */}
+              <div className="grid grid-cols-2 gap-4 mt-8">
+                <div className="p-3 bg-white/5 rounded-lg border border-white/10">
+                  <p className="text-cyan-400 font-bold text-sm">Location</p>
+                  <p className="text-gray-400 text-sm">Overland Park, KS</p>
+                </div>
+                <div className="p-3 bg-white/5 rounded-lg border border-white/10">
+                  <p className="text-cyan-400 font-bold text-sm">Education</p>
+                  <p className="text-gray-400 text-sm">UCM (Masters)</p>
+                </div>
+              </div>
+            </div>
+
           </div>
-          <p className="text-gray-300 leading-relaxed text-lg max-w-3xl mx-auto">
-           I am a Data Engineer and AI Engineer with 2 years of hands-on experience in building scalable data pipelines
-           and intelligent machine learning systems. I specialize in transforming raw data into production-ready solutions.
-          </p>
         </div>
       </section>
 
