@@ -89,7 +89,7 @@ export default function Portfolio() {
 
   const experience = [
     {
-      title: "Gradh Assistant",
+      title: "Graduate Research Assistant",
       company: "University of Central Missouri – Overland Park, KS",
       period: "Aug 2025 – Present",
       keyAchievements: [
@@ -221,10 +221,10 @@ export default function Portfolio() {
       <section id="home" className="pt-28 pb-16 text-center min-h-screen flex items-center justify-center">
         <div className="max-w-6xl mx-auto px-4">
           <h3 className="text-5xl md:text-7xl font-extrabold mb-4">
-            <span className="text-white">Hi, I'm</span> <span className="text-cyan-400">Rakshith</span>
+            <span className="text-white">Hi, I'm</span> <span className="text-cyan-400">Rakshith Bodakuntla</span>
           </h3>
           <p className="text-2xl md:text-3xl font-light text-gray-300 mb-8">
-            Data Engineer & AI Specialist
+            Data Engineer & AI Engineer
           </p>
           <div className="flex flex-wrap justify-center gap-6">
             <a href="https://drive.google.com/file/d/1YoIgucMOj_nYqqJibQd0uTrGNFEsRQZo/view?usp=sharing" target="_blank" className="px-10 py-3 bg-cyan-600 text-white rounded-full font-semibold text-lg shadow-lg shadow-cyan-500/50 hover:bg-cyan-700 transition flex items-center gap-2 transform hover:scale-105">
@@ -256,27 +256,27 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* SKILLS SECTION - FLOATING BUTTONS */}
+      {/* SKILLS SECTION - COMPACT FLOATING BUTTONS */}
       <section id="skills" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
             <Code /> Skills & Technologies
           </h2>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6">
             {Object.entries(skills).map(([category, items]) => (
-              <div key={category} className="bg-white/5 border border-white/10 rounded-2xl p-8 transition-all">
-                <h3 className="text-xl font-semibold text-white mb-8 capitalize flex items-center gap-2">
-                  <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+              <div key={category} className="bg-white/5 border border-white/10 rounded-2xl p-6 transition-all">
+                <h3 className="text-lg font-semibold text-white mb-5 capitalize flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
                   {category.replace(/([A-Z])/g, ' $1')}
                 </h3>
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-2">
                   {items.map((skill) => (
-                    <button
+                    <div
                       key={skill}
-                      className="px-5 py-2.5 bg-cyan-500/10 border border-cyan-500/30 text-cyan-100 text-sm font-semibold rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_20px_rgba(34,211,238,0.2)] hover:bg-cyan-500/20 hover:border-cyan-400 hover:-translate-y-1 transition-all duration-300 cursor-default"
+                      className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/20 text-cyan-100 text-[11px] font-medium rounded-md shadow-sm hover:bg-cyan-500/20 hover:border-cyan-400 hover:-translate-y-0.5 transition-all duration-200 cursor-default"
                     >
                       {skill}
-                    </button>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -355,7 +355,7 @@ export default function Portfolio() {
               {certifications.map((c, i) => (
                 <div key={i} className={card + " flex items-center gap-3 py-4"}>
                   <Award size={24} className="text-cyan-400" />
-                  <span className="font-medium">{c}</span>
+                  <span className="font-medium text-sm">{c}</span>
                 </div>
               ))}
             </div>
