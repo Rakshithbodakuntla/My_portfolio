@@ -253,10 +253,7 @@ export default function Portfolio() {
                     alt="Rakshith Bodakuntla" 
                     className="rounded-2xl w-72 h-80 md:w-full md:h-auto object-cover shadow-2xl border border-white/10" 
                   />
-                  <div className="absolute -bottom-4 -right-4 bg-[#0d0f13] border border-cyan-400/30 p-4 rounded-xl shadow-2xl">
-                    <p className="text-cyan-400 font-bold text-2xl leading-none">2+</p>
-                    <p className="text-gray-400 text-[10px] uppercase tracking-widest mt-1">Years Exp.</p>
-                  </div>
+                 
                 </div>
               </div>
             </div>
