@@ -11,22 +11,32 @@ export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("home");
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
+  // 1. MOUSE TRACKING LOGIC
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const { clientX, clientY } = e;
+      const x = (clientX / window.innerWidth) * 100;
+      const y = (clientY / window.innerHeight) * 100;
+      document.documentElement.style.setProperty('--mouse-x', `${x}%`);
+      document.documentElement.style.setProperty('--mouse-y', `${y}%`);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   useEffect(() => {
     window.scrollTo(0, 0); 
     if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
     }
-
     const handleVisibilityChange = () => {
         if (document.visibilityState === 'visible') {
             window.scrollTo(0, 0);
         }
     };
-
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () => {
-        document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, []);
 
   useEffect(() => {
@@ -38,22 +48,14 @@ export default function Portfolio() {
           }
         });
       },
-      {
-        root: null,
-        rootMargin: '0px 0px -70% 0px',
-        threshold: 0.1, 
-      }
+      { root: null, rootMargin: '0px 0px -70% 0px', threshold: 0.1 }
     );
 
     const sections = document.querySelectorAll('section');
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
+    sections.forEach((section) => observer.observe(section));
 
     return () => {
-      sections.forEach((section) => {
-        observer.unobserve(section);
-      });
+      sections.forEach((section) => observer.unobserve(section));
     };
   }, []);
 
@@ -73,18 +75,10 @@ export default function Portfolio() {
   };
 
   const skills = {
-    "Programming & Tools": [
-      "Python", "SQL", "C", "Git & GitHub", "ServiceNow", "Figma", "Bash"
-    ],
-    "Data Engineering": [
-      "Snowflake", "Azure Data Factory", "ETL / ELT", "Data Warehousing", "Dimensional Modeling", "Data Cleaning"
-    ],
-    "AI & Machine Learning": [
-      "Machine Learning", "Deep Learning", "CNN & LSTM", "LLMs", "Prompt Design", "Model Optimization"
-    ],
-    "Data & Visualization": [
-      "Pandas & NumPy", "TensorFlow", "Power BI", "Tableau", "Streamlit", "Scikit-learn"
-    ]
+    "Programming & Tools": ["Python", "SQL", "C", "Git & GitHub", "ServiceNow", "Figma", "Bash"],
+    "Data Engineering": ["Snowflake", "Azure Data Factory", "ETL / ELT", "Data Warehousing", "Dimensional Modeling", "Data Cleaning"],
+    "AI & Machine Learning": ["Machine Learning", "Deep Learning", "CNN & LSTM", "LLMs", "Prompt Design", "Model Optimization"],
+    "Data & Visualization": ["Pandas & NumPy", "TensorFlow", "Power BI", "Tableau", "Streamlit", "Scikit-learn"]
   };
 
   const experience = [
@@ -117,7 +111,7 @@ export default function Portfolio() {
         "Created JavaScripts and dashboards for process optimization.",
         "Integrated REST APIs and supported CMDB data migration for client projects."
       ]
-    },
+    }
   ];
 
   const projects = [
@@ -144,7 +138,7 @@ export default function Portfolio() {
       tech: "Python, Streamlit, Pandas, Scikit-learn",
       description: "Developed a machine learning pipeline that predicts customer churn through data analytics and visualization dashboards.",
       link: "https://github.com/Rakshithbodakuntla/customer_churn_prediction" 
-    },
+    }
   ];
 
   const research = [
@@ -172,11 +166,20 @@ export default function Portfolio() {
   const card = "bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-md hover:shadow-cyan-500/30 hover:border-cyan-400/40 transition";
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-[#0d0f13] text-gray-200 font-sans">
+    <div className="min-h-screen relative overflow-hidden bg-[#08090b] text-gray-200 font-sans">
+      
+      {/* 2. INTERACTIVE CURSOR BACKGROUND */}
+      <style>{`
+        :root { --mouse-x: 50%; --mouse-y: 50%; }
+        .cursor-bg {
+          background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(34, 211, 238, 0.12) 0%, transparent 45%);
+          transition: background 0.1s ease-out;
+        }
+      `}</style>
 
-      {/* Animated Background */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="w-[200%] h-[200%] animate-gradient bg-[radial-gradient(circle_at_center,rgba(0,162,255,0.15),rgba(0,0,0,0.9))]"></div>
+      <div className="fixed inset-0 -z-10 cursor-bg" />
+      <div className="fixed inset-0 -z-20 opacity-[0.03] pointer-events-none" 
+           style={{ backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`, backgroundSize: '50px 50px' }}>
       </div>
 
       {/* NAVBAR */}
@@ -227,102 +230,93 @@ export default function Portfolio() {
             Data Engineer & AI Engineer
           </p>
           <div className="flex flex-wrap justify-center gap-6">
-            <a href="https://drive.google.com/file/d/1YoIgucMOj_nYqqJibQd0uTrGNFEsRQZo/view?usp=sharing" target="_blank" className="px-10 py-3 bg-cyan-600 text-white rounded-full font-semibold text-lg shadow-lg shadow-cyan-500/50 hover:bg-cyan-700 transition flex items-center gap-2 transform hover:scale-105">
+            <a href="https://drive.google.com/file/d/1YoIgucMOj_nYqqJibQd0uTrGNFEsRQZo/view?usp=sharing" target="_blank" rel="noreferrer" className="px-10 py-3 bg-cyan-600 text-white rounded-full font-semibold text-lg shadow-lg shadow-cyan-500/50 hover:bg-cyan-700 transition flex items-center gap-2 transform hover:scale-105">
               <Download size={20} /> Download Resume
             </a>
-            <a href="#contact" className="px-10 py-3 border border-cyan-400/50 text-cyan-300 rounded-full font-semibold text-lg hover:bg-cyan-500/10 transition flex items-center gap-2 transform hover:scale-105">
+            <button onClick={() => scrollToSection('contact')} className="px-10 py-3 border border-cyan-400/50 text-cyan-300 rounded-full font-semibold text-lg hover:bg-cyan-500/10 transition flex items-center gap-2 transform hover:scale-105">
               <Mail size={20} /> Contact Me
-            </a>
+            </button>
           </div>
-          <a href="#about" className="absolute bottom-10 left-1/2 transform -translate-x-1/2 p-2 text-cyan-400 hover:text-white transition">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevrons-down animate-bounce"><path d="m7 15 5 5 5-5"/><path d="m7 9 5 5 5-5"/></svg>
-          </a>
         </div>
       </section>
 
-      {/* ABOUT */}
-      {/* Replace your old 'About' section with this side-by-side layout */}
-      <section id="about" className="py-20 px-4 border-t border-white/5 bg-gradient-to-b from-transparent to-black/20">
+      {/* 3. UPGRADED SIDE-BY-SIDE ABOUT */}
+      <section id="about" className="py-24 px-4 border-t border-white/5">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
-            
-            {/* Left Side: Photo (Approx Line 165) */}
+          <div className="flex flex-col md:flex-row items-center gap-16">
             <div className="w-full md:w-2/5 flex justify-center">
               <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-700"></div>
                 <div className="relative">
                   <img 
                     src={profileImage} 
                     alt="Rakshith Bodakuntla" 
-                    className="rounded-2xl w-64 h-80 md:w-full md:h-auto object-cover shadow-2xl border border-white/10" 
+                    className="rounded-2xl w-72 h-80 md:w-full md:h-auto object-cover shadow-2xl border border-white/10" 
                   />
-                
+                  <div className="absolute -bottom-4 -right-4 bg-[#0d0f13] border border-cyan-400/30 p-4 rounded-xl shadow-2xl">
+                    <p className="text-cyan-400 font-bold text-2xl leading-none">2+</p>
+                    <p className="text-gray-400 text-[10px] uppercase tracking-widest mt-1">Years Exp.</p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Right Side: Text content (Approx Line 180) */}
             <div className="w-full md:w-3/5 text-left">
-              <h2 className="text-4xl font-bold mb-6 text-white">
-               
-                About Me
+              <h2 className="text-4xl font-bold mb-8 text-white flex items-center gap-3">
+                <User className="text-cyan-400" /> About Me
               </h2>
-              
-              <div className="space-y-4 text-gray-300 text-lg leading-relaxed">
+              <div className="space-y-5 text-gray-300 text-lg leading-relaxed">
                 <p>
                   I am a <span className="text-white font-semibold">Data Engineer and AI Specialist</span> with 
-                  a passion for turning complex datasets into actionable intelligence. With 2 years of professional 
+                  a passion for turning complex datasets into actionable intelligence. With over 2 years of professional 
                   experience, I bridge the gap between robust data infrastructure and cutting-edge machine learning.
                 </p>
                 <p>
                   My journey has taken me from optimizing SQL queries for major financial institutions to 
-                  architecting deep learning pipelines for medical signal analysis. I thrive in environments 
-                  that challenge me to build <span className="text-cyan-400 italic">scalable, efficient, and intelligent</span> systems.
+                  architecting deep learning pipelines for medical signal analysis. I thrive on building 
+                  <span className="text-cyan-400 italic"> scalable, efficient, and intelligent</span> systems.
                 </p>
                 <p>
                   Recently, I achieved my <span className="text-white border-b border-cyan-400">SnowPro Core Certification</span>, 
-                  solidifying my expertise in cloud data warehousing and modern data architecture.
+                  solidifying my expertise in cloud data warehousing and modern architecture.
                 </p>
               </div>
-
-              {/* Quick Info Grid */}
-              <div className="grid grid-cols-2 gap-4 mt-8">
-                <div className="p-3 bg-white/5 rounded-lg border border-white/10">
-                  <p className="text-cyan-400 font-bold text-sm">Location</p>
-                  <p className="text-gray-400 text-sm">Overland Park, KS</p>
+              <div className="grid grid-cols-2 gap-4 mt-10">
+                <div className="p-4 bg-white/5 rounded-xl border border-white/10">
+                  <p className="text-cyan-400 font-bold text-xs uppercase tracking-widest mb-1">Location</p>
+                  <p className="text-gray-300">Overland Park, KS</p>
                 </div>
-                <div className="p-3 bg-white/5 rounded-lg border border-white/10">
-                  <p className="text-cyan-400 font-bold text-sm">Education</p>
-                  <p className="text-gray-400 text-sm">UCM (Masters)</p>
+                <div className="p-4 bg-white/5 rounded-xl border border-white/10">
+                  <p className="text-cyan-400 font-bold text-xs uppercase tracking-widest mb-1">Education</p>
+                  <p className="text-gray-300">UCM (Masters)</p>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* SKILLS SECTION - COMPACT FLOATING BUTTONS */}
-      <section id="skills" className="py-16 px-4">
+      {/* 4. COMPACT SKILLS SECTION */}
+      <section id="skills" className="py-24 px-4 bg-black/10">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
-            <Code /> Skills & Technologies
+          <h2 className="text-4xl font-bold mb-12 text-cyan-400 flex items-center gap-3">
+            <Code /> Tech Stack
           </h2>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-8">
             {Object.entries(skills).map(([category, items]) => (
-              <div key={category} className="bg-white/5 border border-white/10 rounded-2xl p-6 transition-all">
-                <h3 className="text-lg font-semibold text-white mb-5 capitalize flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
-                  {category.replace(/([A-Z])/g, ' $1')}
+              <div key={category} className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/[0.07] transition">
+                <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
+                  <div className="w-2 h-2 bg-cyan-400 rounded-full shadow-[0_0_8px_rgba(34,211,238,0.8)]"></div>
+                  {category}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {items.map((skill) => (
-                    <div
+                    <span 
                       key={skill}
-                      className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/20 text-cyan-100 text-[11px] font-medium rounded-md shadow-sm hover:bg-cyan-500/20 hover:border-cyan-400 hover:-translate-y-0.5 transition-all duration-200 cursor-default"
+                      className="px-3 py-1.5 bg-cyan-500/10 border border-cyan-500/20 text-cyan-100 text-xs font-medium rounded-lg hover:border-cyan-400 transition cursor-default"
                     >
                       {skill}
-                    </div>
+                    </span>
                   ))}
                 </div>
               </div>
@@ -332,19 +326,19 @@ export default function Portfolio() {
       </section>
 
       {/* PROJECTS */}
-      <section id="projects" className="py-16 px-4">
+      <section id="projects" className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
+          <h2 className="text-4xl font-bold mb-12 text-cyan-400 flex items-center gap-3">
             <Star /> Projects
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((p, i) => (
               <div key={i} className={card}>
                 <h3 className="text-2xl font-bold text-white mb-2">{p.title}</h3>
-                <p className="text-cyan-300 font-semibold mb-4 text-sm">{p.tech}</p>
-                <p className="text-gray-300 mb-4">{p.description}</p>
-                <a href={p.link} target="_blank" className="inline-block text-cyan-400 hover:text-white transition font-medium underline underline-offset-4">
-                  View Source / Demo
+                <p className="text-cyan-400 font-semibold mb-4 text-sm tracking-wide">{p.tech}</p>
+                <p className="text-gray-400 mb-6 line-clamp-3">{p.description}</p>
+                <a href={p.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-white bg-white/10 px-4 py-2 rounded-lg hover:bg-cyan-500 transition text-sm font-medium">
+                  View Repository <Github size={16} />
                 </a>
               </div>
             ))}
@@ -353,24 +347,27 @@ export default function Portfolio() {
       </section>
 
       {/* EXPERIENCE */}
-      <section id="experience" className="py-16 px-4">
+      <section id="experience" className="py-24 px-4 bg-black/10">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
-            <Briefcase /> Experience
+          <h2 className="text-4xl font-bold mb-12 text-cyan-400 flex items-center gap-3">
+            <Briefcase /> Career Journey
           </h2>
           <div className="space-y-8">
             {experience.map((exp, i) => (
               <div key={i} className={card}>
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                    <div>
-                        <h3 className="text-2xl font-bold text-white">{exp.title}</h3>
-                        <p className="text-cyan-300 font-medium">{exp.company}</p>
-                    </div>
-                    <p className="text-sm text-gray-500 mt-2 md:mt-0">{exp.period}</p>
+                <div className="flex flex-col md:flex-row md:justify-between mb-6">
+                  <div>
+                    <h3 className="text-2xl font-bold text-white">{exp.title}</h3>
+                    <p className="text-cyan-400 text-lg">{exp.company}</p>
+                  </div>
+                  <span className="text-gray-500 font-medium mt-2 md:mt-0">{exp.period}</span>
                 </div>
-                <ul className="list-disc list-inside text-gray-300 space-y-2">
+                <ul className="space-y-3">
                   {exp.keyAchievements.map((achieve, j) => (
-                    <li key={j}>{achieve}</li>
+                    <li key={j} className="flex items-start gap-3 text-gray-400">
+                      <div className="mt-1.5 w-1.5 h-1.5 bg-cyan-500 rounded-full shrink-0"></div>
+                      {achieve}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -379,79 +376,97 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* RESEARCH */}
-      <section id="research" className="py-16 px-4">
+      {/* RESEARCH & CERTIFICATIONS */}
+      <section id="research" className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-10 text-cyan-400 flex items-center gap-2">
-            <BookOpen /> Research & Publications
-          </h2>
-          <div className="space-y-6">
-            {research.map((r, i) => (
-              <div key={i} className={card}>
-                <h3 className="text-2xl font-semibold text-white mb-2">{r.title}</h3>
-                <p className="text-gray-300">{r.description}</p>
+          <div className="grid md:grid-cols-2 gap-12">
+            <div>
+              <h2 className="text-3xl font-bold mb-8 text-cyan-400 flex items-center gap-3">
+                <BookOpen /> Research
+              </h2>
+              <div className="space-y-4">
+                {research.map((r, i) => (
+                  <div key={i} className="p-6 bg-white/5 border border-white/10 rounded-xl">
+                    <h4 className="font-bold text-white mb-2">{r.title}</h4>
+                    <p className="text-sm text-gray-400">{r.description}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <div className="mt-12">
-            <h3 className="text-3xl font-bold mb-6 text-cyan-400 flex items-center gap-2">
-              <Award /> Certifications
-            </h3>
-            <div className="grid md:grid-cols-2 gap-4">
-              {certifications.map((c, i) => (
-                <div key={i} className={card + " flex items-center gap-3 py-4"}>
-                  <Award size={24} className="text-cyan-400" />
-                  <span className="font-medium text-sm">{c}</span>
-                </div>
-              ))}
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold mb-8 text-cyan-400 flex items-center gap-3">
+                <Award /> Certifications
+              </h2>
+              <div className="grid gap-3">
+                {certifications.map((c, i) => (
+                  <div key={i} className="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded-xl hover:border-cyan-400/50 transition">
+                    <div className="p-2 bg-cyan-500/10 rounded-lg text-cyan-400">
+                      <Award size={20} />
+                    </div>
+                    <span className="font-medium text-gray-300">{c}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="py-16 px-4">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
-          <div className="space-y-6">
-            <div className={card + " flex items-center gap-4"}>
-              <Mail className="text-cyan-400" size={24} />
-              <div>
-                <p className="font-semibold text-white">Email</p>
-                <a href="mailto:bodakuntlarakshith1@gmail.com" className="text-cyan-300 hover:underline">bodakuntlarakshith1@gmail.com</a>
+      <section id="contact" className="py-24 px-4 bg-black/20">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center text-white">Get In Touch</h2>
+          <div className="grid md:grid-cols-2 gap-12">
+            <div className="space-y-6">
+              <div className="flex items-center gap-4 p-6 bg-white/5 rounded-2xl border border-white/10">
+                <Mail className="text-cyan-400" />
+                <a href="mailto:bodakuntlarakshith1@gmail.com" className="hover:text-cyan-400 transition">bodakuntlarakshith1@gmail.com</a>
+              </div>
+              <div className="flex items-center gap-4 p-6 bg-white/5 rounded-2xl border border-white/10">
+                <Phone className="text-cyan-400" />
+                <span>+1 (469) 487-1318</span>
+              </div>
+              <div className="flex gap-4 pt-4">
+                <a href="https://linkedin.com" className="p-4 bg-white/5 rounded-full hover:bg-cyan-500 transition"><Linkedin /></a>
+                <a href="https://github.com" className="p-4 bg-white/5 rounded-full hover:bg-cyan-500 transition"><Github /></a>
               </div>
             </div>
-            <div className={card + " flex items-center gap-4"}>
-              <Phone className="text-cyan-400" size={24} />
-              <div>
-                <p className="font-semibold text-white">Phone</p>
-                <a href="tel:+14694871318" className="text-cyan-300 hover:underline">+1 (469) 487-1318</a>
-              </div>
+            
+            <div className="bg-white/5 p-8 rounded-2xl border border-white/10 space-y-4">
+              <input 
+                type="text" 
+                placeholder="Name" 
+                className="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-cyan-500 transition"
+                value={formData.name}
+                onChange={(e) => setFormData({...formData, name: e.target.value})}
+              />
+              <input 
+                type="email" 
+                placeholder="Email" 
+                className="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-cyan-500 transition"
+                value={formData.email}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
+              />
+              <textarea 
+                placeholder="Message" 
+                rows="4" 
+                className="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-cyan-500 transition"
+                value={formData.message}
+                onChange={(e) => setFormData({...formData, message: e.target.value})}
+              ></textarea>
+              <button 
+                onClick={handleContactSubmit}
+                className="w-full bg-cyan-600 hover:bg-cyan-500 py-4 rounded-xl font-bold transition flex items-center justify-center gap-2"
+              >
+                Send Message <Send size={18} />
+              </button>
             </div>
-            <div className={card + " flex items-center gap-4"}>
-              <MapPin className="text-cyan-400" size={24} />
-              <div>
-                <p className="font-semibold text-white">Location</p>
-                <p className="text-gray-300">Kansas, USA</p>
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <a href="https://www.linkedin.com/in/bodakuntlarakshith1/" className="text-cyan-300 hover:text-white transition"><Linkedin size={28} /></a>
-              <a href="https://github.com/Rakshithbodakuntla" className="text-cyan-300 hover:text-white transition"><Github size={28} /></a>
-            </div>
-          </div>
-          <div className={card + " space-y-4"}>
-            <input type="text" placeholder="Your Name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-gray-200 focus:ring-2 focus:ring-cyan-400 outline-none transition" />
-            <input type="email" placeholder="Your Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-gray-200 focus:ring-2 focus:ring-cyan-400 outline-none transition" />
-            <textarea placeholder="Your Message" rows="4" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-gray-200 focus:ring-2 focus:ring-cyan-400 outline-none transition"></textarea>
-            <button onClick={handleContactSubmit} className="w-full px-8 py-3 bg-cyan-500 text-white rounded-xl font-semibold hover:bg-cyan-600 transition flex items-center justify-center gap-2">
-              Send Message <Send size={20} />
-            </button>
           </div>
         </div>
       </section>
 
-      <footer className="py-8 text-center text-gray-500 border-t border-white/10 mt-12">
-        <p>&copy; {new Date().getFullYear()} Rakshith Bodakuntla. All rights reserved.</p>
+      <footer className="py-12 text-center text-gray-600 text-sm border-t border-white/5">
+        <p>© {new Date().getFullYear()} Rakshith Bodakuntla • Built with React & Tailwind</p>
       </footer>
     </div>
   );
