@@ -12,7 +12,7 @@ import {
   Download,
   ExternalLink,
   GraduationCap,
-  Layers3,
+  Layers,
   Mail,
   MapPin,
   Menu,
@@ -189,7 +189,7 @@ const PROJECTS = [
     stack: ["LangGraph", "Databricks Vector Search", "MLflow", "Unity Catalog", "OpenAI", "FastAPI"],
   },
   {
-    icon: Layers3,
+    icon: Layers,
     type: "Machine Learning Case Study",
     title: "Demand Forecasting & Inventory Optimization",
     description:
