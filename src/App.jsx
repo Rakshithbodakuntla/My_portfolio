@@ -1,470 +1,697 @@
-import React, { useState, useEffect } from "react"; 
+import { useEffect, useMemo, useState } from "react";
 import {
-  Menu, X, Mail, Phone, MapPin, Download, Github, Linkedin, Award,
-  BookOpen, Code, Briefcase, User, Send, Star
+  ArrowRight,
+  Award,
+  BrainCircuit,
+  BriefcaseBusiness,
+  CheckCircle2,
+  ChevronRight,
+  CloudCog,
+  Code2,
+  Database,
+  Download,
+  ExternalLink,
+  GraduationCap,
+  Layers3,
+  Mail,
+  MapPin,
+  Menu,
+  Network,
+  Phone,
+  Send,
+  Sparkles,
+  X,
+  Zap,
 } from "lucide-react";
 
-import profileImage from './My_anime_img.jpg';
 
-export default function Portfolio() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+function GithubMark({ size = 19 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 .7a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2.2c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.04 1.77 2.72 1.26 3.38.96.1-.75.4-1.26.74-1.55-2.57-.3-5.27-1.29-5.27-5.7 0-1.26.45-2.29 1.2-3.1-.12-.29-.52-1.47.11-3.06 0 0 .98-.31 3.16 1.18a10.96 10.96 0 0 1 5.74 0c2.18-1.49 3.16-1.18 3.16-1.18.63 1.59.23 2.77.11 3.06.75.81 1.2 1.84 1.2 3.1 0 4.43-2.7 5.4-5.28 5.69.42.36.79 1.06.79 2.14v3.18c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z" />
+    </svg>
+  );
+}
+
+function LinkedinMark({ size = 19 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M5.37 3.16a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4ZM3.47 8.9h3.8v11.65h-3.8V8.9Zm6.15 0h3.64v1.6h.05c.51-.96 1.75-1.98 3.61-1.98 3.86 0 4.57 2.54 4.57 5.84v6.19h-3.8v-5.49c0-1.31-.03-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9v5.59h-3.8V8.9Z" />
+    </svg>
+  );
+}
+
+const NAV_ITEMS = [
+  ["home", "Home"],
+  ["about", "About"],
+  ["expertise", "Expertise"],
+  ["experience", "Experience"],
+  ["projects", "Projects"],
+  ["credentials", "Credentials"],
+  ["contact", "Contact"],
+];
+
+const METRICS = [
+  { value: "150K+", label: "Monthly enterprise users" },
+  { value: "32%", label: "Response accuracy improvement" },
+  { value: "41%", label: "Lower average AI latency" },
+  { value: "28%", label: "Inference cost reduction" },
+];
+
+const EXPERTISE = [
+  {
+    icon: BrainCircuit,
+    title: "Generative AI & Agents",
+    description:
+      "Production RAG, multi-agent orchestration, prompt and context engineering, tool calling, guardrails, evaluation, and model routing.",
+    skills: [
+      "LLMs",
+      "RAG",
+      "AI Agents",
+      "LangGraph",
+      "OpenAI APIs",
+      "RAGAS",
+      "DeepEval",
+      "LoRA / PEFT",
+    ],
+  },
+  {
+    icon: Sparkles,
+    title: "Machine Learning",
+    description:
+      "Forecasting and predictive systems built with strong experimentation, statistical analysis, feature engineering, and measurable business outcomes.",
+    skills: [
+      "XGBoost",
+      "Transformers",
+      "LSTM",
+      "PyTorch",
+      "Scikit-learn",
+      "Bayesian Modeling",
+      "A/B Testing",
+      "XAI",
+    ],
+  },
+  {
+    icon: Database,
+    title: "Data & Distributed Systems",
+    description:
+      "High-volume batch and streaming pipelines, lakehouse architecture, enterprise search, and distributed processing for production AI.",
+    skills: [
+      "Apache Spark",
+      "Kafka",
+      "Delta Lake",
+      "Databricks",
+      "SQL",
+      "ETL / ELT",
+      "Vector Search",
+      "Airflow",
+    ],
+  },
+  {
+    icon: CloudCog,
+    title: "Cloud, MLOps & Platforms",
+    description:
+      "Cloud-native model services and microservices with containerized deployment, CI/CD, observability, governance, and reliable operations.",
+    skills: [
+      "AWS",
+      "Kubernetes",
+      "Docker",
+      "MLflow",
+      "FastAPI",
+      "Spring Boot",
+      "Terraform",
+      "Unity Catalog",
+    ],
+  },
+];
+
+const EXPERIENCE = [
+  {
+    company: "Databricks",
+    role: "AI/ML Engineer",
+    location: "San Francisco, CA",
+    period: "Apr 2025 — Present",
+    summary:
+      "Building production-scale enterprise AI agents, governed RAG platforms, and cloud-native AI services across structured and unstructured data.",
+    bullets: [
+      "Developed Python-based enterprise AI agents using RAG, LLM orchestration, and vector retrieval, serving more than 150,000 monthly users.",
+      "Improved response accuracy by 32% through retrieval tuning, prompt optimization, synthetic data generation, and automated evaluation pipelines.",
+      "Reduced inference cost by 28% and average response latency by 41% through model selection, context optimization, caching, and efficient vector search.",
+      "Designed multi-agent workflows with LangGraph, OpenAI APIs, MLflow, and Python for research, reasoning, and tool execution scenarios.",
+      "Deployed scalable AI microservices with FastAPI, Docker, AWS ECS, Kubernetes, CI/CD, and production observability.",
+    ],
+    stack: [
+      "Python",
+      "Databricks",
+      "LangGraph",
+      "MLflow",
+      "Vector Search",
+      "Unity Catalog",
+      "FastAPI",
+      "AWS",
+    ],
+  },
+  {
+    company: "Amazon",
+    role: "Machine Learning Engineer",
+    location: "India",
+    period: "Jun 2020 — Jun 2024",
+    summary:
+      "Developed demand forecasting, inventory optimization, distributed data processing, and cloud-native ML services for large-scale supply-chain operations.",
+    bullets: [
+      "Built demand forecasting pipelines using XGBoost and Transformer models across millions of sales records, improving forecast accuracy by 22%.",
+      "Developed real-time inventory optimization services that reduced inventory holding costs by 18% and improved warehouse utilization.",
+      "Designed forecasting APIs serving more than 50,000 daily business users and reduced decision latency by 35%.",
+      "Engineered distributed pipelines with Spark, Kafka, Python, and SQL to create production-ready forecasting and optimization features.",
+      "Deployed resilient services on AWS using SageMaker, EKS, EC2, Lambda, S3, Docker, Kubernetes, CloudWatch, Redis, and PostgreSQL.",
+    ],
+    stack: [
+      "Python",
+      "XGBoost",
+      "Transformers",
+      "Spark",
+      "Kafka",
+      "SageMaker",
+      "Spring Boot",
+      "Kubernetes",
+    ],
+  },
+];
+
+const PROJECTS = [
+  {
+    icon: Network,
+    type: "Production AI Case Study",
+    title: "Enterprise RAG & Multi-Agent Platform",
+    description:
+      "A governed AI-agent platform that retrieves from structured and unstructured enterprise sources, orchestrates specialized agents, and measures groundedness, relevance, latency, and quality in production.",
+    outcome: "150K+ monthly users · +32% accuracy · −41% latency · −28% cost",
+    stack: ["LangGraph", "Databricks Vector Search", "MLflow", "Unity Catalog", "OpenAI", "FastAPI"],
+  },
+  {
+    icon: Layers3,
+    type: "Machine Learning Case Study",
+    title: "Demand Forecasting & Inventory Optimization",
+    description:
+      "A distributed forecasting platform using time-series features, XGBoost, Transformers, probabilistic methods, and real-time services to support regional inventory planning.",
+    outcome: "+22% forecast accuracy · −18% holding cost · −35% decision latency",
+    stack: ["XGBoost", "Transformers", "Spark", "Kafka", "SageMaker", "Spring Boot"],
+  },
+  {
+    icon: Sparkles,
+    type: "Open-Source Project",
+    title: "AI-Powered Text-to-Story Video Generator",
+    description:
+      "Transforms written prompts into narrated, AI-illustrated short videos using NLP, image generation, and automated media composition.",
+    outcome: "End-to-end multimodal generation workflow",
+    stack: ["Python", "Transformers", "Stable Diffusion", "MoviePy"],
+    link: "https://github.com/Rakshithbodakuntla/Text_to_Video_Generator",
+  },
+  {
+    icon: Zap,
+    type: "Deep Learning Project",
+    title: "ECG Signal Analysis & Classification",
+    description:
+      "An end-to-end pipeline that preprocesses ECG signals and applies CNN and CNN-LSTM architectures to classify cardiac abnormalities.",
+    outcome: "Healthcare-focused signal classification pipeline",
+    stack: ["Python", "TensorFlow", "Keras", "WFDB", "Scikit-learn"],
+    link: "https://github.com/Rakshithbodakuntla/Arrhythmia_Classification",
+  },
+];
+
+const CERTIFICATIONS = [
+  "Databricks Certified Generative AI Engineer Associate",
+  "AWS Certified Machine Learning Engineer",
+  "Certified Kubernetes Application Developer (CKAD)",
+  "AWS Certified Solutions Architect",
+];
+
+const EDUCATION = [
+  {
+    degree: "Master’s in Computer Science",
+    school: "University of Central Missouri",
+  },
+  {
+    degree: "Bachelor’s in Computer Science",
+    school: "Jawaharlal Nehru Technological University",
+  },
+];
+
+function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
-  // 1. MOUSE TRACKING LOGIC
+  const currentYear = useMemo(() => new Date().getFullYear(), []);
+
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      const { clientX, clientY } = e;
-      const x = (clientX / window.innerWidth) * 100;
-      const y = (clientY / window.innerHeight) * 100;
-      document.documentElement.style.setProperty('--mouse-x', `${x}%`);
-      document.documentElement.style.setProperty('--mouse-y', `${y}%`);
+    const onMouseMove = (event) => {
+      document.documentElement.style.setProperty("--pointer-x", `${event.clientX}px`);
+      document.documentElement.style.setProperty("--pointer-y", `${event.clientY}px`);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", onMouseMove);
+    return () => window.removeEventListener("mousemove", onMouseMove);
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0, 0); 
-    if ('scrollRestoration' in history) {
-        history.scrollRestoration = 'manual';
-    }
-    const handleVisibilityChange = () => {
-        if (document.visibilityState === 'visible') {
-            window.scrollTo(0, 0);
-        }
-    };
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
-  }, []);
-
-  useEffect(() => {
+    const sections = document.querySelectorAll("section[id]");
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visible?.target?.id) setActiveSection(visible.target.id);
       },
-      { root: null, rootMargin: '0px 0px -70% 0px', threshold: 0.1 }
+      { rootMargin: "-20% 0px -65% 0px", threshold: [0.05, 0.2, 0.5] },
     );
 
-    const sections = document.querySelectorAll('section');
     sections.forEach((section) => observer.observe(section));
-
-    return () => {
-      sections.forEach((section) => observer.unobserve(section));
-    };
+    return () => observer.disconnect();
   }, []);
 
-  const sections = ["home", "about", "skills", "projects", "experience", "research", "contact"];
-
-  const scrollToSection = (sectionId) => {
-    setActiveSection(sectionId);
-    setIsMenuOpen(false);
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setMenuOpen(false);
   };
 
-  const handleContactSubmit = () => {
-    const mailtoLink = `mailto:bodakuntlarakshith1@gmail.com?subject=Portfolio Contact from ${encodeURIComponent(
-      formData.name
-    )}&body=${encodeURIComponent(formData.message + "\n\nFrom: " + formData.email)}`;
-    window.location.href = mailtoLink;
+  const submitContact = (event) => {
+    event.preventDefault();
+    const subject = encodeURIComponent(`Portfolio inquiry from ${formData.name || "a visitor"}`);
+    const body = encodeURIComponent(
+      `${formData.message}\n\nName: ${formData.name}\nEmail: ${formData.email}`,
+    );
+    window.location.href = `mailto:bodakuntlarakshith@gmail.com?subject=${subject}&body=${body}`;
   };
-
-  const skills = {
-    "Programming & Tools": ["Python", "SQL", "C", "Git & GitHub", "ServiceNow", "Figma", "Bash"],
-    "Data Engineering": ["Snowflake", "Azure Data Factory", "ETL / ELT", "Data Warehousing", "Dimensional Modeling", "Data Cleaning"],
-    "AI & Machine Learning": ["Machine Learning", "Deep Learning", "CNN & LSTM", "LLMs", "Prompt Design", "Model Optimization"],
-    "Data & Visualization": ["Pandas & NumPy", "TensorFlow", "Power BI", "Tableau", "Streamlit", "Scikit-learn"]
-  };
-
-  const experience = [
-    {
-      title: "Graduate Research Assistant",
-      company: "University of Central Missouri – Overland Park, KS",
-      period: "Aug 2025 – Present",
-      keyAchievements: [
-        "Developed a deep learning pipeline for ECG signal analysis using TensorFlow and Streamlit.",
-        "Implemented CNN and LSTM models to classify cardiac arrhythmias with improved detection accuracy.",
-        "Contributed to AI research supporting healthcare diagnosis and intelligent decision systems."
-      ]
-    },
-    {
-      title: "Software Engineer",
-      company: "HDFC ERGO General Insurance – Remote, India",
-      period: "Sep 2023 – Aug 2024",
-      keyAchievements: [
-        "Built scalable ETL pipelines using Python and SQL for high-volume insurance data.",
-        "Integrated APIs and automated workflows using Azure Data Factory and Power BI.",
-        "Optimized SQL queries, reducing execution time by 30% and enhancing analytics performance."
-      ]
-    },
-    {
-      title: "ServiceNow Intern",
-      company: "Kaptius – Hyderabad, India",
-      period: "Jan 2023 – Aug 2023",
-      keyAchievements: [
-        "Assisted in custom ServiceNow app development and workflow automation using Flow Designer.",
-        "Created JavaScripts and dashboards for process optimization.",
-        "Integrated REST APIs and supported CMDB data migration for client projects."
-      ]
-    }
-  ];
-
-  const projects = [
-    {
-      title: "AI-Powered Text-to-Story Video Generator",
-      tech: "Python, Transformers, Stable Diffusion, MoviePy",
-      description: "Built an AI-driven Text-to-Story Video Generator that converts user-written statements into narrated, AI-illustrated short films using NLP and Stable Diffusion.",
-      link: "https://github.com/Rakshithbodakuntla/Text_to_Video_Generator" 
-    },
-    {
-      title: "ECG Signal Analysis & Classification Pipeline",
-      tech: "Python, TensorFlow, Keras, WFDB, Scikit-learn",
-      description: "Developed an end-to-end ECG classification system using CNN and CNN-LSTM to detect cardiac abnormalities.",
-      link: "https://github.com/Rakshithbodakuntla/Arrhythmia_Classification" 
-    },
-    {
-      title: "Real-Time Smart Farm IoT Data Pipeline",
-      tech: "IoT Sensors, Python, SQLite, Streamlit",
-      description: "Designed an IoT solution for humidity and soil monitoring with real-time alerts and Streamlit dashboards.",
-      link: "https://github.com/Rakshithbodakuntla/Real-Time-Smart-Farm-IoT-Data-Pipeline-and-Analytics-Dashboard" 
-    },
-    {
-      title: "Customer Churn Prediction",
-      tech: "Python, Streamlit, Pandas, Scikit-learn",
-      description: "Developed a machine learning pipeline that predicts customer churn through data analytics and visualization dashboards.",
-      link: "https://github.com/Rakshithbodakuntla/customer_churn_prediction" 
-    }
-  ];
-
-  const research = [
-    {
-      title: "A CNN-LSTM Deep Learning Pipeline for ECG Signal Analysis",
-      description: "Developed hybrid CNN-LSTM models to enhance ECG classification accuracy for healthcare diagnosis."
-    },
-    {
-      title: "Face-Recognition System using Deep Reinforcement Learning",
-      description: "Published research on scalable authentication using DRL for high-volume datasets."
-    },
-    {
-      title: "Adversarial ML: Attacks & Robustness",
-      description: "Worked on adversarial attacks and defense strategies to improve ML model robustness."
-    }
-  ];
-
-  const certifications = [
-    "SnowPro Core",
-    "Snowflake Hands-On Data Warehouse Training",
-    "Snowflake Collaboration & Cost Estimation Workshop",
-    "Databricks Fundamentals",
-  ];
-
-  const card = "bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-md hover:shadow-cyan-500/30 hover:border-cyan-400/40 transition";
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-[#08090b] text-gray-200 font-sans">
-      
-      {/* 2. INTERACTIVE CURSOR BACKGROUND */}
-      <style>{`
-        :root { --mouse-x: 50%; --mouse-y: 50%; }
-        .cursor-bg {
-          background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(34, 211, 238, 0.12) 0%, transparent 45%);
-          transition: background 0.1s ease-out;
-        }
-      `}</style>
+    <div className="site-shell">
+      <div className="ambient ambient-one" aria-hidden="true" />
+      <div className="ambient ambient-two" aria-hidden="true" />
+      <div className="pointer-glow" aria-hidden="true" />
+      <div className="grid-overlay" aria-hidden="true" />
 
-      <div className="fixed inset-0 -z-10 cursor-bg" />
-      <div className="fixed inset-0 -z-20 opacity-[0.03] pointer-events-none" 
-           style={{ backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`, backgroundSize: '50px 50px' }}>
-      </div>
+      <header className="topbar">
+        <div className="container nav-inner">
+          <button className="brand" onClick={() => scrollToSection("home")} aria-label="Go to home">
+            <span className="brand-mark">RB</span>
+            <span className="brand-copy">
+              <strong>Rakshith</strong>
+              <small>AI/ML Engineer</small>
+            </span>
+          </button>
 
-      {/* NAVBAR */}
-      <nav className="fixed top-0 w-full bg-black/30 backdrop-blur-md border-b border-white/10 z-50">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex justify-between items-center h-16">
-            <div className="text-2xl font-bold text-cyan-400">RB</div>
-            <div className="hidden md:flex space-x-8">
-              {sections.map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item)}
-                  className={`capitalize hover:text-cyan-400 transition ${
-                    activeSection === item ? "text-cyan-400 font-semibold" : "text-gray-300"
-                  }`}
-                >
-                  {item.replace('-', ' ')}
-                </button>
-              ))}
-            </div>
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 rounded-lg hover:bg-white/10">
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-          {isMenuOpen && (
-            <div className="md:hidden py-4 space-y-2 bg-black/90 border-t border-white/10 px-4">
-              {sections.map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item)}
-                  className="block w-full text-left px-4 py-2 capitalize hover:bg-white/10 rounded-lg text-gray-200"
-                >
-                  {item.replace('-', ' ')}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-      </nav>
-
-      {/* HERO */}
-      <section id="home" className="pt-28 pb-16 text-center min-h-screen flex items-center justify-center">
-        <div className="max-w-6xl mx-auto px-4">
-          <h3 className="text-5xl md:text-7xl font-extrabold mb-4">
-            <span className="text-white">Hi, I'm</span> <span className="text-cyan-400">Rakshith Bodakuntla</span>
-          </h3>
-          <p className="text-2xl md:text-3xl font-light text-gray-300 mb-8">
-            Data Engineer & AI Engineer
-          </p>
-          <div className="flex flex-wrap justify-center gap-6">
-            <a href="https://drive.google.com/file/d/1YoIgucMOj_nYqqJibQd0uTrGNFEsRQZo/view?usp=sharing" target="_blank" rel="noreferrer" className="px-10 py-3 bg-cyan-600 text-white rounded-full font-semibold text-lg shadow-lg shadow-cyan-500/50 hover:bg-cyan-700 transition flex items-center gap-2 transform hover:scale-105">
-              <Download size={20} /> Download Resume
-            </a>
-            <button onClick={() => scrollToSection('contact')} className="px-10 py-3 border border-cyan-400/50 text-cyan-300 rounded-full font-semibold text-lg hover:bg-cyan-500/10 transition flex items-center gap-2 transform hover:scale-105">
-              <Mail size={20} /> Contact Me
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. UPGRADED SIDE-BY-SIDE ABOUT */}
-      <section id="about" className="py-24 px-4 border-t border-white/5">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center gap-16">
-            <div className="w-full md:w-2/5 flex justify-center">
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-700"></div>
-                <div className="relative">
-                  <img 
-                    src={profileImage} 
-                    alt="Rakshith Bodakuntla" 
-                    className="rounded-2xl w-72 h-80 md:w-full md:h-auto object-cover shadow-2xl border border-white/10" 
-                  />
-                 
-                </div>
-              </div>
-            </div>
-
-            <div className="w-full md:w-3/5 text-left">
-              <h2 className="text-4xl font-bold mb-8 text-white flex items-center gap-3">
-                <User className="text-cyan-400" /> About Me
-              </h2>
-              <div className="space-y-5 text-gray-300 text-lg leading-relaxed">
-                <p>
-                  I am a <span className="text-white font-semibold">Data Engineer and AI Specialist</span> with 
-                  a passion for turning complex datasets into actionable intelligence. With over 2 years of professional 
-                  experience, I bridge the gap between robust data infrastructure and cutting-edge machine learning.
-                </p>
-                <p>
-                  My journey has taken me from optimizing SQL queries for major financial institutions to 
-                  architecting deep learning pipelines for medical signal analysis. I thrive on building 
-                  <span className="text-cyan-400 italic"> scalable, efficient, and intelligent</span> systems.
-                </p>
-                <p>
-                  Recently, I achieved my <span className="text-white border-b border-cyan-400">SnowPro Core Certification</span>, 
-                  solidifying my expertise in cloud data warehousing and modern architecture.
-                </p>
-              </div>
-              <div className="grid grid-cols-2 gap-4 mt-10">
-                <div className="p-4 bg-white/5 rounded-xl border border-white/10">
-                  <p className="text-cyan-400 font-bold text-xs uppercase tracking-widest mb-1">Location</p>
-                  <p className="text-gray-300">Overland Park, KS</p>
-                </div>
-                <div className="p-4 bg-white/5 rounded-xl border border-white/10">
-                  <p className="text-cyan-400 font-bold text-xs uppercase tracking-widest mb-1">Education</p>
-                  <p className="text-gray-300">UCM (Masters)</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. COMPACT SKILLS SECTION */}
-      <section id="skills" className="py-24 px-4 bg-black/10">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-cyan-400 flex items-center gap-3">
-            <Code /> Tech Stack
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {Object.entries(skills).map(([category, items]) => (
-              <div key={category} className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/[0.07] transition">
-                <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
-                  <div className="w-2 h-2 bg-cyan-400 rounded-full shadow-[0_0_8px_rgba(34,211,238,0.8)]"></div>
-                  {category}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {items.map((skill) => (
-                    <span 
-                      key={skill}
-                      className="px-3 py-1.5 bg-cyan-500/10 border border-cyan-500/20 text-cyan-100 text-xs font-medium rounded-lg hover:border-cyan-400 transition cursor-default"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* PROJECTS */}
-      <section id="projects" className="py-24 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-cyan-400 flex items-center gap-3">
-            <Star /> Projects
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {projects.map((p, i) => (
-              <div key={i} className={card}>
-                <h3 className="text-2xl font-bold text-white mb-2">{p.title}</h3>
-                <p className="text-cyan-400 font-semibold mb-4 text-sm tracking-wide">{p.tech}</p>
-                <p className="text-gray-400 mb-6 line-clamp-3">{p.description}</p>
-                <a href={p.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-white bg-white/10 px-4 py-2 rounded-lg hover:bg-cyan-500 transition text-sm font-medium">
-                  View Repository <Github size={16} />
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* EXPERIENCE */}
-      <section id="experience" className="py-24 px-4 bg-black/10">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-cyan-400 flex items-center gap-3">
-            <Briefcase /> Career Journey
-          </h2>
-          <div className="space-y-8">
-            {experience.map((exp, i) => (
-              <div key={i} className={card}>
-                <div className="flex flex-col md:flex-row md:justify-between mb-6">
-                  <div>
-                    <h3 className="text-2xl font-bold text-white">{exp.title}</h3>
-                    <p className="text-cyan-400 text-lg">{exp.company}</p>
-                  </div>
-                  <span className="text-gray-500 font-medium mt-2 md:mt-0">{exp.period}</span>
-                </div>
-                <ul className="space-y-3">
-                  {exp.keyAchievements.map((achieve, j) => (
-                    <li key={j} className="flex items-start gap-3 text-gray-400">
-                      <div className="mt-1.5 w-1.5 h-1.5 bg-cyan-500 rounded-full shrink-0"></div>
-                      {achieve}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* RESEARCH & CERTIFICATIONS */}
-      <section id="research" className="py-24 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-3xl font-bold mb-8 text-cyan-400 flex items-center gap-3">
-                <BookOpen /> Research
-              </h2>
-              <div className="space-y-4">
-                {research.map((r, i) => (
-                  <div key={i} className="p-6 bg-white/5 border border-white/10 rounded-xl">
-                    <h4 className="font-bold text-white mb-2">{r.title}</h4>
-                    <p className="text-sm text-gray-400">{r.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h2 className="text-3xl font-bold mb-8 text-cyan-400 flex items-center gap-3">
-                <Award /> Certifications
-              </h2>
-              <div className="grid gap-3">
-                {certifications.map((c, i) => (
-                  <div key={i} className="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded-xl hover:border-cyan-400/50 transition">
-                    <div className="p-2 bg-cyan-500/10 rounded-lg text-cyan-400">
-                      <Award size={20} />
-                    </div>
-                    <span className="font-medium text-gray-300">{c}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CONTACT */}
-      <section id="contact" className="py-24 px-4 bg-black/20">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center text-white">Get In Touch</h2>
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="space-y-6">
-              <div className="flex items-center gap-4 p-6 bg-white/5 rounded-2xl border border-white/10">
-                <Mail className="text-cyan-400" />
-                <a href="mailto:bodakuntlarakshith1@gmail.com" className="hover:text-cyan-400 transition">bodakuntlarakshith1@gmail.com</a>
-              </div>
-              <div className="flex items-center gap-4 p-6 bg-white/5 rounded-2xl border border-white/10">
-                <Phone className="text-cyan-400" />
-                <span>+1 (469) 487-1318</span>
-              </div>
-              <div className="flex gap-4 pt-4">
-                <a href="https://linkedin.com" className="p-4 bg-white/5 rounded-full hover:bg-cyan-500 transition"><Linkedin /></a>
-                <a href="https://github.com" className="p-4 bg-white/5 rounded-full hover:bg-cyan-500 transition"><Github /></a>
-              </div>
-            </div>
-            
-            <div className="bg-white/5 p-8 rounded-2xl border border-white/10 space-y-4">
-              <input 
-                type="text" 
-                placeholder="Name" 
-                className="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-cyan-500 transition"
-                value={formData.name}
-                onChange={(e) => setFormData({...formData, name: e.target.value})}
-              />
-              <input 
-                type="email" 
-                placeholder="Email" 
-                className="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-cyan-500 transition"
-                value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
-              />
-              <textarea 
-                placeholder="Message" 
-                rows="4" 
-                className="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-cyan-500 transition"
-                value={formData.message}
-                onChange={(e) => setFormData({...formData, message: e.target.value})}
-              ></textarea>
-              <button 
-                onClick={handleContactSubmit}
-                className="w-full bg-cyan-600 hover:bg-cyan-500 py-4 rounded-xl font-bold transition flex items-center justify-center gap-2"
+          <nav className="desktop-nav" aria-label="Primary navigation">
+            {NAV_ITEMS.map(([id, label]) => (
+              <button
+                key={id}
+                className={activeSection === id ? "nav-link active" : "nav-link"}
+                onClick={() => scrollToSection(id)}
               >
-                Send Message <Send size={18} />
+                {label}
               </button>
+            ))}
+          </nav>
+
+          <a className="nav-cta" href="mailto:bodakuntlarakshith@gmail.com">
+            Let’s connect <ArrowRight size={16} />
+          </a>
+
+          <button
+            className="menu-button"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-expanded={menuOpen}
+            aria-label="Toggle navigation"
+          >
+            {menuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
+
+        {menuOpen && (
+          <nav className="mobile-nav" aria-label="Mobile navigation">
+            {NAV_ITEMS.map(([id, label]) => (
+              <button key={id} onClick={() => scrollToSection(id)}>
+                {label} <ChevronRight size={17} />
+              </button>
+            ))}
+          </nav>
+        )}
+      </header>
+
+      <main>
+        <section id="home" className="hero section">
+          <div className="container hero-grid">
+            <div className="hero-copy reveal">
+              <div className="eyebrow">
+                <span className="status-dot" /> Production AI · Agentic Systems · MLOps
+              </div>
+              <h1>
+                Building <span>intelligent systems</span> that perform at enterprise scale.
+              </h1>
+              <p className="hero-lead">
+                I’m Rakshith Bodakuntla, an AI/ML Engineer with 5+ years of experience designing
+                production-grade Generative AI, RAG, forecasting, and distributed data platforms.
+              </p>
+
+              <div className="hero-actions">
+                <a className="button primary" href="/Rakshith_Bodakuntla_Resume.pdf" download>
+                  <Download size={18} /> Download resume
+                </a>
+                <button className="button secondary" onClick={() => scrollToSection("experience")}>
+                  Explore my work <ArrowRight size={18} />
+                </button>
+              </div>
+
+              <div className="social-row">
+                <a
+                  href="https://linkedin.com/in/bodakuntlarakshith1"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="LinkedIn profile"
+                >
+                  <LinkedinMark size={19} /> LinkedIn
+                </a>
+                <a
+                  href="https://github.com/Rakshithbodakuntla"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="GitHub profile"
+                >
+                  <GithubMark size={19} /> GitHub
+                </a>
+                <span>
+                  <MapPin size={18} /> San Francisco, CA
+                </span>
+              </div>
+            </div>
+
+            <div className="hero-visual" aria-label="Professional profile summary">
+              <div className="orbit orbit-one" />
+              <div className="orbit orbit-two" />
+              <div className="profile-card">
+                <div className="profile-topline">
+                  <span>AI SYSTEM PROFILE</span>
+                  <span className="online-pill">AVAILABLE</span>
+                </div>
+                <div className="monogram">RB</div>
+                <h2>Rakshith Bodakuntla</h2>
+                <p>AI/ML Engineer</p>
+                <div className="profile-divider" />
+                <div className="profile-stack">
+                  <span>Generative AI</span>
+                  <span>RAG & Agents</span>
+                  <span>Distributed ML</span>
+                  <span>Cloud MLOps</span>
+                </div>
+                <div className="profile-code">
+                  <span>focus</span>
+                  <strong>reliable_ai_at_scale()</strong>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <footer className="py-12 text-center text-gray-600 text-sm border-t border-white/5">
-        <p>© {new Date().getFullYear()} Rakshith Bodakuntla • Built with React & Tailwind</p>
+          <div className="container metrics-grid">
+            {METRICS.map((metric) => (
+              <article className="metric-card" key={metric.label}>
+                <strong>{metric.value}</strong>
+                <span>{metric.label}</span>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="about" className="section muted-section">
+          <div className="container about-grid">
+            <div>
+              <p className="section-kicker">About me</p>
+              <h2 className="section-title">From ML experimentation to dependable production systems.</h2>
+            </div>
+            <div className="about-copy">
+              <p>
+                My work sits at the intersection of machine learning, software engineering, and
+                distributed systems. I design the full path from data and experimentation to APIs,
+                deployment, evaluation, monitoring, governance, and business adoption.
+              </p>
+              <p>
+                At Databricks, I build enterprise AI agents and RAG platforms. Previously at Amazon,
+                I developed forecasting, inventory optimization, and high-volume ML services for
+                supply-chain operations.
+              </p>
+              <div className="principles">
+                {["Quality before scale", "Measurable business impact", "Reliable cloud-native delivery"].map(
+                  (principle) => (
+                    <span key={principle}>
+                      <CheckCircle2 size={17} /> {principle}
+                    </span>
+                  ),
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="expertise" className="section">
+          <div className="container">
+            <div className="section-heading">
+              <div>
+                <p className="section-kicker">Core expertise</p>
+                <h2 className="section-title">An end-to-end AI engineering toolkit.</h2>
+              </div>
+              <p>
+                Strong depth across intelligent applications, data platforms, production software,
+                and cloud operations.
+              </p>
+            </div>
+
+            <div className="expertise-grid">
+              {EXPERTISE.map(({ icon: Icon, title, description, skills }) => (
+                <article className="expertise-card" key={title}>
+                  <div className="icon-box">
+                    <Icon size={24} />
+                  </div>
+                  <h3>{title}</h3>
+                  <p>{description}</p>
+                  <div className="tag-list">
+                    {skills.map((skill) => (
+                      <span key={skill}>{skill}</span>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="experience" className="section muted-section">
+          <div className="container">
+            <div className="section-heading">
+              <div>
+                <p className="section-kicker">Professional experience</p>
+                <h2 className="section-title">Building high-impact ML and GenAI platforms.</h2>
+              </div>
+              <BriefcaseBusiness className="section-watermark" size={66} />
+            </div>
+
+            <div className="timeline">
+              {EXPERIENCE.map((job) => (
+                <article className="timeline-item" key={`${job.company}-${job.role}`}>
+                  <div className="timeline-marker" />
+                  <div className="experience-card">
+                    <div className="experience-header">
+                      <div>
+                        <span className="company-chip">{job.company}</span>
+                        <h3>{job.role}</h3>
+                        <p>{job.location}</p>
+                      </div>
+                      <time>{job.period}</time>
+                    </div>
+                    <p className="experience-summary">{job.summary}</p>
+                    <ul>
+                      {job.bullets.map((bullet) => (
+                        <li key={bullet}>
+                          <ChevronRight size={17} /> <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="tag-list compact">
+                      {job.stack.map((skill) => (
+                        <span key={skill}>{skill}</span>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" className="section">
+          <div className="container">
+            <div className="section-heading">
+              <div>
+                <p className="section-kicker">Selected work</p>
+                <h2 className="section-title">Case studies and hands-on projects.</h2>
+              </div>
+              <p>
+                A mix of enterprise systems and open-source builds spanning agentic AI, forecasting,
+                multimodal generation, and deep learning.
+              </p>
+            </div>
+
+            <div className="projects-grid">
+              {PROJECTS.map(({ icon: Icon, ...project }) => (
+                <article className="project-card" key={project.title}>
+                  <div className="project-topline">
+                    <div className="icon-box small">
+                      <Icon size={21} />
+                    </div>
+                    <span>{project.type}</span>
+                  </div>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  <div className="project-outcome">{project.outcome}</div>
+                  <div className="tag-list compact">
+                    {project.stack.map((skill) => (
+                      <span key={skill}>{skill}</span>
+                    ))}
+                  </div>
+                  {project.link && (
+                    <a href={project.link} target="_blank" rel="noreferrer" className="text-link">
+                      View repository <ExternalLink size={16} />
+                    </a>
+                  )}
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="credentials" className="section muted-section">
+          <div className="container credentials-grid">
+            <article className="credential-panel">
+              <div className="panel-heading">
+                <Award size={25} />
+                <div>
+                  <p className="section-kicker">Certifications</p>
+                  <h2>Validated cloud and AI expertise</h2>
+                </div>
+              </div>
+              <div className="credential-list">
+                {CERTIFICATIONS.map((certification) => (
+                  <div key={certification}>
+                    <CheckCircle2 size={19} />
+                    <span>{certification}</span>
+                  </div>
+                ))}
+              </div>
+            </article>
+
+            <article className="credential-panel">
+              <div className="panel-heading">
+                <GraduationCap size={28} />
+                <div>
+                  <p className="section-kicker">Education</p>
+                  <h2>Computer science foundation</h2>
+                </div>
+              </div>
+              <div className="education-list">
+                {EDUCATION.map((item) => (
+                  <div key={item.degree}>
+                    <h3>{item.degree}</h3>
+                    <p>{item.school}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="contact" className="section contact-section">
+          <div className="container contact-grid">
+            <div className="contact-copy">
+              <p className="section-kicker">Get in touch</p>
+              <h2 className="section-title">Let’s build something intelligent, reliable, and useful.</h2>
+              <p>
+                Reach out to discuss AI/ML engineering, Generative AI platforms, RAG systems,
+                distributed ML, or cloud-native product development.
+              </p>
+
+              <div className="contact-details">
+                <a href="mailto:bodakuntlarakshith@gmail.com">
+                  <Mail size={20} />
+                  <span>
+                    <small>Email</small>
+                    bodakuntlarakshith@gmail.com
+                  </span>
+                </a>
+                <a href="tel:+14694871318">
+                  <Phone size={20} />
+                  <span>
+                    <small>Phone</small>
+                    +1 (469) 487-1318
+                  </span>
+                </a>
+                <div>
+                  <MapPin size={20} />
+                  <span>
+                    <small>Location</small>
+                    San Francisco, CA
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <form className="contact-form" onSubmit={submitContact}>
+              <label>
+                Name
+                <input
+                  required
+                  value={formData.name}
+                  onChange={(event) => setFormData({ ...formData, name: event.target.value })}
+                  placeholder="Your name"
+                />
+              </label>
+              <label>
+                Email
+                <input
+                  required
+                  type="email"
+                  value={formData.email}
+                  onChange={(event) => setFormData({ ...formData, email: event.target.value })}
+                  placeholder="you@example.com"
+                />
+              </label>
+              <label>
+                Message
+                <textarea
+                  required
+                  rows={5}
+                  value={formData.message}
+                  onChange={(event) => setFormData({ ...formData, message: event.target.value })}
+                  placeholder="Tell me about the opportunity or project..."
+                />
+              </label>
+              <button className="button primary full" type="submit">
+                Send message <Send size={18} />
+              </button>
+            </form>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div className="container footer-inner">
+          <div>
+            <strong>Rakshith Bodakuntla</strong>
+            <span>AI/ML Engineer · Generative AI · RAG · MLOps</span>
+          </div>
+          <p>© {currentYear} Rakshith Bodakuntla. Built with React.</p>
+        </div>
       </footer>
     </div>
   );
 }
+
+export default App;
